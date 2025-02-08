@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #040720;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.ViewEmployeFormController">
+   <children>
+      <TextField fx:id="txtSearchEmp" layoutX="680.0" layoutY="7.0" onAction="#BtnOKClickSearchEmployee" prefHeight="31.0" prefWidth="315.0" promptText="Search Employee" />
+      <ImageView layoutX="964.0" layoutY="8.0" opacity="0.28">
+         <image>
+            <Image url="@../assets/icon/icons8-search-30.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tblEmpViewForm" layoutY="43.0" prefHeight="461.0" prefWidth="1000.0">
+         <columns>
+            <TableColumn fx:id="clEmpId" prefWidth="143.0" style="-fx-font-size: 14px;" text="Employee Id" />
+            <TableColumn fx:id="clEmpName" prefWidth="376.0" style="-fx-font-size: 16px;" text="Employee Name" />
+            <TableColumn fx:id="clEmpAddress" prefWidth="304.0" style="-fx-font-size: 14px;" text="Employee Address" />
+            <TableColumn fx:id="clEmpTel" prefWidth="165.0" style="-fx-font-size: 14px;" text="Tell Nb" />
+         </columns>
+      </TableView>
+      <Button layoutX="642.0" layoutY="8.0" mnemonicParsing="false" onAction="#btnRefeshViewEmployee" prefHeight="29.0" prefWidth="31.0" style="-fx-background-color: #040720;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ImageView layoutX="642.0" layoutY="8.0">
+         <image>
+            <Image url="@../assets/icon/icons8-refresh-30.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

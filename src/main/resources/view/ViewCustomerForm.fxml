@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #040720;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.ViewCustomerFormController">
+   <children>
+      <TextField fx:id="txtSearch" layoutX="679.0" layoutY="7.0" onAction="#BtnOKClickCearch" prefHeight="31.0" prefWidth="315.0" promptText="Search Customer" />
+       <ImageView layoutX="963.0" layoutY="8.0" opacity="0.28">
+         <image>
+            <Image url="@../assets/icon/icons8-search-30.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tblCustomerViewForm" layoutY="43.0" prefHeight="457.0" prefWidth="1000.0">
+        <columns>
+          <TableColumn fx:id="clCustomerId" prefWidth="143.0" style="-fx-font-size: 14px;" text="Customer Id" />
+          <TableColumn fx:id="clCustomerName" prefWidth="402.0" style="-fx-font-size: 16px;" text="Customer Name" />
+            <TableColumn fx:id="clCustomerAddress" prefWidth="289.0" style="-fx-font-size: 14px;" text="Customer Address" />
+            <TableColumn fx:id="clCustomerTel" prefWidth="149.0" style="-fx-font-size: 14px;" text="Tell Nb" />
+        </columns>
+      </TableView>
+      <Button layoutX="641.0" layoutY="8.0" mnemonicParsing="false" onAction="#btnRefeshViewCustomer" prefHeight="29.0" prefWidth="31.0" style="-fx-background-color: #040720;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ImageView layoutX="641.0" layoutY="8.0">
+         <image>
+            <Image url="@../assets/icon/icons8-refresh-30.png" />
+         </image>
+      </ImageView>
+       <ListView fx:id="lstSuggestions" layoutX="680.0" layoutY="41.0" prefHeight="65.0" prefWidth="315.0" visible="false" />
+   </children>
+</AnchorPane>

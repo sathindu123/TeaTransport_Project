@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="597.0" prefWidth="950.0" style="-fx-background-color: #040720;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.ProfitController">
+   <children>
+      <ComboBox fx:id="cmMonth" layoutX="136.0" layoutY="22.0" prefHeight="25.0" prefWidth="175.0" promptText="MONTH" />
+      <ComboBox fx:id="cmyear" layoutX="7.0" layoutY="23.0" prefHeight="25.0" prefWidth="115.0" promptText="YEAR" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fffbe6" height="472.0" layoutY="69.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" style="-fx-fill: #ADD8E6;" width="503.0" />
+      <Label layoutX="8.0" layoutY="81.0" prefHeight="17.0" prefWidth="199.0" text="මුලු හොද දළු ප්‍රමාණය">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="889.0" layoutY="3.0" prefHeight="17.0" prefWidth="60.0" text="රන්  දළු" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="800.0" layoutY="2.0" prefHeight="17.0" prefWidth="80.0" text="හොද දළු" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="739.0" layoutY="24.0" prefHeight="17.0" prefWidth="47.0" text="Rate" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="8.0" layoutY="147.0" prefHeight="17.0" prefWidth="199.0" text="මුලු රන්  දළු ප්‍රමාණය">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="8.0" layoutY="114.0" prefHeight="17.0" prefWidth="199.0" text="හොද දළු වටිනාකම">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="8.0" layoutY="180.0" prefHeight="17.0" prefWidth="199.0" text="රන් දළු වටිනාකම">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="104.0" layoutY="216.0" prefHeight="27.0" prefWidth="167.0" text="මුලු දළු  වටිනාකම" textFill="#0200ff">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="8.0" layoutY="262.0" prefHeight="20.0" prefWidth="260.0" text="මුලු අත්තිකාරම් ගැනීම් එකතුව">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="8.0" layoutY="301.0" prefHeight="20.0" prefWidth="260.0" text="මුලු පොහොර මිලදී ගැනීම් එකතුව">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="8.0" layoutY="338.0" prefHeight="20.0" prefWidth="245.0" text="මුලු වෙනත් මිලදී ගැනීම් එකතුව">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="104.0" layoutY="378.0" prefHeight="27.0" prefWidth="226.0" text="මුලු මිලදී ගැනීම් වටිනාකම" textFill="#0d00ff">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="8.0" layoutY="422.0" prefHeight="20.0" prefWidth="245.0" text="මාසය ගෙවිය යුතු මුලු මුදල">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="8.0" layoutY="458.0" prefHeight="20.0" prefWidth="245.0" text="මාසය තුල ලැබිය යුතු මුලු මුදල">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="528.0" layoutY="384.0" prefHeight="20.0" prefWidth="260.0" text="මාසය තුල මුලු %ට ගනන් එකතුව" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="2.0" layoutY="542.0" prefHeight="54.0" prefWidth="946.0" style="-fx-background-color: #347928;" />
+      <Label alignment="CENTER_RIGHT" layoutX="103.0" layoutY="551.0" prefHeight="39.0" prefWidth="400.0" text="NET PROFIT" textFill="#360836">
+         <font>
+            <Font name="System Bold" size="27.0" />
+         </font>
+      </Label>
+      <Button layoutX="362.0" layoutY="19.0" mnemonicParsing="false" onAction="#OkOnAction" prefHeight="25.0" prefWidth="96.0" style="-fx-background-color: #1d73ff;" text="OK" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <Label fx:id="l1" layoutX="359.0" layoutY="77.0" prefHeight="25.0" prefWidth="138.0" text="0.00">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="l2" layoutX="359.0" layoutY="110.0" prefHeight="25.0" prefWidth="138.0" text="0.00">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="l3" layoutX="359.0" layoutY="143.0" prefHeight="25.0" prefWidth="138.0" text="0.00">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="l4" layoutX="359.0" layoutY="176.0" prefHeight="25.0" prefWidth="138.0" text="0.00">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="l5" layoutX="359.0" layoutY="258.0" prefHeight="25.0" prefWidth="138.0" text="0.00">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="l6" layoutX="359.0" layoutY="297.0" prefHeight="25.0" prefWidth="138.0" text="0.00">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="l7" layoutX="359.0" layoutY="334.0" prefHeight="25.0" prefWidth="138.0" text="0.00">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="l8" layoutX="359.0" layoutY="418.0" prefHeight="25.0" prefWidth="138.0" text="0.00">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="l9" layoutX="359.0" layoutY="454.0" prefHeight="25.0" prefWidth="138.0" text="0.00">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="l10" layoutX="802.0" layoutY="381.0" prefHeight="25.0" prefWidth="138.0" text="0.00" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblH" alignment="CENTER" layoutX="800.0" layoutY="28.0" prefHeight="19.0" prefWidth="68.0" text="0" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblR" alignment="CENTER" layoutX="889.0" layoutY="28.0" prefHeight="19.0" prefWidth="60.0" text="0" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fffbe6" height="267.0" layoutX="528.0" layoutY="98.0" stroke="BLACK" strokeType="INSIDE" width="414.0" />
+      <Label alignment="CENTER" layoutX="529.0" layoutY="63.0" prefHeight="19.0" prefWidth="414.0" text="Factory Details" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font>
+      </Label>
+      <Label layoutX="589.0" layoutY="124.0" prefHeight="17.0" prefWidth="47.0" text="Rate">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="841.0" layoutY="99.0" prefHeight="26.0" prefWidth="88.0" text="රන්  දළු">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="695.0" layoutY="99.0" prefHeight="26.0" prefWidth="108.0" text="හොද දළු">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="540.0" layoutY="225.0" prefHeight="20.0" prefWidth="260.0" text="සැපයූ මුලු රන්  දළු ප්‍රමාණය ">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="540.0" layoutY="255.0" prefHeight="20.0" prefWidth="260.0" text="රන් දළු වටිනාකම">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="540.0" layoutY="164.0" prefHeight="20.0" prefWidth="260.0" text="සැපයූ හොද දළු ප්‍රමාණය">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="540.0" layoutY="195.0" prefHeight="20.0" prefWidth="260.0" text="හොද දළු වටිනාකම">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="529.0" layoutY="334.0" prefHeight="30.0" prefWidth="412.0" style="-fx-background-color: FCCD2A;" text="මුලු  වටිනාකම            " textFill="#0200ff">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txthoda" layoutX="687.0" layoutY="123.0" prefHeight="25.0" prefWidth="88.0" />
+      <TextField fx:id="txtran" layoutX="828.0" layoutY="123.0" prefHeight="25.0" prefWidth="88.0" />
+      <TextField fx:id="txthDalu" layoutX="801.0" layoutY="164.0" prefHeight="25.0" prefWidth="138.0" />
+      <TextField fx:id="txtRDalu" layoutX="801.0" layoutY="223.0" prefHeight="25.0" prefWidth="138.0" />
+      <Label fx:id="lblHtotal" layoutX="802.0" layoutY="192.0" prefHeight="26.0" prefWidth="136.0" text="0.00">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblRtotal" layoutX="802.0" layoutY="252.0" prefHeight="26.0" prefWidth="136.0" text="0.00">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="803.0" layoutY="336.0" prefHeight="25.0" prefWidth="136.0" text="0.00" textFill="#347928">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="528.0" layoutY="420.0" prefHeight="20.0" prefWidth="260.0" text="මුලු %ට ගනන් වටිනාකම" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="l11" layoutX="802.0" layoutY="418.0" prefHeight="25.0" prefWidth="138.0" text="0.00" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="528.0" layoutY="458.0" prefHeight="20.0" prefWidth="226.0" text="වෙනත් අඩුකිරීම්" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtOther" layoutX="802.0" layoutY="455.0" prefHeight="25.0" prefWidth="145.0" />
+      <Label fx:id="lblNetPrice" alignment="CENTER" layoutX="735.0" layoutY="549.0" prefHeight="39.0" prefWidth="199.0" text="0.00" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="Total1" layoutX="358.0" layoutY="216.0" prefHeight="25.0" prefWidth="138.0" text="0.00" textFill="#347928">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Line endX="149.0" layoutX="352.0" layoutY="242.0" strokeWidth="3.0" />
+      <Line endX="151.0" layoutX="352.0" layoutY="214.0" strokeWidth="3.0" />
+      <Label fx:id="lblTotal1" layoutX="359.0" layoutY="376.0" prefHeight="25.0" prefWidth="138.0" text="0.00" textFill="#347928">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Line endX="149.0" layoutX="353.0" layoutY="402.0" strokeWidth="3.0" />
+      <Line endX="151.0" layoutX="353.0" layoutY="374.0" strokeWidth="3.0" />
+      <Button layoutX="803.0" layoutY="286.0" mnemonicParsing="false" onAction="#OnActionbtn1" prefHeight="30.0" prefWidth="136.0" style="-fx-background-color: e36414;" text="OK" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Label fx:id="LBLCheack" layoutX="561.0" layoutY="297.0" prefHeight="17.0" prefWidth="175.0" textFill="RED" />
+   </children>
+</AnchorPane>

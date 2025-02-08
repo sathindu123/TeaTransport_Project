@@ -1,0 +1,595 @@
+create database TeaTransportCenter;
+
+use TeaTransportCenter;
+
+create table admin(
+	userName varchar(20),
+	password varchar(20)
+);
+
+create table employee(
+	empId varchar(10)Primary Key,
+	name varchar(30),
+	address varchar(50),
+	telNb int(10)
+		
+);
+
+create table sheduale(
+	id Varchar(8) Primary Key,
+	date date,
+	empID Varchar(8),
+	foreign key(empID) references employee(empId)
+);
+
+create table vehicle(
+	id Varchar(8) Primary Key,
+	model varchar(15),
+	vehicleNb varchar(8)
+);
+
+create table employeSalary(
+	salaryId Varchar(8) Primary Key,
+	date date,
+	amount int(5),
+	empId Varchar(8),
+	foreign key(empId) references employe(empId)
+);
+
+create table customer(
+	id Varchar(10) Primary Key,
+	name Varchar(50),
+	address Varchar(100),
+	Telephone_Nb int(10) 
+);
+
+create table supplier(
+	id Varchar(8) Primary Key
+);
+
+create table byer(
+	id Varchar(8) Primary Key
+);
+
+create table payment(
+	id varchar(10)Primary Key,
+	date date,
+	amount double(8),
+	supplierId varchar(20),
+	foreign key (custId) references customer(custId)
+);
+
+
+create table factory(
+	id varchar(8) Primary Key,
+	name Varchar(20),
+	Address Varchar(50),
+	telNb Int(10)
+);
+
+create table TeaBag(
+	teaBag_Id varchar(8) Primary Key,
+	date date,
+	teaBagWeight int(4),
+	waterWight int(2),
+	goniQuntity int(2),
+	goniCount int(2),
+	totelAmount(4),
+	supplierId Varchar(8),
+	factoryId varchar(8),
+	forign key(custId) Referenses customer (custId),
+	forign key(factoryId) Referenses factory (id)
+			 
+);
+
+
+create table order(
+	id Varchar(8) Primary Key,
+	CustID Varchar(8),
+	date date,
+	type Varchar(15),
+	quntity int(3),
+	amount Double(8),
+);
+
+create table product (
+	id Varchar(5) Primary Key,
+	quntity int(8),
+	unitPrice Double(10),
+);
+
+create table inventory (
+	id Varchar(5) Primary Key,
+	quntity int(8),
+	unitPrice Double(10),
+	cetegory Varchar(15)	
+);
+
+create table supplier (
+	id Varchar(5) Primary Key,
+	quntity int(5),
+	cetegory Varchar(15),
+	unitPrice Double(10),
+	perPrice double(10)
+);
+
+
+
+
+
+
+Customer - Information about the tea leaf suppliers.
+
+BillBook - Records transactions related to each customer.
+
+Transaction - Logs individual transactions (tea leaf supply, purchase, advances).
+
+TeaLeafSupply - Details of tea leaves provided by the customer.
+
+FertilizerPurchase - Details of fertilizers purchased by the customer.
+
+TeaPacketPurchase - Details of tea packets purchased by the customer.
+
+AdvancePayment - Money advances taken by the customer.
+
+Factory - Information about the factory that purchases tea leaves.
+
+FactoryPayment - Payments made by the factory to the business owner.
+
+PricePerKg - Price per kilogram of tea leaves set by the factory and the business owner.
+
+BusinessOwner - Information about the business owner.
+
+NetProfitCalculation - Process to calculate the net profit for the business owner.
+
+MonthlySummary - Summarized view of all transactions for a month.
+
+PaymentToCustomer - Payments made to customers by the business owner.
+
+Product - General information about products like fertilizers or tea packets.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public void loginButttonClick(ActionEvent event) throws IOException {
+        String userName = txtUserName.getText();
+        String password = txtPassword.getText();
+
+        if (userName.equals(credintial[0]) && password.equals(credintial[1])) {
+
+            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/dashboardForm.fxml"));
+            Scene scene = new Scene(anchorPane);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Dashboard Form");
+            System.out.println("Login successfully");
+        } else {
+            System.out.println("Login unsuccessfully");
+        }
+    }
+
+
+
+
+   public void BtnAddFactory(ActionEvent event){
+        String id = FactoryId.getText();
+        String name = FactoryName.getText();
+        String address = FactoryAddress.getText();
+        String tel = FactoryTel.getText();
+
+        FactoryManageDto factoryManageDto = new FactoryManageDto(id,name,address,Integer.parseInt(tel));
+
+        if(id == null || id.isEmpty() || name == null || name.isEmpty() || address == null || address.isEmpty() || tel == null || tel.isEmpty()){
+            JOptionPane.showMessageDialog(null,"ALl feild must be filled","validation error",JOptionPane.ERROR_MESSAGE);
+        }
+
+        int telNb;
+        try{
+            telNb = Integer.parseInt(tel);
+        }
+        catch (NumberFormatException e){
+            JOptionPane.showMessageDialog(null,"Error","Vaild Error",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try{
+            String resp = FACTORY_MANAGE_MODEL.addBtnClick(factoryManageDto);
+            JOptionPane.showMessageDialog(null, "Save Status: " + resp, "Save Status", JOptionPane.INFORMATION_MESSAGE);
+
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Error occurred" + e.getMessage());
+        }
+    }
+
+
+
+
+
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1298.0" style="-fx-background-color: #d1f1f1;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.DailyHomePageController">
+    <children>
+        <ScrollBar layoutX="1283.0" layoutY="65.0" orientation="VERTICAL" prefHeight="572.0" prefWidth="14.0" />
+        <MenuBar layoutX="1.0" layoutY="2.0" prefHeight="25.0" prefWidth="1298.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Open" />
+                        <MenuItem mnemonicParsing="false" text="New" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="View">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Customer View" />
+                        <MenuItem mnemonicParsing="false" text="Advance View" />
+                        <MenuItem mnemonicParsing="false" text="Stock View" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <Label alignment="CENTER" layoutX="-1.0" layoutY="26.0" prefHeight="40.0" prefWidth="1298.0" style="-fx-background-color: #d1f1f1;" text="Achindu Tea Transport Center" textFill="#ab4982">
+            <font>
+                <Font name="System Bold" size="28.0" />
+            </font>
+        </Label>
+        <Button contentDisplay="BOTTOM" layoutX="1071.0" layoutY="649.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="189.0" style="-fx-background-color: #354dd0;" text="Save" textAlignment="CENTER" textFill="#fcfcfc">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Label layoutX="1124.0" layoutY="32.0" prefHeight="29.0" prefWidth="159.0" text="Date : 19/08/2024">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="14.0" layoutY="657.0" prefHeight="29.0" prefWidth="120.0" text="Time : 21.10">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="375.0" layoutY="640.0" prefHeight="29.0" prefWidth="308.0" style="-fx-background-color: #12AD2B;" text="Daily TeaBag Count :  ">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="375.0" layoutY="671.0" prefHeight="29.0" prefWidth="308.0" style="-fx-background-color: #00FFFF;" text="Daily TeaBag-Weight Count : ">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="705.0" layoutY="639.0" prefHeight="29.0" prefWidth="308.0" style="-fx-background-color: #808000;" text="Daily Water-Weight Count : ">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+        <Label layoutX="706.0" layoutY="671.0" prefHeight="29.0" prefWidth="308.0" style="-fx-background-color: #FFC0CB;" text="Daily Totel :">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+        <Button layoutX="2.0" layoutY="30.0" mnemonicParsing="false" onAction="#loginButttonClick" prefHeight="29.0" prefWidth="66.0" style="-fx-background-color: #d1f1f1;" text="Back">
+            <font>
+                <Font size="13.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+    </children>
+    <opaqueInsets>
+        <Insets />
+    </opaqueInsets>
+</AnchorPane>
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////
+create database TeaTransportCenter;
+
+use TeaTransportCenter;
+
+create table admin(
+	userName varchar(20),
+	password varchar(20)
+)CHARACTER SET utf8mb4;
+
+create table customer(
+	id Varchar(10) Primary Key,
+	name Varchar(50),
+	address Varchar(100),
+	Telephone_Nb int(10) 
+)CHARACTER SET utf8mb4;
+
+create table employee(
+	empId varchar(10)Primary Key,
+	name varchar(50),
+	address varchar(70),
+	telNb int(10)	
+)CHARACTER SET utf8mb4;
+
+CREATE TABLE empworddetails (
+    empID VARCHAR(8),
+    date DATE,
+    FOREIGN KEY (empID) REFERENCES employee(empID) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT unique_emp_date UNIQUE (empID, date)
+) CHARACTER SET utf8mb4;
+
+create table employeSalary(
+	empId Varchar(8),
+	date date,
+	price int(10),
+	foreign key(empId) references employee(empId)ON UPDATE CASCADE ON DELETE CASCADE
+)CHARACTER SET utf8mb4;
+
+create table customerHigaPrice(
+	custId Varchar(10),
+	month Varchar(16),
+	price int(10),
+FOREIGN KEY(custId) REFERENCES customer(id)ON UPDATE CASCADE ON DELETE CASCADE	
+)CHARACTER SET utf8mb4;
+
+create table salaryPriceEmployee(
+	price int(10)
+)CHARACTER SET utf8mb4;
+
+
+
+create table factory(
+	id varchar(10)Primary key,
+	name Varchar(40),
+	address Varchar(60),
+	telNb int(10)
+)CHARACTER SET utf8mb4;
+
+CREATE TABLE teabaginventory(
+	custId VARCHAR(10),
+	date date,
+	goldLeafAmount int(6),
+	goodLeafAmount int(6),
+	FOREIGN KEY(custId) REFERENCES customer(id)ON UPDATE CASCADE ON DELETE CASCADE	
+)CHARACTER SET utf8mb4;
+
+
+
+create table advance(
+	custId Varchar(10),
+	date date,
+	month Varchar(30),
+	price double(10,2),
+	monthPrice double(10,2),
+	FOREIGN KEY(custId)REFERENCES customer(id)ON UPDATE CASCADE ON DELETE CASCADE
+)CHARACTER SET utf8mb4;
+
+CREATE TABLE product (
+    id VARCHAR(10) NOT NULL,
+    type VARCHAR(30),
+    count INT(10),
+    price DOUBLE(10,2),
+    PRIMARY KEY (id)
+);
+
+create table vehicle(
+	id varchar(20),
+	nb varchar(20)
+)CHARACTER SET utf8mb4;
+
+CREATE TABLE payments(
+	id VARCHAR(10) PRIMARY KEY,
+	custId VARCHAR(10),
+	custName VARCHAR(100),
+	date VARCHAR(50),
+	goodLeaf int,
+	goldLeaf int,
+	teaLeafAmount DOUBLE(10,2),
+	totalAdvance DOUBLE(10,2),
+	totalFertilize DOUBLE(10,2),
+	totalTePacket DOUBLE(10,2),
+	totalOthers DOUBLE(10,2),
+	totalAmount DOUBLE(10,2),
+	previaseMonthhigaPrice DOUBLE(10,2),
+	count DOUBLE(10,2),
+	monthRate DOUBLE(10,2),
+	monthRate1 Double(10,2),
+	nextTeaHigaPrice DOUBLE(10,2),
+	nextHigaPohora DOUBLE(10,2),
+	nextHigaAdvance DOUBLE(10,2),
+	kapanagana int,
+	FOREIGN KEY(custId)REFERENCES customer(id)ON UPDATE CASCADE ON DELETE CASCADE
+)CHARACTER SET utf8mb4;
+
+
+
+
+create table productpurchasecustomer (
+	custId Varchar(10),
+	date date,
+	productId Varchar(10),
+	quntity int,
+	totalPrice double(10,2),
+	FOREIGN KEY(custId)REFERENCES customer(id)ON UPDATE CASCADE ON DELETE CASCADE
+)CHARACTER SET utf8mb4;
+
+create table pohorapurchasecustomer (
+	custId Varchar(10),
+	date date,
+	productId Varchar(10),
+	quntity int,
+	month VARCHAR(30),
+	totalPrice double(10,2),
+	monthPrice double(10,2),
+	FOREIGN KEY(custId)REFERENCES customer(id)ON UPDATE CASCADE ON DELETE CASCADE
+)CHARACTER SET utf8mb4;
+
+
+
+CREATE TABLE monthlyRate(
+	month VARCHAR(40)PRIMARY KEY,
+	goldrate double(10,2),
+	goodrate double(10,2)
+)CHARACTER SET utf8mb4;
+
+
+
+create table customerPayment(
+	custId varchar(10),
+	date date,
+	totalTeaLeafPrice Double(10),
+	AdvancePurchase double(10),
+	FertilizerPurchase double(10),
+	teaPacketPurchase Double(10),
+	otherPurchase Double(10,2),
+	OtherDeductions Double(10),
+	Arrears Double(10,2)
+	FOREIGN KEY(custId)REFERENCES customer(id)ON UPDATE CASCADE ON DELETE CASCADE
+)CHARACTER SET utf8mb4;
+
+
+
+
+
+
+give me a color code.. Default background color of tabframe in fxml ->			LightGray: #F7F7F7
+											White: #FFFFFF
+											Light Blue: #E0E0FF
+
+
+Update productpurchasecustomer SET productId = 'P001' , quntity = 4 , totalPrice = 100 WHERE custId ='C001' and date = 2024-11-11;
+
+"SELECT e.empId, e.name, e.address, e.telnb, em.date " +
+                "FROM employee e " +
+                "JOIN empworddetails em ON e.empId = em.empId " +
+                "WHERE e.empId = ? AND em.date BETWEEN ? AND ? " +
+                "ORDER BY em.date";
+	
+
+SELECT e.empId, e.name, e.address, e.telnb, em.date
+                FROM employee e 
+                JOIN empworddetails em ON e.empId = em.empId 
+                WHERE e.empId = E001 AND em.date BETWEEN 2024-09-01 AND 2024-09-30
+                ORDER BY em.date;
+
+ select * from empworddetails where empId = 'E001';
+
+
+
+insert into empworddetails VALUES('E001','2024-09-28');
+
+Insert into salaryPriceEmployee VALUES(1200);
+
+
+alter table payments add column kapanagana int;
+
+     int deleteAd = 0;
+        int updateAd = 0;
+        if (Advance == ad){
+            deleteAd = Advance;
+        }
+        else {
+            updateAd = (ad - Advance);
+        }
+        int deletepohora = 0;
+        int updatepohora = 0;
+        //int b = Integer.parseInt(ff);
+        if(Pohora == (int) ff ){
+            deletepohora = Pohora;
+        }
+        else {
+            updatepohora = ((int) ff - Pohora);
+        }
+        int deleteOther = 0;
+        int updateOther = 0;
+        if ((int)s == OtherMunies ){
+            deleteOther = OtherMunies;
+        }
+        else {
+            updateOther = ((int) s -OtherMunies ) ;
+        }
+
+
+
+Daily TeaLeaf 
+Count
+
+SELECT SUM(monthPrice) AS monthPrice FROM advance WHERE custId = 'C002' AND month != 'OCTOMBER2024';
+        
+
+DELETE FROM advance  WHERE custId = 'C001' and date = '2024-10-14' and price = 18000
+
+SELECT custId,date,price FROM advance  WHERE custId = 'C001' GROUP BY date;
+
+
+
+SELECT c.id,c.name,p.date,p.productId,p.quntity,SUM(p.monthPrice) as totalPrice FROM customer c JOIN 
+                               pohorapurchasecustomer p ON c.id = p.custId GROUP BY p.productId 
+                              ORDER BY p.date
+
+SELECT c.id,c.name,p.date,p.productId,p.quntity,p.monthPrice as totalPrice FROM customer c JOIN  
+                             pohorapurchasecustomer p ON c.id = p.custId GROUP BY c.id
+                               ORDER BY p.date
+
+
+
+SELECT 
+    COALESCE(p.teaPacketTotal, 0) AS teaPacketTotal, 
+    COALESCE(p.fertilizeTotal, 0) AS fertilizeTotal, 
+    COALESCE(p.otherTotal, 0) AS otherTotal 
+FROM customer c 
+LEFT JOIN (
+    SELECT 
+        custId, 
+        SUM(CASE WHEN LEFT(productId, 1) = 'P' THEN totalPrice ELSE 0 END) AS fertilizeTotal, 
+        SUM(CASE WHEN LEFT(productId, 1) = 'T' THEN totalPrice ELSE 0 END) AS teaPacketTotal, 
+        SUM(CASE WHEN LEFT(productId, 1) = 'M' THEN totalPrice ELSE 0 END) AS otherTotal 
+    FROM productpurchasecustomer
+    WHERE date BETWEEN '2024-12-1' AND '2024-12-31' 
+    GROUP BY custId
+) p ON c.id = p.custId 
+WHERE c.id = 'C005';
+
+
+
+
+

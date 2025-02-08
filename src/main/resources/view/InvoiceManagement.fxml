@@ -1,0 +1,1232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="734.0" prefWidth="1364.0" style="-fx-background-color: #4B01#bfc97150;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.InvoiceManageController">
+   <children>
+      <Label layoutY="-1.0" prefHeight="32.0" prefWidth="298.0" style="-fx-background-color: #F7F7F7;" AnchorPane.topAnchor="-1.0">
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="2.0" layoutY="7.0" prefHeight="727.0" prefWidth="294.0" style="-fx-background-color: #122E4B; -fx-background-radius: 20;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="2.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button layoutX="60.0" layoutY="157.0" mnemonicParsing="false" onAction="#ViewCustomerBtnClick" prefHeight="45.0" prefWidth="173.0" style="-fx-background-color: FFFBE6;" text="View Customers" textFill="#347928">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="60.0" layoutY="242.0" mnemonicParsing="false" onAction="#ViewEmpoyeBtnClick" prefHeight="45.0" prefWidth="173.0" style="-fx-background-color: FFFBE6;" text="View Employes" textFill="#347928">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="60.0" layoutY="501.0" mnemonicParsing="false" onAction="#ONActionBankBill" prefHeight="45.0" prefWidth="173.0" style="-fx-background-color: FFFBE6;" text="BANK BILLS" textFill="#347928">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="60.0" layoutY="329.0" mnemonicParsing="false" onAction="#ViewStockBtnClick" prefHeight="45.0" prefWidth="173.0" style="-fx-background-color: FFFBE6;" text="View Stock" textFill="#347928">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="60.0" layoutY="416.0" mnemonicParsing="false" onAction="#ViewPricePerKgBtnClick" prefHeight="45.0" prefWidth="173.0" style="-fx-background-color: FFFBE6;" text="PricePerKG" textFill="#347928">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="106.0" layoutY="680.0" mnemonicParsing="false" onAction="#LogOutButtonClick" prefHeight="25.0" prefWidth="117.0" style="-fx-background-color: B43F3F;" text="Log out" textFill="WHITE" AnchorPane.bottomAnchor="25.0">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ImageView fitHeight="29.0" fitWidth="42.0" layoutX="57.0" layoutY="680.0" AnchorPane.bottomAnchor="25.0">
+               <image>
+                  <Image url="@../assets/icon/logout.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="6.0" layoutY="7.0" mnemonicParsing="false" onAction="#loginButttonClick" prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: #122E4B;">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="78.0" layoutY="5.0" mnemonicParsing="false" onAction="#btnRefersh" prefHeight="25.0" prefWidth="30.0" style="-fx-background-color: #122E4B;">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ImageView fitHeight="31.0" fitWidth="40.0" layoutX="73.0" layoutY="5.0">
+               <image>
+                  <Image url="@../assets/icon/icons8-refresh-25.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="31.0" fitWidth="40.0" layoutX="-5.0" layoutY="5.0">
+               <image>
+                  <Image url="@../assets/icon/back.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="59.0" layoutY="582.0" mnemonicParsing="false" onAction="#ONACTIONPROFIT" prefHeight="45.0" prefWidth="173.0" style="-fx-background-color: FFFBE6;" text="VIEW PROFIT" textFill="#347928">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
+      <TabPane layoutX="298.0" prefHeight="734.0" prefWidth="1067.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="298.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab text="                TeaPacket               ">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="608.0" prefWidth="948.0" style="-fx-background-color: #040720;">
+                     <children>
+                        <Text fill="WHITE" layoutX="119.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer_ID" wrappingWidth="132.00000715255737">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="txtCID" layoutX="313.0" layoutY="77.0" onAction="#OnActionCustIdT" prefHeight="30.0" prefWidth="380.0" />
+                        <Text fill="WHITE" layoutX="119.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" wrappingWidth="132.00000715255737">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="119.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product_ID" wrappingWidth="143.00000774860382">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="119.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Count" wrappingWidth="132.00000715255737">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="txtCDate" layoutX="313.0" layoutY="116.0" prefHeight="30.0" prefWidth="190.0" />
+                        <TextField fx:id="txtCProductId" layoutX="313.0" layoutY="155.0" onAction="#OnActionProductIdT" prefHeight="30.0" prefWidth="380.0" />
+                        <TextField fx:id="txtCCount" layoutX="313.0" layoutY="193.0" onAction="#OnActCount" prefHeight="30.0" prefWidth="190.0" />
+                        <Button fx:id="SaveT" layoutX="803.0" layoutY="71.0" mnemonicParsing="false" onAction="#btnSaveCustomer" prefHeight="39.0" prefWidth="218.0" style="-fx-background-color: #347928;" text="Save" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="UpdateBtnT" layoutX="803.0" layoutY="124.0" mnemonicParsing="false" onAction="#btnUpdateTeaPacket" prefHeight="39.0" prefWidth="218.0" style="-fx-background-color: FCCD2A;" text="UPDATE" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Text fill="WHITE" layoutX="119.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Totel_Price" wrappingWidth="132.00000715255737">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="txtCPrice" layoutX="313.0" layoutY="232.0" prefHeight="30.0" prefWidth="380.0" />
+                        <Label layoutX="370.0" layoutY="10.0" prefHeight="45.0" prefWidth="642.0" text="තේ පැකට් මිලදී ගැනීම්" textFill="#347928">
+                           <font>
+                              <Font name="System Bold Italic" size="35.0" />
+                           </font>
+                        </Label>
+                        <TableView fx:id="tblT" layoutX="8.0" layoutY="274.0" onMouseClicked="#mouseClickT" prefHeight="425.0" prefWidth="1050.0" AnchorPane.bottomAnchor="6.0" AnchorPane.topAnchor="274.0">
+                          <columns>
+                            <TableColumn fx:id="TName" prefWidth="444.0" text="Customer Name" />
+                              <TableColumn fx:id="TDate" prefWidth="123.0" text="Date" />
+                              <TableColumn fx:id="TProduct" prefWidth="238.0" text="Product" />
+                              <TableColumn fx:id="TCount" minWidth="0.0" prefWidth="84.0" text="Count" />
+                              <TableColumn fx:id="TPrice" minWidth="0.0" prefWidth="150.0" text="Total Price" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="DeleteBtnT" layoutX="803.0" layoutY="175.0" mnemonicParsing="false" onAction="#btnDeleteTeaPacket" prefHeight="39.0" prefWidth="218.0" style="-fx-background-color: e36414;" text="Delete" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="resetbtnT" layoutX="803.0" layoutY="226.0" mnemonicParsing="false" onAction="#btnResetTeaPacket" opacity="0.83" prefHeight="39.0" prefWidth="218.0" style="-fx-background-color: B43F3F;" text="RESET" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="                 Fertilizer              ">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="171.0" prefWidth="286.0" style="-fx-background-color: #040720;">
+                     <children>
+                        <Text fill="WHITE" layoutX="119.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer_ID " wrappingWidth="116.99999302625656">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="119.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date " wrappingWidth="55.00000715255737">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="119.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Count" wrappingWidth="60.13671875">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="txFID" layoutX="313.0" layoutY="77.0" onAction="#OnActionCustId" prefHeight="30.0" prefWidth="380.0" />
+                        <Text fill="WHITE" layoutX="119.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product_ID" wrappingWidth="102.99998843669891">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="119.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Totel_Price " wrappingWidth="97.99998843669891">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Text>
+                        <Button fx:id="saveF" layoutX="797.0" layoutY="93.0" mnemonicParsing="false" onAction="#btnSaveFertilizer" prefHeight="39.0" prefWidth="200.0" style="-fx-background-color: #347928;" text="Save" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="deleteF" layoutX="797.0" layoutY="158.0" mnemonicParsing="false" onAction="#btnUpdateFertilizer" prefHeight="39.0" prefWidth="200.0" style="-fx-background-color: e36414;" text="DELETE" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <TextField fx:id="txFPrice" layoutX="313.0" layoutY="232.0" prefHeight="30.0" prefWidth="380.0" />
+                        <TextField fx:id="txFCount" layoutX="313.0" layoutY="194.0" onAction="#OnActionCount" prefHeight="30.0" prefWidth="180.0" />
+                        <TextField fx:id="txFProductID" layoutX="313.0" layoutY="155.0" onAction="#OnActionProductId" prefHeight="30.0" prefWidth="380.0" />
+                        <TextField fx:id="txFDate" layoutX="313.0" layoutY="116.0" onAction="#OnActionDate" prefHeight="30.0" prefWidth="180.0" />
+                        <Label layoutX="375.0" layoutY="10.0" prefHeight="45.0" prefWidth="642.0" text="පොහොර මිලදී ගැනීම්" textFill="#347928">
+                           <font>
+                              <Font name="System Bold Italic" size="35.0" />
+                           </font>
+                        </Label>
+                        <Text fill="WHITE" layoutX="119.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Warika Ganana" wrappingWidth="123.13671875">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="txFCount1" layoutX="313.0" layoutY="271.0" onAction="#OnActionWarikaganana" prefHeight="30.0" prefWidth="180.0" />
+                        <TableView fx:id="tblF" layoutX="9.0" layoutY="310.0" onMouseClicked="#mouseClickF" prefHeight="388.0" prefWidth="1052.0" AnchorPane.bottomAnchor="7.0" AnchorPane.topAnchor="310.0">
+                           <columns>
+                              <TableColumn fx:id="FName" prefWidth="444.0" text="Customer Name" />
+                              <TableColumn fx:id="FDate" prefWidth="123.0" text="Date" />
+                              <TableColumn fx:id="FProduct" prefWidth="238.0" text="Product" />
+                              <TableColumn fx:id="FCount" minWidth="0.0" prefWidth="84.0" text="Count" />
+                              <TableColumn fx:id="FPrice" minWidth="0.0" prefWidth="150.0" text="Total Price" />
+                           </columns>
+                        </TableView>
+                        <Button fx:id="resetF" layoutX="797.0" layoutY="223.0" mnemonicParsing="false" onAction="#rsertF" opacity="0.9" prefHeight="39.0" prefWidth="200.0" style="-fx-background-color: B43F3F;" text="Reset" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <ListView fx:id="ListViewF" layoutX="313.0" layoutY="185.0" prefHeight="55.0" prefWidth="380.0" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="                   Others               ">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="608.0" prefWidth="948.0" style="-fx-background-color: #040720;">
+                     <children>
+                        <Text fill="WHITE" layoutX="119.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer_ID" wrappingWidth="132.00000715255737">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="txtCID1" layoutX="313.0" layoutY="77.0" onAction="#OnActionIDO" prefHeight="30.0" prefWidth="380.0" />
+                        <Text fill="WHITE" layoutX="119.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" wrappingWidth="132.00000715255737">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="119.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product_ID" wrappingWidth="143.00000774860382">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="119.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Count" wrappingWidth="132.00000715255737">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="txtCDate1" layoutX="313.0" layoutY="116.0" prefHeight="30.0" prefWidth="190.0" />
+                        <TextField fx:id="txtCProductId1" layoutX="313.0" layoutY="155.0" onAction="#OnActionDateO" prefHeight="30.0" prefWidth="380.0" />
+                        <TextField fx:id="txtCCount1" layoutX="313.0" layoutY="194.0" onAction="#OnActionCountO" prefHeight="30.0" prefWidth="190.0" />
+                        <Button fx:id="saveO" layoutX="803.0" layoutY="73.0" mnemonicParsing="false" onAction="#btnSaveCustomerOthers" prefHeight="39.0" prefWidth="203.0" style="-fx-background-color: #347928;" text="Save" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="updateO" layoutX="803.0" layoutY="122.0" mnemonicParsing="false" onAction="#btnUpdateOthers" prefHeight="39.0" prefWidth="204.0" style="-fx-background-color: FCCD2A;" text="UPDATE" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Text fill="WHITE" layoutX="119.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Totel_Price" wrappingWidth="132.00000715255737">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="txtCPrice1" layoutX="313.0" layoutY="232.0" prefHeight="30.0" prefWidth="380.0" />
+                        <Label layoutX="375.0" layoutY="10.0" prefHeight="45.0" prefWidth="642.0" text="වෙනත් මිලදී ගැනීම්" textFill="#347928">
+                           <font>
+                              <Font name="System Bold Italic" size="35.0" />
+                           </font>
+                        </Label>
+                        <TableView fx:id="tblO" layoutX="6.0" layoutY="271.0" onMouseClicked="#mouseClickO" prefHeight="425.0" prefWidth="1052.0" AnchorPane.bottomAnchor="9.0" AnchorPane.topAnchor="271.0">
+                           <columns>
+                              <TableColumn fx:id="OName" prefWidth="444.0" text="Customer Name" />
+                              <TableColumn fx:id="ODate" prefWidth="123.0" text="Date" />
+                              <TableColumn fx:id="OProduct" prefWidth="238.0" text="Product" />
+                              <TableColumn fx:id="OCount" minWidth="0.0" prefWidth="84.0" text="Count" />
+                              <TableColumn fx:id="OPrice" minWidth="0.0" prefWidth="150.0" text="Total Price" />
+                           </columns>
+                        </TableView>
+                        <Button fx:id="deleteO" layoutX="803.0" layoutY="172.0" mnemonicParsing="false" onAction="#btnDeleteOthers" prefHeight="39.0" prefWidth="204.0" style="-fx-background-color: e36414;" text="Delete" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="803.0" layoutY="222.0" mnemonicParsing="false" onAction="#btnRsetOthers" opacity="0.88" prefHeight="39.0" prefWidth="204.0" style="-fx-background-color: B43F3F;" text="Reset" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="                Advance               ">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #040720;">
+                     <children>
+                        <Label layoutX="119.0" layoutY="78.0" text="Customer_ID" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="119.0" layoutY="117.0" prefHeight="26.0" prefWidth="78.0" text="Amount" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="119.0" layoutY="159.0" text="Date" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtACustId" layoutX="313.0" layoutY="77.0" prefHeight="30.0" prefWidth="320.0" />
+                        <TextField fx:id="txtAAmount" layoutX="313.0" layoutY="116.0" prefHeight="30.0" prefWidth="320.0" />
+                        <TextField fx:id="txtADate" layoutX="313.0" layoutY="155.0" prefHeight="30.0" prefWidth="150.0" />
+                        <Button fx:id="savebuttonA" layoutX="771.0" layoutY="76.0" mnemonicParsing="false" onAction="#btnSaveAdvance" prefHeight="39.0" prefWidth="197.0" style="-fx-background-color: #347928;" text="Save" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="deleteA" layoutX="772.0" layoutY="129.0" mnemonicParsing="false" onAction="#btnUpdateAdvance" prefHeight="39.0" prefWidth="197.0" style="-fx-background-color: e36414;" text="DELETE" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="119.0" layoutY="197.0" text="warika ganana" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtAMonth" layoutX="313.0" layoutY="194.0" prefHeight="30.0" prefWidth="150.0" />
+                        <Label layoutX="363.0" layoutY="10.0" prefHeight="45.0" prefWidth="642.0" text="අත්තිකාරම් ගැනීම්" textFill="#347928">
+                           <font>
+                              <Font name="System Bold Italic" size="35.0" />
+                           </font>
+                        </Label>
+                        <TableView fx:id="tblA" layoutX="8.0" layoutY="233.0" onMouseClicked="#mouseEventA" prefHeight="462.0" prefWidth="1052.0" AnchorPane.bottomAnchor="10.0" AnchorPane.topAnchor="233.0">
+                          <columns>
+                              <TableColumn fx:id="AId" prefWidth="195.00003051757812" text="Customer ID" />
+                            <TableColumn fx:id="AName" prefWidth="464.0" text="Customer Name" />
+                            <TableColumn fx:id="ADate" prefWidth="168.0" text="Date" />
+                              <TableColumn fx:id="APrice" prefWidth="216.0" text="Amount" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="ResetA" layoutX="772.0" layoutY="182.0" mnemonicParsing="false" onAction="#btnResetAdvance" prefHeight="39.0" prefWidth="197.0" style="-fx-background-color: B43F3F;" text="Reset" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="                Employee              ">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #040720;">
+                     <children>
+                        <Label layoutX="778.0" layoutY="5.0" prefHeight="32.0" prefWidth="208.0" text="one_Day_Employe_Payement :   Rs. " textFill="WHITE">
+                           <font>
+                              <Font size="13.0" />
+                           </font></Label>
+                        <Label layoutX="31.0" layoutY="6.0" text="Enter Employe_ID" textFill="WHITE">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtEmpId" layoutX="201.0" layoutY="6.0" onAction="#txtenterOnAction" prefHeight="30.0" prefWidth="300.0" />
+                        <Label layoutX="758.0" layoutY="409.0" text="Work Date Count" textFill="WHITE">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="649.0" layoutY="542.0" text="pay Amount" textFill="WHITE">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="823.0" layoutY="455.0" prefHeight="26.0" prefWidth="73.0" text=" Amount" textFill="WHITE">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="701.0" layoutY="592.0" text="Date" textFill="WHITE">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="837.0" layoutY="648.0" mnemonicParsing="false" onAction="#btnSaveClickEmp" prefHeight="39.0" prefWidth="201.0" style="-fx-background-color: #347928;" text="Save" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="526.0" layoutY="5.0" mnemonicParsing="false" onAction="#btnOkClickEmp" prefHeight="30.0" prefWidth="84.0" style="-fx-background-color: #1d73ff;" text="OK" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <TableView fx:id="tblEmpInvoice" layoutX="31.0" layoutY="40.0" prefHeight="333.0" prefWidth="1007.0">
+                          <columns>
+                            <TableColumn fx:id="clEmpId" prefWidth="212.00003051757812" text="Employee Id" />
+                            <TableColumn fx:id="clEmpName" prefWidth="517.0" text="Employee Name" />
+                              <TableColumn fx:id="clEmpDate" minWidth="0.0" prefWidth="261.0" text="work Details" />
+                          </columns>
+                        </TableView>
+                        <Label fx:id="lblCount" alignment="CENTER_RIGHT" layoutX="895.0" layoutY="406.0" prefHeight="32.0" prefWidth="143.0" style="-fx-background-color: FCCD2A;" text="0   ">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblAmount" alignment="CENTER_RIGHT" layoutX="895.0" layoutY="450.0" prefHeight="32.0" prefWidth="143.0" style="-fx-background-color: FCCD2A;" text="0   ">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtPayCount" layoutX="775.0" layoutY="540.0" prefHeight="30.0" prefWidth="263.0" />
+                        <TextField fx:id="txtPayDate" layoutX="775.0" layoutY="589.0" prefHeight="30.0" prefWidth="263.0" />
+                        <TableView fx:id="tblPricePay" layoutX="31.0" layoutY="377.0" prefHeight="295.0" prefWidth="599.0" AnchorPane.bottomAnchor="33.0" AnchorPane.topAnchor="377.0">
+                          <columns>
+                            <TableColumn fx:id="clPriceEmpId" prefWidth="185.00003051757812" text="Empoyee Id" />
+                            <TableColumn fx:id="clPriceDate" prefWidth="208.0" text="Date" />
+                              <TableColumn fx:id="clPricePayPrice" prefWidth="197.0" text="Pay Price" />
+                          </columns>
+                        </TableView>
+                        <Label fx:id="totPriceEmp" alignment="CENTER_RIGHT" layoutX="31.0" layoutY="672.0" prefHeight="32.0" prefWidth="599.0" style="-fx-background-color: FCCD2A;" text="0   " AnchorPane.bottomAnchor="1.0" AnchorPane.topAnchor="672.0">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="31.0" layoutY="674.0" prefHeight="26.0" prefWidth="542.0" text="Total Price" textFill="RED" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="674.0">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtEmpSalaryPriceOneDay" layoutX="983.0" layoutY="9.0" onAction="#onActionOneDayEmpPrice" prefHeight="20.0" prefWidth="55.0" promptText="1000" style="-fx-background-color: #FFFFFF;" />
+                        <Button layoutX="626.0" layoutY="1.0" mnemonicParsing="false" onAction="#refershEmpSalry" prefHeight="38.0" prefWidth="37.0" style="-fx-background-color: #F7F7F7;">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <ImageView layoutX="629.0" layoutY="5.0">
+                           <image>
+                              <Image url="@../assets/icon/icons8-refresh-30.png" />
+                           </image>
+                        </ImageView>
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="                Customer             ">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #040720;">
+                     <children>
+                        <Label layoutX="6.0" layoutY="19.0" prefHeight="30.0" prefWidth="102.0" text="Customer ID" textFill="WHITE">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtCustIdCustomer" layoutX="118.0" layoutY="19.0" onAction="#onActionCustomerCustId" prefHeight="30.0" prefWidth="261.0" />
+                        <Line endX="401.0" layoutX="660.0" layoutY="171.0" startX="-100.0" />
+                        <Button layoutX="407.0" layoutY="18.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="107.0" style="-fx-background-color: #1d73ff;" text="OK" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Label layoutX="560.0" layoutY="172.0" prefHeight="29.0" prefWidth="166.0" style="-fx-background-color: #FFFFFF;" text=" තේ දළු වටිනාකම">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="560.0" layoutY="204.0" prefHeight="29.0" prefWidth="166.0" style="-fx-background-color: #ADD8E6;" text=" වෙනත් එකතු කිරීම්">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="560.0" layoutY="268.0" prefHeight="29.0" prefWidth="166.0" style="-fx-background-color: #ADD8E6;" text=" අත්තිකාරම්">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="560.0" layoutY="300.0" prefHeight="29.0" prefWidth="166.0" style="-fx-background-color: #FFFFFF;" text=" පොහොර කෘෂි රසායන">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="560.0" layoutY="236.0" prefHeight="29.0" prefWidth="166.0" style="-fx-background-color: #FFFFFF;" text=" ගිය මස ණය">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="560.0" layoutY="396.0" prefHeight="29.0" prefWidth="166.0" style="-fx-background-color: #ADD8E6;" text=" වෙනත් අඩුකිරීිම්">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="560.0" layoutY="332.0" prefHeight="29.0" prefWidth="166.0" style="-fx-background-color: #ADD8E6;" text=" තේ පැකට්">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="560.0" layoutY="364.0" prefHeight="29.0" prefWidth="166.0" style="-fx-background-color: #FFFFFF;" text="ලිපි ද්‍රව්‍ය">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblTotalAmount" alignment="CENTER" layoutX="728.0" layoutY="172.0" prefHeight="29.0" prefWidth="165.0" style="-fx-background-color: #FFFFFF;">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" layoutX="895.0" layoutY="172.0" prefHeight="29.0" prefWidth="165.0" style="-fx-background-color: #FFFFFF;">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" layoutX="895.0" layoutY="204.0" prefHeight="29.0" prefWidth="165.0" style="-fx-background-color: #ADD8E6;">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="728.0" layoutY="236.0" prefHeight="29.0" prefWidth="165.0" style="-fx-background-color: #FFFFFF;">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" layoutX="895.0" layoutY="236.0" prefHeight="29.0" prefWidth="165.0" style="-fx-background-color: #FFFFFF;">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="728.0" layoutY="268.0" prefHeight="29.0" prefWidth="165.0" style="-fx-background-color: #ADD8E6;">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" layoutX="895.0" layoutY="268.0" prefHeight="29.0" prefWidth="165.0" style="-fx-background-color: #ADD8E6;">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="728.0" layoutY="300.0" prefHeight="29.0" prefWidth="165.0" style="-fx-background-color: #FFFFFF;">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" layoutX="895.0" layoutY="300.0" prefHeight="29.0" prefWidth="165.0" style="-fx-background-color: #FFFFFF;">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="728.0" layoutY="332.0" prefHeight="29.0" prefWidth="165.0" style="-fx-background-color: #ADD8E6;">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" layoutX="895.0" layoutY="332.0" prefHeight="29.0" prefWidth="165.0" style="-fx-background-color: #ADD8E6;">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="728.0" layoutY="364.0" prefHeight="29.0" prefWidth="165.0" style="-fx-background-color: #FFFFFF;">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" layoutX="895.0" layoutY="364.0" prefHeight="29.0" prefWidth="165.0" style="-fx-background-color: #FFFFFF;">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="728.0" layoutY="396.0" prefHeight="29.0" prefWidth="165.0" style="-fx-background-color: #ADD8E6;">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" layoutX="895.0" layoutY="396.0" prefHeight="29.0" prefWidth="165.0" style="-fx-background-color: #ADD8E6;">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Line endX="322.0" endY="1.0" layoutX="237.0" layoutY="170.0" startX="322.0" startY="320.0" />
+                        <Line endX="322.0" endY="1.0" layoutX="405.0" layoutY="170.0" startX="322.0" startY="320.0" />
+                        <Line endX="322.0" endY="1.0" layoutX="572.0" layoutY="170.0" startX="322.0" startY="320.0" />
+                        <Line endX="322.0" endY="1.0" layoutX="739.0" layoutY="170.0" startX="322.0" startY="320.0" />
+                        <Line endX="402.0" layoutX="659.0" layoutY="491.0" startX="-100.0" />
+                        <Label layoutX="560.0" layoutY="428.0" prefHeight="29.0" prefWidth="166.0" style="-fx-background-color: #FFFFFF;" text="             ඉතුරුම්">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="728.0" layoutY="428.0" prefHeight="29.0" prefWidth="165.0" style="-fx-background-color: #FFFFFF;">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" layoutX="895.0" layoutY="428.0" prefHeight="29.0" prefWidth="165.0" style="-fx-background-color: #FFFFFF;">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="560.0" layoutY="461.0" prefHeight="29.0" prefWidth="166.0" style="-fx-background-color: #FFFFFF;" text=" මුළු වටිනාකම">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="sumTot" alignment="CENTER" layoutX="728.0" layoutY="461.0" prefHeight="29.0" prefWidth="165.0" style="-fx-background-color: #FFFFFF;">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="minTot" alignment="CENTER_RIGHT" layoutX="895.0" layoutY="461.0" prefHeight="29.0" prefWidth="165.0" style="-fx-background-color: #FFFFFF;">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Line endX="402.0" layoutX="660.0" layoutY="459.0" startX="-100.0" />
+                        <Label alignment="CENTER" layoutX="728.0" layoutY="523.0" prefHeight="29.0" prefWidth="165.0" style="-fx-background-color: #FFFFFF;">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="totalCost" alignment="CENTER" layoutX="895.0" layoutY="523.0" prefHeight="29.0" prefWidth="165.0" style="-fx-background-color: #FFFFFF;">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Line endX="234.0" layoutX="827.0" layoutY="555.0" startX="-100.0" />
+                        <Line endX="234.0" layoutX="827.0" layoutY="520.0" startX="-100.0" />
+                        <Line layoutX="727.0" layoutY="521.0" startY="33.0" />
+                        <Line layoutX="894.0" layoutY="521.0" startY="33.0" />
+                        <Line layoutX="1061.0" layoutY="521.0" startY="33.0" />
+                        <Label layoutX="560.0" layoutY="522.0" prefHeight="31.0" prefWidth="151.0" text=" ශුද්ධ වටිනාකම" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="12.0" layoutY="172.0" prefHeight="29.0" prefWidth="440.0" style="-fx-background-color: #800080;" text="      දින          කිලෝ         දින          කිලෝ         දින          කිලෝ" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="5.0" layoutY="66.0" prefHeight="75.0" prefWidth="510.0" style="-fx-background-color: #ADD8E6; -fx-border-color: #ffffff;" />
+                        <Label layoutX="12.0" layoutY="76.0" text="සැපයුම්කරුගේ නම -">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="12.0" layoutY="109.0" text="මාසය -">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblCustNameCustomer" layoutX="175.0" layoutY="73.0" prefHeight="26.0" prefWidth="338.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lbldateCustomer" layoutX="72.0" layoutY="106.0" prefHeight="26.0" prefWidth="322.0">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="560.0" layoutY="66.0" prefHeight="75.0" prefWidth="501.0" style="-fx-background-color: #ADD8E6; -fx-border-color: #ffffff;" />
+                        <Label layoutX="577.0" layoutY="68.0" prefHeight="20.0" prefWidth="212.0" text="ලි.ප.අංකය              M.T.2265">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="805.0" layoutY="69.0" prefHeight="17.0" prefWidth="236.0" text="හොඳ දළු                             රන් දළු ">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="577.0" layoutY="95.0" prefHeight="17.0" prefWidth="120.0" text="කිලෝවක මිල - ">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="576.0" layoutY="120.0" prefHeight="20.0" prefWidth="143.0" text="මුළු දළු ප්‍රමාණය">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblGoodLeaf" layoutX="825.0" layoutY="95.0" prefHeight="20.0" prefWidth="114.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblGoldLeaf" layoutX="979.0" layoutY="95.0" prefHeight="20.0" prefWidth="85.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblTotGold" layoutX="954.0" layoutY="119.0" prefHeight="20.0" prefWidth="105.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="13.0" layoutY="201.0" prefHeight="287.0" prefWidth="65.0" style="-fx-background-color: #ADD8E6;" />
+                        <Label alignment="CENTER" layoutX="13.0" layoutY="202.0" prefHeight="25.0" prefWidth="65.0" text="1">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Line endY="27.0" layoutX="79.0" layoutY="173.0" stroke="WHITE" />
+                        <Line endY="27.0" layoutX="160.0" layoutY="173.0" stroke="WHITE" />
+                        <Line endY="27.0" layoutX="225.0" layoutY="173.0" stroke="WHITE" />
+                        <Line endY="27.0" layoutX="306.0" layoutY="173.0" stroke="WHITE" />
+                        <Line endY="27.0" layoutX="371.0" layoutY="173.0" stroke="WHITE" />
+                        <Line endY="314.0" layoutX="452.0" layoutY="173.0" />
+                        <Line endY="314.0" layoutX="12.0" layoutY="173.0" />
+                        <Line endX="440.0" layoutX="12.0" layoutY="201.0" />
+                        <Line endX="440.0" layoutX="12.0" layoutY="172.0" />
+                        <Line endY="286.0" layoutX="371.0" layoutY="202.0" />
+                        <Line endY="286.0" layoutX="306.0" layoutY="202.0" />
+                        <Line endY="286.0" layoutX="225.0" layoutY="202.0" />
+                        <Line endY="286.0" layoutX="160.0" layoutY="202.0" />
+                        <Line endY="286.0" layoutX="79.0" layoutY="202.0" />
+                        <Line endX="440.0" layoutX="12.0" layoutY="488.0" />
+                        <Label alignment="CENTER" layoutX="13.0" layoutY="228.0" prefHeight="25.0" prefWidth="65.0" text="2">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="13.0" layoutY="254.0" prefHeight="25.0" prefWidth="65.0" text="3">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="13.0" layoutY="280.0" prefHeight="25.0" prefWidth="65.0" text="4">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="13.0" layoutY="306.0" prefHeight="25.0" prefWidth="65.0" text="5">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="13.0" layoutY="332.0" prefHeight="25.0" prefWidth="65.0" text="6">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="13.0" layoutY="358.0" prefHeight="25.0" prefWidth="65.0" text="7">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="13.0" layoutY="384.0" prefHeight="25.0" prefWidth="65.0" text="8">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="13.0" layoutY="410.0" prefHeight="25.0" prefWidth="65.0" text="9">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="13.0" layoutY="436.0" prefHeight="25.0" prefWidth="65.0" text="10">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="161.0" layoutY="202.0" prefHeight="285.0" prefWidth="63.0" style="-fx-background-color: #ADD8E6;" />
+                        <Label alignment="CENTER" layoutX="159.0" layoutY="202.0" prefHeight="25.0" prefWidth="65.0" text="11">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="159.0" layoutY="228.0" prefHeight="25.0" prefWidth="65.0" text="12">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="159.0" layoutY="254.0" prefHeight="25.0" prefWidth="65.0" text="13">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="159.0" layoutY="280.0" prefHeight="25.0" prefWidth="65.0" text="14">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="159.0" layoutY="306.0" prefHeight="25.0" prefWidth="65.0" text="15">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="159.0" layoutY="332.0" prefHeight="25.0" prefWidth="65.0" text="16">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="159.0" layoutY="358.0" prefHeight="25.0" prefWidth="65.0" text="17">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="159.0" layoutY="384.0" prefHeight="25.0" prefWidth="65.0" text="18">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="159.0" layoutY="410.0" prefHeight="25.0" prefWidth="65.0" text="19">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="159.0" layoutY="436.0" prefHeight="25.0" prefWidth="65.0" text="20">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="306.0" layoutY="202.0" prefHeight="285.0" prefWidth="64.0" style="-fx-background-color: #ADD8E6;" />
+                        <Label alignment="CENTER" layoutX="306.0" layoutY="202.0" prefHeight="25.0" prefWidth="65.0" text="21">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="306.0" layoutY="228.0" prefHeight="25.0" prefWidth="65.0" text="22">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="306.0" layoutY="254.0" prefHeight="25.0" prefWidth="65.0" text="23">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="306.0" layoutY="280.0" prefHeight="25.0" prefWidth="65.0" text="24">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="306.0" layoutY="306.0" prefHeight="25.0" prefWidth="65.0" text="25">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="306.0" layoutY="332.0" prefHeight="25.0" prefWidth="65.0" text="26">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="306.0" layoutY="358.0" prefHeight="25.0" prefWidth="65.0" text="27">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="306.0" layoutY="384.0" prefHeight="25.0" prefWidth="65.0" text="28">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="306.0" layoutY="410.0" prefHeight="25.0" prefWidth="65.0" text="29">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="306.0" layoutY="436.0" prefHeight="25.0" prefWidth="65.0" text="30">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="306.0" layoutY="462.0" prefHeight="25.0" prefWidth="65.0" text="31">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="i21" alignment="CENTER" layoutX="373.0" layoutY="202.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="i22" alignment="CENTER" layoutX="373.0" layoutY="228.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="i23" alignment="CENTER" layoutX="373.0" layoutY="254.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="i24" alignment="CENTER" layoutX="373.0" layoutY="280.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="i25" alignment="CENTER" layoutX="373.0" layoutY="306.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="i26" alignment="CENTER" layoutX="373.0" layoutY="332.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="i27" alignment="CENTER" layoutX="373.0" layoutY="358.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="i28" alignment="CENTER" layoutX="373.0" layoutY="384.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="i29" alignment="CENTER" layoutX="373.0" layoutY="410.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="i30" alignment="CENTER" layoutX="373.0" layoutY="436.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="i31" alignment="CENTER" layoutX="373.0" layoutY="461.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="i11" alignment="CENTER" layoutX="227.0" layoutY="202.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="i12" alignment="CENTER" layoutX="227.0" layoutY="228.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="i13" alignment="CENTER" layoutX="227.0" layoutY="254.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="i14" alignment="CENTER" layoutX="227.0" layoutY="280.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="i15" alignment="CENTER" layoutX="227.0" layoutY="306.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="i16" alignment="CENTER" layoutX="227.0" layoutY="332.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="i17" alignment="CENTER" layoutX="227.0" layoutY="358.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="i18" alignment="CENTER" layoutX="227.0" layoutY="384.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="i19" alignment="CENTER" layoutX="227.0" layoutY="410.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="i20" alignment="CENTER" layoutX="227.0" layoutY="436.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="i1" alignment="CENTER" layoutX="81.0" layoutY="202.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #ffffff; -fx-border-color: null;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="i2" alignment="CENTER" layoutX="81.0" layoutY="228.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="i3" alignment="CENTER" layoutX="81.0" layoutY="254.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="i4" alignment="CENTER" layoutX="81.0" layoutY="280.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="i5" alignment="CENTER" layoutX="81.0" layoutY="306.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="i6" alignment="CENTER" layoutX="81.0" layoutY="332.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="i7" alignment="CENTER" layoutX="81.0" layoutY="358.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="i8" alignment="CENTER" layoutX="81.0" layoutY="384.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="i9" alignment="CENTER" layoutX="81.0" layoutY="410.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="i10" alignment="CENTER" layoutX="81.0" layoutY="436.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtOther" alignment="CENTER" layoutX="728.0" layoutY="204.0" prefHeight="29.0" prefWidth="165.0" style="-fx-background-color: #ADD8E6;" text="0.00">
+                           <font>
+                              <Font size="14.0" />
+                           </font></TextField>
+                        <TextField layoutX="895.0" layoutY="204.0" prefHeight="29.0" prefWidth="165.0" style="-fx-background-color: #ADD8E6;">
+                           <font>
+                              <Font size="14.0" />
+                           </font></TextField>
+                        <TextField fx:id="txtHiga" alignment="CENTER_RIGHT" layoutX="895.0" layoutY="236.0" prefHeight="29.0" prefWidth="165.0" style="-fx-background-color: #FFFFFF;" text="0.00 ">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="txtAd" alignment="CENTER_RIGHT" layoutX="895.0" layoutY="268.0" onAction="#onActinAdvance" prefHeight="29.0" prefWidth="165.0" style="-fx-background-color: #ADD8E6;" text="0.00 ">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="txtF" alignment="CENTER_RIGHT" layoutX="895.0" layoutY="300.0" onAction="#onActionPohora" prefHeight="29.0" prefWidth="165.0" style="-fx-background-color: #FFFFFF;" text="0.00 ">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="txtT" alignment="CENTER_RIGHT" layoutX="895.0" layoutY="331.0" onAction="#onAtcionTeaPacket" prefHeight="29.0" prefWidth="165.0" style="-fx-background-color: #ADD8E6;" text="0.00 ">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                        <TextField alignment="CENTER_RIGHT" layoutX="895.0" layoutY="364.0" prefHeight="29.0" prefWidth="165.0" style="-fx-background-color: #FFFFFF;" text="25.0 ">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="txtO" alignment="CENTER_RIGHT" layoutX="895.0" layoutY="396.0" onAction="#onActionOther" prefHeight="29.0" prefWidth="165.0" style="-fx-background-color: #ADD8E6;" text="0.00 ">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                        <TextField alignment="CENTER_RIGHT" layoutX="895.0" layoutY="427.0" prefHeight="29.0" prefWidth="165.0" style="-fx-background-color: #FFFFFF;" text="0.00 ">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                        <Label fx:id="Rs" alignment="CENTER_RIGHT" layoutX="772.0" layoutY="95.0" prefHeight="20.0" prefWidth="47.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="RS" alignment="CENTER_RIGHT" layoutX="925.0" layoutY="95.0" prefHeight="20.0" prefWidth="47.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="KG" layoutX="828.0" layoutY="119.0" prefHeight="20.0" prefWidth="47.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lbltotGod1" alignment="CENTER_RIGHT" layoutX="872.0" layoutY="117.0" prefHeight="20.0" prefWidth="114.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="KG1" layoutX="989.0" layoutY="117.0" prefHeight="20.0" prefWidth="47.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="135.0" layoutX="12.0" layoutY="530.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" style="-fx-fill: #ADD8E6;" width="442.0" />
+                        <Label layoutX="23.0" layoutY="564.0" prefHeight="17.0" prefWidth="249.0" text="ඉදිරියට ඇති පොහොර හිග මුදල්">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="561.0" layoutY="580.0" prefHeight="17.0" prefWidth="249.0" text="ඉදිරියට ඇති දළු  හිග මුදල්" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="26.0" layoutY="608.0" prefHeight="17.0" prefWidth="249.0" text="ඉදිරියට ඇති ණය  හිග මුදල්">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblNextPohoraHiga" layoutX="315.0" layoutY="564.0" prefHeight="25.0" prefWidth="149.0" text="0.00">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblNextAdvanceHiga" layoutX="315.0" layoutY="610.0" prefHeight="20.0" prefWidth="143.0" text="0.00">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="31.0" layoutX="893.0" layoutY="576.0" stroke="BLACK" strokeType="INSIDE" width="167.0" />
+                        <Label fx:id="lblNextDaluHiga" alignment="CENTER_RIGHT" layoutX="889.0" layoutY="576.0" prefHeight="29.0" prefWidth="164.0" text="0.00">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="81.0" layoutY="461.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="227.0" layoutY="461.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="78.0" layoutX="728.0" layoutY="617.0" stroke="BLACK" strokeType="INSIDE" width="266.0" AnchorPane.bottomAnchor="10.0" />
+                        <Button layoutX="861.0" layoutY="627.0" mnemonicParsing="false" onAction="#PayUpButtonClick" prefHeight="59.0" prefWidth="125.0" style="-fx-background-color: #347928;" text="Pay up" textFill="WHITE" AnchorPane.bottomAnchor="19.0">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </opaqueInsets>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button layoutX="735.0" layoutY="629.0" mnemonicParsing="false" onAction="#OnActionRePrint" prefHeight="57.0" prefWidth="117.0" style="-fx-background-color: e36414;" text="Ri Print Bill" textFill="WHITE" AnchorPane.bottomAnchor="19.0">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="lblPaymentsNb" layoutX="957.0" layoutY="18.0" prefHeight="29.0" prefWidth="92.0" text="P001" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="861.0" layoutY="18.0" prefHeight="29.0" prefWidth="92.0" text="Payments NB" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="LabelCheack" layoutX="531.0" layoutY="26.0" prefHeight="17.0" prefWidth="253.0" textFill="RED" />
+                        <Label fx:id="lblTt" alignment="CENTER" layoutX="373.0" layoutY="490.0" prefHeight="29.0" prefWidth="78.0" style="-fx-background-color: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="lbltotGod" layoutX="711.0" layoutY="115.0" onAction="#OnActionDALU" prefHeight="20.0" prefWidth="114.0" />
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <ImageView fitHeight="31.0" fitWidth="40.0" layoutX="36.0" layoutY="4.0" opacity="0.32">
+         <image>
+            <Image url="@../assets/icon/icons8-back-401.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

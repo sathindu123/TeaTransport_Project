@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="724.0" prefWidth="1364.0" style="-fx-background-color: #C0C0C0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.ViewManageController">
+    <children>
+        <TabPane layoutY="25.0" prefHeight="710.0" prefWidth="1364.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="                              Customer                                ">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="667.0" prefWidth="1364.0" style="-fx-background-color: #040720;">
+                            <children>
+                                <TableView fx:id="tblCustomer" layoutY="55.0" prefHeight="600.0" prefWidth="1364.0">
+                                    <columns>
+                                        <TableColumn fx:id="colCustomerId" prefWidth="131.0" style="-fx-font-size: 14px;" text="Customer Id" />  <!-- Added fx:id -->
+                                        <TableColumn fx:id="colCustomerName" prefWidth="422.0" style="-fx-font-size: 14px;" text="Customer Name" />
+                              <TableColumn fx:id="colTeaLeafAmount" prefWidth="160.0" style="-fx-font-size: 14px;" text="TeaLeaf Amount" />
+                              <TableColumn fx:id="colAdvance" prefWidth="160.0" style="-fx-font-size: 14px;" text="Advance Purchase" />
+                              <TableColumn fx:id="colTeaPacket" prefWidth="160.0" style="-fx-font-size: 14px;" text="FertilizerPurchase" />
+                              <TableColumn fx:id="colFertilize" prefWidth="160.0" style="-fx-font-size: 14px;" text="TPacketPurchase" />
+                              <TableColumn fx:id="colOther" prefWidth="160.0" style="-fx-font-size: 14px;" text="OtherPurchase" />  <!-- Added fx:id -->
+                                    </columns>
+                                </TableView>
+                        <TextField fx:id="txtSearchCust" layoutX="1043.0" layoutY="14.0" onAction="#ViewManageSearch" prefHeight="31.0" prefWidth="315.0" promptText="Search Customer" />
+                        <ImageView disable="true" fitHeight="30.0" fitWidth="31.0" layoutX="1326.0" layoutY="15.0" opacity="0.3">
+                           <image>
+                              <Image url="@../assets/icon/icons8-search-30.png" />
+                           </image>
+                        </ImageView>
+                        <TextField fx:id="txtStrDateCust" layoutX="101.0" layoutY="17.0" promptText="  yyyy-MM-dd" />
+                        <TextField fx:id="txtEndDateCust" layoutX="292.0" layoutY="17.0" onAction="#onActionDateCustomer" promptText="  yyyy-MM-dd" />
+                        <Label layoutX="260.0" layoutY="15.0" text="To" textFill="#fccd2a">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="2.0" layoutY="15.0" text="Enter Date " textFill="#fccd2a">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="1003.0" layoutY="11.0" mnemonicParsing="false" onAction="#btnRefeshCustomer" prefHeight="29.0" prefWidth="31.0" style="-fx-background-color: #040720;">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <ImageView layoutX="1000.0" layoutY="13.0">
+                           <image>
+                              <Image url="@../assets/icon/icons8-refresh-30.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="L5" layoutX="1200.0" layoutY="655.0" prefHeight="25.0" prefWidth="158.0" style="-fx-background-color: FCCD2A;" text="0.00">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="L4" layoutX="1036.0" layoutY="655.0" prefHeight="25.0" prefWidth="158.0" style="-fx-background-color: FCCD2A;" text="0.00">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="L3" layoutX="872.0" layoutY="655.0" prefHeight="25.0" prefWidth="158.0" style="-fx-background-color: FCCD2A;" text="0.00">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="L2" layoutX="708.0" layoutY="655.0" prefHeight="25.0" prefWidth="158.0" style="-fx-background-color: FCCD2A;" text="0.00">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="L1" layoutX="544.0" layoutY="655.0" prefHeight="25.0" prefWidth="158.0" style="-fx-background-color: FCCD2A;" text="0.00">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="             Employee Work Details              ">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="171.0" prefWidth="619.0" style="-fx-background-color: #040720;">
+                     <children>
+                        <TableView fx:id="tblEmp" layoutY="55.0" prefHeight="628.0" prefWidth="1364.0">
+                          <columns>
+                            <TableColumn fx:id="clEmpId" prefWidth="150.0" text="Employee Id" />
+                            <TableColumn fx:id="clEmpName" minWidth="7.0" prefWidth="405.0" text="Employee Name" />
+                              <TableColumn fx:id="clEmpAddress" minWidth="0.0" prefWidth="397.0" text="Employee Address" />
+                              <TableColumn fx:id="clEmpTel" minWidth="0.0" prefWidth="194.0" text="Tell Nb" />
+                              <TableColumn fx:id="clEmpWorkDetails" minWidth="0.0" prefWidth="203.0" text="Work Details" />
+                          </columns>
+                        </TableView>
+                        <TextField fx:id="strDateEmp" layoutX="101.0" layoutY="17.0" promptText="  yyyy-MM-dd" />
+                        <TextField fx:id="endDateEmp" layoutX="292.0" layoutY="17.0" onAction="#selectDateEmp" promptText="  yyyy-MM-dd" />
+                        <Label layoutX="260.0" layoutY="15.0" text="To" textFill="#fccd2a">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="2.0" layoutY="15.0" text="Enter Date " textFill="#fccd2a">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtSearchEmp" layoutX="1041.0" layoutY="14.0" onAction="#searchEmp" prefHeight="31.0" prefWidth="315.0" promptText=" Search Employee" />
+                        <ImageView disable="true" layoutX="1325.0" layoutY="15.0" opacity="0.28">
+                           <image>
+                              <Image url="@../assets/icon/icons8-search-30.png" />
+                           </image>
+                        </ImageView>
+                        <Button layoutX="1001.0" layoutY="13.0" mnemonicParsing="false" onAction="#btnRefeshEmployee" prefHeight="29.0" prefWidth="31.0" style="-fx-background-color: #040720;">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <ImageView layoutX="1001.0" layoutY="13.0">
+                           <image>
+                              <Image url="@../assets/icon/icons8-refresh-30.png" />
+                           </image>
+                        </ImageView>
+                     </children></AnchorPane>
+                    </content>
+                </Tab>
+            <Tab text="                         Stock Purchase                        ">
+              <content>
+                <AnchorPane layoutY="57.0" minHeight="0.0" minWidth="0.0" prefHeight="668.0" prefWidth="1364.0" style="-fx-background-color: #040720;">
+                     <children>
+                        <TableView fx:id="tbleCustomeSummery" layoutY="55.0" prefHeight="582.0" prefWidth="1364.0">
+                          <columns>
+                            <TableColumn fx:id="clCId" prefWidth="199.0" style="-fx-font-size: 14px;" text="Customer_ID" />
+                            <TableColumn fx:id="clCName" minWidth="0.0" prefWidth="458.99998474121094" style="-fx-font-size: 14px;" text="Name" />
+                              <TableColumn fx:id="clCDate" minWidth="0.0" prefWidth="189.0" style="-fx-font-size: 14px;" text="date" />
+                              <TableColumn fx:id="clCProductId" minWidth="0.0" prefWidth="181.0" style="-fx-font-size: 14px;" text="ProductId" />
+                              <TableColumn fx:id="clCCount" minWidth="0.0" prefWidth="127.0" style="-fx-font-size: 14px;" text="Quntity" />
+                              <TableColumn fx:id="clCPrice" minWidth="0.0" prefWidth="198.0" style="-fx-font-size: 14px;" text="Price" />
+                          </columns>
+                        </TableView>
+                        <TextField fx:id="txCustSearch" layoutX="1042.0" layoutY="14.0" prefHeight="31.0" prefWidth="315.0" promptText="Search Customer" />
+                        <ImageView layoutX="1326.0" layoutY="15.0" opacity="0.34">
+                           <image>
+                              <Image url="@../assets/icon/icons8-search-30.png" />
+                           </image>
+                        </ImageView>
+                        <TextField layoutX="101.0" layoutY="17.0" promptText="  yyyy-MM-dd" />
+                        <TextField layoutX="292.0" layoutY="17.0" promptText="  yyyy-MM-dd" />
+                        <Label layoutX="260.0" layoutY="15.0" text="To" textFill="#fccd2a">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="2.0" layoutY="15.0" text="Enter Date " textFill="#fccd2a">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lbltotStockPurchase" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="1150.0" layoutY="645.0" prefHeight="29.0" prefWidth="207.0" style="-fx-background-color: #347928;" text="0.0  " textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="7.0">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="1065.0" layoutY="644.0" text="Total" textFill="#fccd2a" AnchorPane.bottomAnchor="7.0">
+                           <font>
+                              <Font name="System Bold" size="22.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="993.0" layoutY="10.0" mnemonicParsing="false" onAction="#btnRefeshSummery" prefHeight="36.0" prefWidth="35.0" style="-fx-background-color: #040720;">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <ImageView layoutX="996.0" layoutY="13.0">
+                           <image>
+                              <Image url="@../assets/icon/icons8-refresh-30.png" />
+                           </image>
+                        </ImageView>
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+                <Tab text="                                  Stocks                                  ">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="450.0" prefWidth="1189.0" style="-fx-background-color: #040720;">
+                     <children>
+                        <TableView fx:id="tblStock" layoutY="57.0" prefHeight="625.0" prefWidth="1364.0" style="-fx-font-size: 14px;">
+                          <columns>
+                            <TableColumn fx:id="clProductId" prefWidth="279.0" text="Product Id" />
+                            <TableColumn fx:id="clCategory" minWidth="0.0" prefWidth="542.0" text="Category" />
+                              <TableColumn fx:id="clCount" prefWidth="237.0" text="Count" />
+                              <TableColumn fx:id="clPrice" prefWidth="291.0" text="Price" />
+                          </columns>
+                        </TableView>
+                        <TextField fx:id="txtSearchStock" layoutX="1043.0" layoutY="14.0" onAction="#ViewManageSearchStock" prefHeight="31.0" prefWidth="315.0" promptText=" Search Stock" />
+                        <ImageView disable="true" layoutX="1327.0" layoutY="14.0" opacity="0.28">
+                           <image>
+                              <Image url="@../assets/icon/icons8-search-30.png" />
+                           </image>
+                        </ImageView>
+                        <Button layoutX="1003.0" layoutY="13.0" mnemonicParsing="false" onAction="#btnRefeshStock" prefHeight="29.0" prefWidth="31.0" style="-fx-background-color: #040720;">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <ImageView layoutX="1003.0" layoutY="13.0">
+                           <image>
+                              <Image url="@../assets/icon/icons8-refresh-30.png" />
+                           </image>
+                        </ImageView>
+                     </children></AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="                                  Advance                                  ">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #040720;">
+                     <children>
+                        <TableView fx:id="tblAdvance" layoutY="57.0" prefHeight="582.0" prefWidth="1364.0">
+                          <columns>
+                            <TableColumn fx:id="clCustomerIdAdvance" prefWidth="209.0" style="-fx-font-size: 14px;" text="Customer ID" />
+                            <TableColumn fx:id="clCustomerNameAdvance" minWidth="6.0" prefWidth="530.0" style="-fx-font-size: 14px;" text="Customer Name" />
+                              <TableColumn fx:id="clDateAdvance" minWidth="0.0" prefWidth="250.0" style="-fx-font-size: 14px;" text="Date" />
+                              <TableColumn fx:id="clPriceAdvance" minWidth="0.0" prefWidth="361.0" style="-fx-font-size: 16px;" text="price" />
+                          </columns>
+                        </TableView>
+                        <TextField fx:id="txtEndDateAdvance" layoutX="292.0" layoutY="17.0" onAction="#selectDateAdvance" promptText="  yyyy-MM-dd" />
+                        <TextField fx:id="txtStartDateAdvance" layoutX="101.0" layoutY="17.0" promptText="  yyyy-MM-dd" />
+                        <Label layoutX="260.0" layoutY="15.0" text="To" textFill="#fccd2a">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="2.0" layoutY="15.0" text="Enter Date " textFill="#fccd2a">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtSearchCust1" layoutX="1042.0" layoutY="14.0" onAction="#ViewManageSearchAdvance" prefHeight="31.0" prefWidth="315.0" promptText="Search Customer" />
+                        <ImageView disable="true" fitHeight="30.0" fitWidth="31.0" layoutX="1326.0" layoutY="15.0" opacity="0.3">
+                           <image>
+                              <Image url="@../assets/icon/icons8-search-30.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="902.0" layoutY="645.0" prefHeight="30.0" prefWidth="233.0" text="Total Advance Purachse" textFill="#fccd2a">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="txtTotalPriceAdvance" alignment="CENTER_RIGHT" contentDisplay="CENTER" layoutX="1145.0" layoutY="646.0" prefHeight="28.0" prefWidth="210.0" style="-fx-background-color: #347928;" text="0.0  " textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="997.0" layoutY="8.0" mnemonicParsing="false" onAction="#btnRefeshAdvance" prefHeight="38.0" prefWidth="39.0" style="-fx-background-color: #040720;">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <ImageView layoutX="1002.0" layoutY="13.0">
+                           <image>
+                              <Image url="@../assets/icon/icons8-refresh-30.png" />
+                           </image>
+                        </ImageView>
+                     </children></AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+        <Button layoutX="2.0" layoutY="-5.0" mnemonicParsing="false" onAction="#loginButttonClick" prefHeight="15.0" prefWidth="25.0" style="-fx-background-color: #C0C0C0;" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+        </Button>
+      <Label layoutX="443.0" layoutY="4.0" prefHeight="21.0" prefWidth="502.0" text="මහේෂ් ප්‍රියංකර කොළඔආරච්චි  අමු තේ  දළු ව්‍යාපාරික   " textFill="#347928">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Button layoutX="57.0" layoutY="-1.0" mnemonicParsing="false" onAction="#refershViewManagePage" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: #C0C0C0;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <ImageView fitHeight="21.0" fitWidth="30.0" layoutX="23.0" layoutY="1.0" opacity="0.35">
+         <image>
+            <Image url="@../assets/icon/icons8-back-401.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="21.0" fitWidth="30.0" layoutY="1.0">
+         <image>
+            <Image url="@../assets/icon/back.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="25.0" layoutX="55.0" layoutY="2.0">
+         <image>
+            <Image url="@../assets/icon/icons8-refresh-25.png" />
+         </image>
+      </ImageView>
+    </children>
+</AnchorPane>

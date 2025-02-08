@@ -1,0 +1,1322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sathindu" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1d311fe5-5d52-4931-9b5f-25badc853528">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (8)"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="custId" class="java.lang.String"/>
+	<parameter name="date" class="java.lang.String"/>
+	<parameter name="DAY_1" class="java.lang.String"/>
+	<parameter name="DAY2" class="java.lang.String"/>
+	<parameter name="DAY3" class="java.lang.String"/>
+	<parameter name="DAY4" class="java.lang.String"/>
+	<parameter name="DAY5" class="java.lang.String"/>
+	<parameter name="DAY6" class="java.lang.String"/>
+	<parameter name="DAY7" class="java.lang.String"/>
+	<parameter name="DAY8" class="java.lang.String"/>
+	<parameter name="DAY9" class="java.lang.String"/>
+	<parameter name="DAY10" class="java.lang.String"/>
+	<parameter name="DAY11" class="java.lang.String"/>
+	<parameter name="DAY12" class="java.lang.String"/>
+	<parameter name="DAY13" class="java.lang.String"/>
+	<parameter name="DAY14" class="java.lang.String"/>
+	<parameter name="DAY15" class="java.lang.String"/>
+	<parameter name="DAY16" class="java.lang.String"/>
+	<parameter name="DAY17" class="java.lang.String"/>
+	<parameter name="DAY18" class="java.lang.String"/>
+	<parameter name="DAY19" class="java.lang.String"/>
+	<parameter name="DAY20" class="java.lang.String"/>
+	<parameter name="DAY21" class="java.lang.String"/>
+	<parameter name="DAY22" class="java.lang.String"/>
+	<parameter name="DAY23" class="java.lang.String"/>
+	<parameter name="DAY24" class="java.lang.String"/>
+	<parameter name="DAY25" class="java.lang.String"/>
+	<parameter name="DAY26" class="java.lang.String"/>
+	<parameter name="DAY27" class="java.lang.String"/>
+	<parameter name="DAY28" class="java.lang.String"/>
+	<parameter name="DAY29" class="java.lang.String"/>
+	<parameter name="DAY30" class="java.lang.String"/>
+	<parameter name="DAY31" class="java.lang.String"/>
+	<parameter name="Hutta" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[select * from payments WHERE custId =$P{custId} AND date = $P{date}]]>
+	</queryString>
+	<field name="id" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="custId" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="custId"/>
+		<property name="com.jaspersoft.studio.field.label" value="custId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="custName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="custName"/>
+		<property name="com.jaspersoft.studio.field.label" value="custName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="date" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="date"/>
+		<property name="com.jaspersoft.studio.field.label" value="date"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="goodLeaf" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="goodLeaf"/>
+		<property name="com.jaspersoft.studio.field.label" value="goodLeaf"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="goldLeaf" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="goldLeaf"/>
+		<property name="com.jaspersoft.studio.field.label" value="goldLeaf"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="teaLeafAmount" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="teaLeafAmount"/>
+		<property name="com.jaspersoft.studio.field.label" value="teaLeafAmount"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="totalAdvance" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="totalAdvance"/>
+		<property name="com.jaspersoft.studio.field.label" value="totalAdvance"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="totalFertilize" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="totalFertilize"/>
+		<property name="com.jaspersoft.studio.field.label" value="totalFertilize"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="totalTePacket" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="totalTePacket"/>
+		<property name="com.jaspersoft.studio.field.label" value="totalTePacket"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="totalOthers" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="totalOthers"/>
+		<property name="com.jaspersoft.studio.field.label" value="totalOthers"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="totalAmount" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="totalAmount"/>
+		<property name="com.jaspersoft.studio.field.label" value="totalAmount"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="previaseMonthhigaPrice" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="previaseMonthhigaPrice"/>
+		<property name="com.jaspersoft.studio.field.label" value="previaseMonthhigaPrice"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="count" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="count"/>
+		<property name="com.jaspersoft.studio.field.label" value="count"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="monthRate" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="monthRate"/>
+		<property name="com.jaspersoft.studio.field.label" value="monthRate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="monthRate1" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="monthRate1"/>
+		<property name="com.jaspersoft.studio.field.label" value="monthRate1"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="nextTeaHigaPrice" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="nextTeaHigaPrice"/>
+		<property name="com.jaspersoft.studio.field.label" value="nextTeaHigaPrice"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="nextHigaPohora" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="nextHigaPohora"/>
+		<property name="com.jaspersoft.studio.field.label" value="nextHigaPohora"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="nextHigaAdvance" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="nextHigaAdvance"/>
+		<property name="com.jaspersoft.studio.field.label" value="nextHigaAdvance"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="423" splitType="Stretch">
+			<staticText>
+				<reportElement x="-8" y="55" width="420" height="20" uuid="91e723a0-5f3e-419d-9864-c8958c450a39"/>
+				<textElement>
+					<font fontName="Iskoola Pota" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[සැපයුම්කරුගේ නම -
+
+
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-8" y="84" width="71" height="20" uuid="52da6cb4-4fad-49da-84b6-57ff50aef84f"/>
+				<textElement>
+					<font fontName="Iskoola Pota" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[මාර්ගය  -  
+
+
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="451" y="54" width="150" height="20" uuid="44e82ba2-530c-4589-b4cc-1d474162feb3"/>
+				<textElement>
+					<font fontName="Iskoola Pota" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[හොඳ දළු     රන් දළු ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="368" y="68" width="120" height="20" uuid="fb57fbc1-f28d-41cc-a7f0-ae6aca508ff8"/>
+				<textElement>
+					<font fontName="Iskoola Pota" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[කිලෝවක මිල - ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="99" y="56" width="282" height="20" uuid="ed20370a-4d30-430c-b3ba-353f93d523e9"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{custName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="36" y="70" width="100" height="18" uuid="ae54e76e-22c0-41b3-aaa4-4de1913a695c"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="271" y="100" width="1" height="168" uuid="2de4b0c1-9bca-47f0-9db1-bb04ad64e7c1">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="271" y="100" width="293" height="1" uuid="f443add3-3e22-4d8a-ae5d-2dac45ab0a8e">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="399" y="101" width="1" height="166" uuid="99530e21-e4e7-450b-8b1c-f1dee6f6bdc6">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="484" y="101" width="1" height="166" uuid="721c7921-baaa-44bc-9eb9-c12d0b44398d">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="564" y="100" width="1" height="167" uuid="06925799-6369-46a5-ae97-de74dc8aa69e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="272" y="267" width="293" height="1" uuid="29608c30-8eb6-4c40-b73d-7a055f76f460"/>
+			</line>
+			<line>
+				<reportElement x="271" y="246" width="293" height="1" uuid="5deb6228-82de-4182-af7c-f7d71b675e92">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="271" y="273" width="293" height="1" uuid="d4ca6efd-bd21-4f98-a04a-a1b5a55651a8">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="271" y="295" width="293" height="1" uuid="a604f3e7-ef92-4608-bfc9-a1bf46d940a3"/>
+			</line>
+			<line>
+				<reportElement x="399" y="273" width="1" height="22" uuid="7dabb253-2015-4e3a-a932-a5c5e39c33df">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="564" y="273" width="1" height="22" uuid="3713b4eb-14fb-403b-acba-9c05116a8850">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<staticText>
+				<reportElement x="279" y="103" width="109" height="20" uuid="57696bff-6d99-49c3-8251-2572b449fce6"/>
+				<textElement>
+					<font fontName="Iskoola Pota" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[තේ දළු වටිනාකම]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="119" width="138" height="20" uuid="e0b25be6-20cf-4685-ac51-d46ad97ce45c"/>
+				<textElement>
+					<font fontName="Iskoola Pota" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[වෙනත් එකතු කිරීම්]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="134" width="109" height="20" uuid="5b4fcaaa-6cb9-4b3d-b61a-7f725d99e84a"/>
+				<textElement>
+					<font fontName="Iskoola Pota" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ගිය මස ණය]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="150" width="80" height="20" uuid="c5dd1361-8d16-4b66-b953-2fcadebe3eb5"/>
+				<textElement>
+					<font fontName="Iskoola Pota" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[අත්තිකාරම්]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="165" width="154" height="20" uuid="d1f25a05-ca3b-4fb0-a600-6e63b284da52"/>
+				<textElement>
+					<font fontName="Iskoola Pota" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[පොහොර කෘෂි රසායන]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="179" width="118" height="20" uuid="e224fd4f-479a-417c-accd-4f7d4f87e126"/>
+				<textElement>
+					<font fontName="Iskoola Pota" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[තේ පැකට්]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="281" y="209" width="109" height="20" uuid="220bef92-fe7b-4ce7-a42b-baba48d9b4cb"/>
+				<textElement>
+					<font fontName="Iskoola Pota" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[වෙනත් අඩුකිරීිම්]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="307" y="225" width="91" height="20" uuid="b8a07d3a-bf70-439c-b583-820d314e49c7"/>
+				<textElement>
+					<font fontName="Iskoola Pota" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ඉතුරුම්]]></text>
+			</staticText>
+			<line>
+				<reportElement x="114" y="99" width="1" height="184" uuid="ef562645-b6ed-4a73-a59c-03542863f387">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="-6" y="100" width="263" height="1" uuid="a6d55496-dc8e-4964-82c2-f8e395179d13">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="-7" y="100" width="1" height="184" uuid="7ea9caff-0914-4527-b04f-31d7e2997d0f">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="28" y="100" width="1" height="184" uuid="f82ff846-1ad7-4fd1-ac50-cb5b87d4addd">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="-6" y="125" width="263" height="1" uuid="884dec78-f5e7-408f-843f-86fac34858f1">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="80" y="100" width="1" height="184" uuid="1c974444-f75d-4585-ab73-ede017b30066"/>
+			</line>
+			<line>
+				<reportElement x="166" y="100" width="1" height="184" uuid="0e7d5b0c-a640-4242-b7d5-892530ee0f52">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="204" y="100" width="1" height="155" uuid="ff1efbb6-a11a-4d57-81df-cc2064b2aa91">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="257" y="100" width="1" height="184" uuid="0ca86b0c-3752-4bb9-ba77-ba54fdbee344">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="-7" y="283" width="263" height="1" uuid="289e497d-90a6-4fa9-a138-13422f7ffee7"/>
+			</line>
+			<staticText>
+				<reportElement x="34" y="100" width="41" height="20" uuid="c6029f43-8673-44cb-8c1f-5e07bbad394b"/>
+				<textElement>
+					<font fontName="Iskoola Pota" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[කිලෝ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="100" width="41" height="20" uuid="d02ca308-ae6b-420b-8c7a-e6c59106b0f5"/>
+				<textElement>
+					<font fontName="Iskoola Pota" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[දින]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="84" y="100" width="41" height="20" uuid="1271c015-9082-4730-9aa4-bf3c80bb6693"/>
+				<textElement>
+					<font fontName="Iskoola Pota" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[දින]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="122" y="100" width="41" height="20" uuid="1715474e-49b6-4a01-af2d-1f8f82105d3d"/>
+				<textElement>
+					<font fontName="Iskoola Pota" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[කිලෝ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="174" y="99" width="41" height="20" uuid="2b2ae1c9-32af-4fc7-a277-51c016d5492f"/>
+				<textElement>
+					<font fontName="Iskoola Pota" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[දින]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="211" y="100" width="41" height="20" uuid="eb3cd433-33f2-4747-8377-8d384cb2e43c"/>
+				<textElement>
+					<font fontName="Iskoola Pota" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[කිලෝ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="126" width="25" height="14" uuid="e4671fb1-4911-454e-a23a-d43053064857"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="155" width="25" height="14" uuid="e89edff0-ed43-4f43-be55-009d54894441"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="141" width="25" height="14" uuid="e96fa093-4d7f-499b-aae2-a7019ea002e2"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="86" y="211" width="25" height="14" uuid="057bb4ed-38d3-4b2d-84e5-cefc4640f615"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[18]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="86" y="197" width="25" height="14" uuid="53a9a7c7-0d1e-4bae-a986-96b491b0524f"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[17]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="86" y="183" width="25" height="14" uuid="7a5b2b87-a901-4a86-ba15-d8da0dc4a1d8"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[16]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="86" y="169" width="25" height="14" uuid="34f0e6d3-b300-4860-bd2e-5d9bb40e4070"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[15]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="86" y="155" width="25" height="14" uuid="030a1479-7d30-4ac6-8f68-4e004dd2f9ad"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[14]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="86" y="141" width="25" height="14" uuid="f13dc608-207a-4365-beb9-c1a71e0c0c56"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[13]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="86" y="127" width="25" height="14" uuid="b0e6e42f-8f1d-404c-a6df-9ce52b766cd2"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[12]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="266" width="25" height="14" uuid="9feb75c4-3c53-4d45-9697-89d7d7cfc08a"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[11]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="169" width="25" height="14" uuid="d7977e91-c36e-4682-81b4-711afc64e6db"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[4]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="183" width="25" height="14" uuid="af96dfd0-9152-4d93-912c-9be56c1eb84b"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="197" width="25" height="14" uuid="26528866-badc-4e4a-867a-bc5d5060cbc4"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[6]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="211" width="25" height="14" uuid="38abad79-6530-4e8e-b6bc-091c0428e035"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[7]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="225" width="25" height="14" uuid="de193eca-16f5-4e8b-af30-1aecb0792df9"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[8]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="239" width="25" height="14" uuid="bb9d4f5b-24e2-4074-811a-878aeeef8543"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[9]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="252" width="25" height="14" uuid="e54c2067-052a-45ce-b135-97f81fb62ba1"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[10]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="86" y="225" width="25" height="14" uuid="ca777ed3-4b84-4295-9581-4dfd919b90c6"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[19]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="87" y="252" width="25" height="14" uuid="9ec36b8f-09f3-4b90-9cd1-fbabe1d8d37d"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[21]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="86" y="239" width="25" height="14" uuid="2ea04a15-e665-44d0-a5ce-db7d7facb1ff"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[20]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="87" y="266" width="25" height="14" uuid="3edd776b-624e-439c-b928-caf794f390ba"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[22]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="179" y="127" width="25" height="14" uuid="1f597ec7-47be-4328-a639-a15699fb3406"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[23]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="179" y="141" width="25" height="14" uuid="57e0d409-fef0-4487-89ec-1f615c3dd656"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[24]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="179" y="155" width="25" height="14" uuid="b995d34a-0051-4334-bfb8-cb0e30a6855c"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[25]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="179" y="169" width="25" height="14" uuid="0e7c7a2f-6a50-415b-ba0c-66de41ee36c0"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[26]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="179" y="183" width="25" height="14" uuid="1d0bd0d3-4ff4-4b56-b506-f43a02fe628b"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[27]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="179" y="197" width="25" height="14" uuid="c646a10e-191d-4e25-8355-ff17c23716c5"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[28]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="179" y="211" width="25" height="14" uuid="9841b456-1bfe-4f77-ae97-e9ce01561a45"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[29]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="179" y="225" width="25" height="14" uuid="8f9eccc8-7688-4209-82c9-d75485663ea9"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[30]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="179" y="239" width="25" height="14" uuid="2ba30c6c-63c0-4140-9617-3f123a76fe71"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[31]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="34" y="127" width="31" height="14" uuid="212b236c-d10d-4c90-82c0-832cc720d4c0"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="35" y="141" width="38" height="14" uuid="34f4f1f0-af75-4417-a305-36854cfc4ef1">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="35" y="155" width="38" height="14" uuid="98881b76-2391-456f-ab23-b97858a085c1">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="35" y="169" width="38" height="14" uuid="e9b24413-8137-45f3-9eaf-b13f1cf16082">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="35" y="183" width="38" height="14" uuid="5c3942d5-5f73-4af2-bd2d-3941078bcd12">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="35" y="197" width="38" height="14" uuid="734b390b-5759-4ab7-92c3-4cbfdeca3c0a">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="35" y="211" width="38" height="14" uuid="4e949626-2df9-456c-954d-95486c9ed7d2">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="35" y="225" width="38" height="14" uuid="2bd3b379-b4d1-4f37-80a2-c3ae92e90b8d">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="35" y="239" width="38" height="14" uuid="9b9dbaaa-bdb2-416a-87c3-b5823c0c33b9">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="35" y="253" width="38" height="14" uuid="9b06ee0c-4f77-4189-b9ee-605083b46fe4">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="122" y="127" width="38" height="14" uuid="c6569783-d4d7-43a0-b36e-393847ce9f0b">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="122" y="141" width="38" height="14" uuid="a6fa1603-fbf9-42ec-81ee-6660e1685c32">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="122" y="155" width="38" height="14" uuid="f7f0fb21-da04-4386-8aa4-c4f5fa26fa3d">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="122" y="169" width="38" height="14" uuid="24dee7dc-35ed-4347-bddf-bf14fed4e043">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="122" y="183" width="38" height="14" uuid="2c7ec488-75d9-4e17-baed-e779b83186a4">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="122" y="197" width="38" height="14" uuid="88fa0fa7-622f-43dd-aa6f-380ba0a5a7a1">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="122" y="211" width="38" height="14" uuid="0307a128-03de-4e76-ae50-e6282eb5c3d0">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="122" y="225" width="38" height="14" uuid="79336288-2b7f-41e0-9d65-8fc9c139fdd7">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="122" y="239" width="38" height="14" uuid="d67bf055-45aa-4f9d-87a5-68154cbfa47a">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="122" y="253" width="38" height="14" uuid="5c273ca3-bf8b-4846-a68b-8d5640259f61">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="208" y="127" width="38" height="14" uuid="59515817-b73d-40dc-ab6b-d84fbfa5e916">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="208" y="141" width="38" height="14" uuid="cfd05dd5-52f9-4b97-8dd1-359c494a9667"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="208" y="155" width="38" height="14" uuid="6ac292b9-8a23-4f3e-97a0-a01a7dec0197"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="208" y="169" width="38" height="14" uuid="c2ea40ab-b693-4406-8cf6-1934fef306d0"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="208" y="183" width="38" height="14" uuid="634f2d82-da78-4e7e-a5a8-3f2bac080d83"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="208" y="197" width="38" height="14" uuid="ecd4984c-6a07-45b4-8ec1-0321d7cc222e"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="208" y="211" width="38" height="14" uuid="81b56cda-c027-43a1-98c3-a249d0a8aeb6"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="208" y="225" width="38" height="14" uuid="d217d113-70d7-44e7-a71b-ec5b0c107af6"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="208" y="239" width="38" height="14" uuid="d7005e98-3999-4207-91d5-1b7157f80890"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="208" y="253" width="38" height="14" uuid="07724511-8f66-4332-bc0b-c7e18f74d776"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="208" y="266" width="38" height="14" uuid="97df206e-d662-4734-bc64-1032ed545502"/>
+				<textElement>
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="33" y="128" width="38" height="14" uuid="a2251e02-bae6-48e9-bbbc-ed26287605a2">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DAY_1}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="271" y="273" width="1" height="22" uuid="b02606e9-0041-4ad1-bbf7-36fd1692eb5f">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="766" y="299" width="1" height="22" uuid="8f1620bf-b5c9-46c7-aff0-78636432e4bd">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<textField>
+				<reportElement x="33" y="143" width="40" height="20" uuid="505a8a14-27b6-44a7-9abe-a8c7e02c5e00"/>
+				<textFieldExpression><![CDATA[$P{DAY2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="33" y="156" width="42" height="14" uuid="e42ba9f7-565e-4a74-a8de-66f4d67970ec"/>
+				<textFieldExpression><![CDATA[$P{DAY3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="33" y="170" width="48" height="14" uuid="eb9b01cd-9a7f-4375-be64-c5dc7b35ee49"/>
+				<textFieldExpression><![CDATA[$P{DAY4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="33" y="184" width="48" height="20" uuid="d3c69087-1a87-488e-825c-57b9d5f07f4f"/>
+				<textFieldExpression><![CDATA[$P{DAY5}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="33" y="198" width="48" height="24" uuid="bc03dc6e-2274-4285-89e4-0e9311597cf4"/>
+				<textFieldExpression><![CDATA[$P{DAY6}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="33" y="212" width="46" height="16" uuid="aac1b5e4-b293-4655-bee4-bf86c22cf2aa"/>
+				<textFieldExpression><![CDATA[$P{DAY7}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="33" y="226" width="48" height="20" uuid="05a2a025-6d56-46dd-9cae-541ef59ce653"/>
+				<textFieldExpression><![CDATA[$P{DAY8}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="33" y="240" width="52" height="20" uuid="5752a51d-93a8-4cbc-b3db-e7d18a315ed2"/>
+				<textFieldExpression><![CDATA[$P{DAY9}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="33" y="254" width="52" height="22" uuid="0a51592b-9b81-4f25-956b-fe96173fe4e3"/>
+				<textFieldExpression><![CDATA[$P{DAY10}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="33" y="268" width="50" height="16" uuid="f07f02ab-80ec-4cb4-929a-77fdc1ed27ec"/>
+				<textFieldExpression><![CDATA[$P{DAY11}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="118" y="128" width="54" height="18" uuid="570f81f9-e8c4-4a7b-969d-a3e53e314b94"/>
+				<textFieldExpression><![CDATA[$P{DAY12}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="118" y="143" width="61" height="14" uuid="50b9485d-8423-43e0-ae9b-7cac2bdce1e9"/>
+				<textFieldExpression><![CDATA[$P{DAY13}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="118" y="156" width="60" height="15" uuid="86908067-22d1-47c4-8e2c-7cd59a8058e4"/>
+				<textFieldExpression><![CDATA[$P{DAY14}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="118" y="170" width="60" height="14" uuid="d790bc59-644c-4515-902b-5d73c5bb1e5e"/>
+				<textFieldExpression><![CDATA[$P{DAY15}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="118" y="184" width="49" height="13" uuid="59652de5-6a52-445b-8eb1-e4bf06f1a91b"/>
+				<textFieldExpression><![CDATA[$P{DAY16}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="118" y="198" width="48" height="15" uuid="b6d768c6-7e3b-42d1-a4a1-3524ff26ef58"/>
+				<textFieldExpression><![CDATA[$P{DAY17}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="118" y="213" width="49" height="19" uuid="f379a50d-6c9a-4700-85ba-a6d40f240309"/>
+				<textFieldExpression><![CDATA[$P{DAY18}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="118" y="226" width="49" height="15" uuid="90473f32-5d26-49d6-888a-a15569c923b0"/>
+				<textFieldExpression><![CDATA[$P{DAY19}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="118" y="240" width="57" height="15" uuid="bf97b51b-4694-4b02-8c43-9796f5b23f2b"/>
+				<textFieldExpression><![CDATA[$P{DAY20}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="117" y="254" width="65" height="19" uuid="05928247-ac83-490a-8163-093105ccbce2"/>
+				<textFieldExpression><![CDATA[$P{DAY21}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="117" y="268" width="55" height="16" uuid="c7b820e1-911d-4c86-8d24-aae9464a01c8"/>
+				<textFieldExpression><![CDATA[$P{DAY22}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="209" y="129" width="86" height="14" uuid="d7c9b2a8-6337-4e02-a14f-6377a21f2c4f"/>
+				<textFieldExpression><![CDATA[$P{DAY23}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="209" y="143" width="66" height="13" uuid="e90daee1-729e-43c8-a19a-d178c22bf524"/>
+				<textFieldExpression><![CDATA[$P{DAY24}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="209" y="156" width="73" height="16" uuid="27e64920-0c7f-463b-a7de-245c4c42e0f9"/>
+				<textFieldExpression><![CDATA[$P{DAY25}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="209" y="170" width="71" height="16" uuid="8ffcaf96-3b1d-4e1f-93f8-e3b1a0bb9fbe"/>
+				<textFieldExpression><![CDATA[$P{DAY26}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="209" y="185" width="78" height="18" uuid="c6ac3a21-9316-454b-99ed-483969a29f0b"/>
+				<textFieldExpression><![CDATA[$P{DAY27}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="209" y="199" width="70" height="16" uuid="1af038d3-a32a-483e-94e7-80230112ceca"/>
+				<textFieldExpression><![CDATA[$P{DAY28}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="209" y="213" width="80" height="20" uuid="9b255712-a465-4989-b1bf-b2d2cc6ad65a"/>
+				<textFieldExpression><![CDATA[$P{DAY29}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="209" y="226" width="80" height="16" uuid="bb3aa6e8-8427-4b95-af11-8cd917742fa8"/>
+				<textFieldExpression><![CDATA[$P{DAY30}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="209" y="240" width="78" height="15" uuid="535f4be9-e063-4d37-a366-7199734b2c2a"/>
+				<textFieldExpression><![CDATA[$P{DAY31}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="457" y="71" width="71" height="16" uuid="991426e2-29d8-4812-9a14-1da63bd226bc"/>
+				<textFieldExpression><![CDATA[$F{monthRate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="512" y="71" width="100" height="13" uuid="5878408a-d8cb-4341-9bf9-8c592c39870a"/>
+				<textFieldExpression><![CDATA[$F{monthRate1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="512" y="87" width="79" height="15" uuid="a8b67578-5ec8-4e8d-926f-330d5e379a9b"/>
+				<textFieldExpression><![CDATA[$F{goodLeaf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="170" y="258" width="86" height="19" uuid="f717a028-9f63-436b-a7d0-da0d2f177a33"/>
+				<textElement textAlignment="Center" markup="styled">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{goldLeaf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="403" y="102" width="88" height="18" uuid="8785ace6-3415-4fba-a704-1dcc54779370"/>
+				<textFieldExpression><![CDATA[$F{teaLeafAmount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="489" y="150" width="100" height="20" uuid="70cfd2a7-fc9b-4d61-8763-79130357fb8d"/>
+				<textFieldExpression><![CDATA[$F{totalAdvance}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="489" y="165" width="100" height="16" uuid="6a0761e7-925b-4088-8a03-6b4838154d3d"/>
+				<textFieldExpression><![CDATA[$F{totalFertilize}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="489" y="180" width="100" height="19" uuid="2fb3d1c9-62e3-4108-b031-737538b1f8e1"/>
+				<textFieldExpression><![CDATA[$F{totalTePacket}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="489" y="208" width="100" height="20" uuid="28335df5-558a-4fa1-9054-961b5db9a062"/>
+				<textFieldExpression><![CDATA[$F{totalOthers}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="489" y="134" width="124" height="18" uuid="c1e71320-5be3-46ad-a523-8e11f078370e"/>
+				<textFieldExpression><![CDATA[$F{previaseMonthhigaPrice}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="488" y="250" width="100" height="15" uuid="7b943287-40cd-488d-ba65-54df8c433d42"/>
+				<textFieldExpression><![CDATA[$F{count}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="277" width="120" height="18" uuid="6b5a6435-59c1-4566-9e06-907dfdce9abc"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{totalAmount}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="300" y="248" width="109" height="20" uuid="8ecfd312-bee1-4e7c-8e75-db9ac6748cca"/>
+				<textElement>
+					<font fontName="Iskoola Pota" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[මුළු වටිනාකම]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="298" y="275" width="109" height="20" uuid="9d8e2ce6-0ab1-4554-bc98-0d47d4ac891c"/>
+				<textElement markup="styled">
+					<font fontName="Iskoola Pota" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ඉතිරි මුදල]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="312" y="302" width="157" height="20" uuid="a7c7dc35-25d5-4800-a548-26a15dbb4c15"/>
+				<textElement markup="styled">
+					<font fontName="Iskoola Pota" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ඉදිරියට ඇති දළු හිඟ මුදල් ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-1" y="291" width="231" height="20" uuid="fcfe640b-c5b4-4f09-8fff-70e6442d97f3"/>
+				<textElement markup="styled">
+					<font fontName="Iskoola Pota" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ඉදිරියට ඇති පොහොර හිඟ මුදල් ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-1" y="310" width="231" height="20" uuid="1b379a06-970b-4876-a1de-3cbbce858840"/>
+				<textElement markup="styled">
+					<font fontName="Iskoola Pota" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ඉදිරියට ඇති ණය මුදල් ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="487" y="314" width="132" height="32" uuid="6d7a4caa-2c35-4344-b31f-fbd2d5ada74c"/>
+				<textElement markup="styled">
+					<font fontName="Iskoola Pota" size="15" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[හොඳ දල්ලට ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="330" width="132" height="32" uuid="fb13abe4-5ad1-4ed8-80f2-4a5fd46f1cbf"/>
+				<textElement markup="styled">
+					<font fontName="Iskoola Pota" size="15" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[ඉහල මිලක් ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-20" y="345" width="595" height="24" uuid="bc9d8df9-ff1f-4250-b2bc-fc47568c1a98"/>
+				<textElement textAlignment="Center" markup="styled">
+					<font fontName="Iskoola Pota" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[මෙම බිල්පතෙහි ඇති සටහන් පිළිබඳව ගැටළුවක් ඇතොත් සතියක් ඇතුලත දැනුම් දෙන්න ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="348" y="328" width="186" height="21" uuid="602912f9-df08-49f1-a3a4-13c246ff1568"/>
+				<textElement markup="styled">
+					<font fontName="Iskoola Pota" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[දළු සැපයුම්කරුගේ අත්සන      ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="357" y="318" width="149" height="21" uuid="8a7bf301-c88e-408f-bded-736a214de718"/>
+				<textElement markup="styled">
+					<font fontName="Iskoola Pota" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[...............................]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-7" y="288" width="264" height="1" uuid="5cdddf4e-b2c6-4eb3-8ad4-70bfd5334568">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="-7" y="333" width="264" height="1" uuid="4f406589-ca5a-423d-a22d-caae8c839769">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="257" y="288" width="1" height="46" uuid="960c1a52-a6af-42fa-8e56-1c1cb70d2743">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="564" y="301" width="1" height="17" uuid="a29ae8b9-a707-4527-b898-1944c9303c04">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="463" y="301" width="1" height="17" uuid="4b1ee956-6bd6-404e-a7d3-35e9191a2aea">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="463" y="300" width="101" height="1" uuid="0c679a83-f692-43eb-affc-3474bf01b99b">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="463" y="317" width="101" height="1" uuid="64b25fc2-a8f5-4f18-9b08-300347c53aae">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="-7" y="288" width="1" height="46" uuid="9b0fa7f7-5e39-4019-99b5-e8a230e69dfb">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<staticText>
+				<reportElement x="288" y="329" width="186" height="21" uuid="9c935341-aa18-451e-824a-a0b986318b6d"/>
+				<textElement markup="styled">
+					<font fontName="Iskoola Pota" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[දිනය]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="265" y="318" width="75" height="21" uuid="bff4fabb-d00d-446a-98cb-1292669c57fe"/>
+				<textElement markup="styled">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[...............................]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="167" y="294" width="100" height="16" uuid="b744a3d2-2d64-4b02-8437-651e2edce988"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nextHigaPohora}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="167" y="313" width="100" height="19" uuid="eea74fd3-d8bb-418b-9b6c-f1521a7759ae"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nextHigaAdvance}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="470" y="302" width="100" height="18" uuid="98714c2c-7c8b-4157-8664-d40ebdadf119"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nextTeaHigaPrice}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="351" y="32" width="135" height="22" uuid="05d0c03d-71aa-4ee4-b673-3b497c42480a"/>
+				<textElement>
+					<font fontName="Iskoola Pota" size="14"/>
+				</textElement>
+				<text><![CDATA[0719803405]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="296" y="15" width="299" height="29" uuid="cc8925de-11df-4283-90a2-8dc8be36263b"/>
+				<textElement>
+					<font fontName="Iskoola Pota" size="14"/>
+				</textElement>
+				<text><![CDATA[දු.අංකය - 0703150480   සැපයුම්කරුගේ පිටපත                            ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="296" y="-4" width="333" height="29" uuid="7e2e8272-bdef-4a89-9d11-72e920728c5b"/>
+				<textElement>
+					<font fontName="Iskoola Pota" size="14"/>
+				</textElement>
+				<text><![CDATA[ලි.අංකය - M.T.2265  දළු සැපයුම්කරුගේ ගිණුම        ]]></text>
+			</staticText>
+			<image>
+				<reportElement x="40" y="-5" width="244" height="28" uuid="e0c1d69a-c377-437f-b295-51b8850b6856"/>
+				<imageExpression><![CDATA["D:/sathi Information/Screenshot (33).png"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="-20" y="52" width="600" height="1" uuid="7f52f23d-b621-444e-92fb-d521ecc8c78a">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</line>
+			<staticText>
+				<reportElement x="-8" y="69" width="95" height="20" uuid="759e745c-6402-49a0-af17-66a897d892be"/>
+				<textElement>
+					<font fontName="Iskoola Pota" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[මාසය -
+
+
+]]></text>
+			</staticText>
+			<image>
+				<reportElement x="-11" y="-1" width="50" height="58" uuid="8fe252dc-4e02-41b9-b9e9-7dcb673227dc"/>
+				<imageExpression><![CDATA["D:/sathi Information/MP 1-1.png"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="402" y="250" width="88" height="18" uuid="51bc4b0f-ccae-4596-a71f-4374f066a275"/>
+				<textFieldExpression><![CDATA[$F{teaLeafAmount}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="83" y="15" width="220" height="17" uuid="9ab9c271-384f-4d53-93ad-d6ad5973865b"/>
+				<imageExpression><![CDATA["D:/sathi Information/Screenshot__36_-removebg-preview.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="39" y="31" width="248" height="20" uuid="b2555ef2-313a-4841-814c-99274c2d945d"/>
+				<imageExpression><![CDATA["D:/sathi Information/Screenshot__42_-removebg-preview.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="367" y="89" width="75" height="14" uuid="43cdcf9a-fe34-4c9c-8455-f2e28cc9feba"/>
+				<imageExpression><![CDATA["D:/sathi Information/Screenshot__45_-removebg-preview.png"]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="166" y="255" width="92" height="1" uuid="414d7f27-4629-4d44-bc01-f086ec9504b5">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</line>
+			<staticText>
+				<reportElement x="280" y="194" width="118" height="20" uuid="19bd888a-25cb-412d-afe6-5e86cc9a8185"/>
+				<textElement>
+					<font fontName="Iskoola Pota" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ලිපි ද්‍රව්‍ය]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="488" y="194" width="118" height="20" uuid="023f62c9-d821-437b-8412-6c116c8a5e82"/>
+				<textElement>
+					<font fontName="Iskoola Pota" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[25.0]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="457" y="87" width="100" height="17" uuid="9dc62e1c-5628-4e50-9e72-c4127c1eb02f"/>
+				<textFieldExpression><![CDATA[$P{Hutta}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="42" y="82" width="100" height="17" uuid="88c6dc12-c605-4fd2-b909-925a688cae2b"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[යට්ටපාත]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

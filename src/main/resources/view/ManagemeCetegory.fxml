@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.ManagementCetegoryController">
+   <children>
+      <AnchorPane prefHeight="681.0" prefWidth="1259.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane layoutX="3.0" prefHeight="681.0" prefWidth="298.0" style="-fx-background-color: #122E4B; -fx-background-radius: 10;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="3.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <ImageView fitHeight="144.0" fitWidth="225.0" layoutX="36.0" layoutY="57.0">
+                     <image>
+                        <Image url="@../assets/MP%201-1.png" />
+                     </image>
+                  </ImageView>
+               </children></AnchorPane>
+            <Button layoutX="10.0" layoutY="3.0" mnemonicParsing="false" onAction="#loginButttonClick" prefHeight="45.0" prefWidth="25.0" style="-fx-background-color: #122E4B;" textAlignment="CENTER" textFill="#4fe830">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="113.0" layoutY="627.0" mnemonicParsing="false" onAction="#LogOutButtonClick" prefHeight="6.0" prefWidth="117.0" style="-fx-background-color: B8001F;" text="Log out" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="25.0">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="78.0" layoutY="229.0" mnemonicParsing="false" onAction="#ViewCustomerBtnClick" prefHeight="41.0" prefWidth="152.0" style="-fx-background-color: FFFBE6;" text="View Customer" textAlignment="CENTER" textFill="#347928">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <TabPane layoutX="303.0" prefHeight="681.0" prefWidth="956.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.leftAnchor="303.0" AnchorPane.topAnchor="0.0">
+              <tabs>
+                <Tab text="                                                 Customer                                                     ">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <AnchorPane layoutY="-3.0" prefHeight="654.0" prefWidth="956.0" style="-fx-background-color: #040720;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <TextField fx:id="CustTel" layoutX="289.0" layoutY="154.0" onAction="#OnActionTell" prefHeight="30.0" prefWidth="382.0" promptText="Telephone_NB" />
+                                    <TextField fx:id="CustAddress" layoutX="289.0" layoutY="112.0" onAction="#OnActionAddress" prefHeight="30.0" prefWidth="382.0" promptText="Address" />
+                                    <TextField fx:id="CustName" layoutX="289.0" layoutY="71.0" onAction="#OnActionName" prefHeight="30.0" prefWidth="382.0" promptText="Name" />
+                                    <TextField fx:id="CustId" layoutX="289.0" layoutY="30.0" onAction="#OnActionId" prefHeight="30.0" prefWidth="382.0" promptText="Customer_ID" />
+                                    <Button layoutX="729.0" layoutY="33.0" mnemonicParsing="false" onAction="#BtnSaveClickCustomer" prefHeight="38.0" prefWidth="172.0" style="-fx-background-color: #347928;" text="ADD" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="17.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="updatebtnCc" layoutX="729.0" layoutY="89.0" mnemonicParsing="false" onAction="#BtnUpdateClick" prefHeight="38.0" prefWidth="172.0" style="-fx-background-color: FCCD2A;" text="UPDATE" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="17.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="deleteButtonCc" layoutX="729.0" layoutY="145.0" mnemonicParsing="false" onAction="#BtnClickDelete" prefHeight="38.0" prefWidth="172.0" style="-fx-background-color: e36414;" text="DELETE" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="17.0" />
+                                       </font>
+                                    </Button>
+                                    <Label layoutX="116.0" layoutY="38.0" text="Customer ID" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="116.0" layoutY="76.0" text="Customer Name" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="116.0" layoutY="116.0" text="Customer Address" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="116.0" layoutY="159.0" text="Customer Tel" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <TableView fx:id="tblCustomerViewForm" layoutX="7.0" layoutY="196.0" onMouseClicked="#mouseCLickCustomer" prefHeight="453.0" prefWidth="943.0">
+                                      <columns>
+                                        <TableColumn fx:id="clCustomerId" prefWidth="126.0" text="Customer ID" />
+                                        <TableColumn fx:id="clCustomerName" prefWidth="394.0" text="Customer Name" />
+                                          <TableColumn fx:id="clCustomerAddress" prefWidth="268.0" text="Customer Address" />
+                                          <TableColumn fx:id="clCustomerTel" prefWidth="147.0" text="Customer Tel" />
+                                      </columns>
+                                    </TableView>
+                                    <ImageView fitHeight="427.0" fitWidth="940.0" layoutX="8.0" layoutY="221.0" opacity="0.24">
+                                       <image>
+                                          <Image url="@../assets/mp%20w%20m.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                  <Tab text="                                                           Employee                                                          ">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="538.0" prefWidth="779.0">
+                           <children>
+                              <AnchorPane layoutY="-4.0" prefHeight="655.0" prefWidth="956.0" style="-fx-background-color: #040720;" AnchorPane.bottomAnchor="1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-4.0">
+                                 <children>
+                                    <TextField fx:id="EmpId" layoutX="289.0" layoutY="30.0" prefHeight="30.0" prefWidth="382.0" promptText="Employee_ID" />
+                                    <TextField fx:id="EmpName" layoutX="289.0" layoutY="71.0" prefHeight="30.0" prefWidth="382.0" promptText="Name" />
+                                    <TextField fx:id="EmpAddress" layoutX="289.0" layoutY="112.0" prefHeight="30.0" prefWidth="382.0" promptText="Address" />
+                                    <TextField fx:id="EmpTel" layoutX="289.0" layoutY="154.0" prefHeight="30.0" prefWidth="382.0" promptText="Telephone_NB" />
+                                    <Button layoutX="729.0" layoutY="33.0" mnemonicParsing="false" onAction="#BtnAddEmployee" prefHeight="38.0" prefWidth="172.0" style="-fx-background-color: #347928;" text="ADD" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="17.0" />
+                                       </font>
+                                    </Button>
+                                    <Button layoutX="729.0" layoutY="89.0" mnemonicParsing="false" onAction="#BtnClickEmployeeUpdate" prefHeight="38.0" prefWidth="172.0" style="-fx-background-color: FCCD2A;" text="UPDATE" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="17.0" />
+                                       </font>
+                                    </Button>
+                                    <Button layoutX="729.0" layoutY="145.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="172.0" style="-fx-background-color: e36414;" text="DELETE" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="17.0" />
+                                       </font>
+                                    </Button>
+                                    <Label layoutX="116.0" layoutY="159.0" text="Employee Tel" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="116.0" layoutY="116.0" text="Employee Address" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="116.0" layoutY="76.0" text="Employee Name" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <Label layoutX="116.0" layoutY="34.0" text="Employee ID" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                              </Label>
+                              <TableView fx:id="tblEmpViewForm" layoutX="7.0" layoutY="190.0" onMouseClicked="#mouseEmp" prefHeight="455.0" prefWidth="943.0">
+                                 <columns>
+                                    <TableColumn fx:id="clEmpId" prefWidth="126.0" text="Customer ID" />
+                                    <TableColumn fx:id="clEmpName" prefWidth="394.0" text="Customer Name" />
+                                    <TableColumn fx:id="clEmpAddress" prefWidth="268.0" text="Customer Address" />
+                                    <TableColumn fx:id="clEmpTel" prefWidth="147.0" text="Customer Tel" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+            <Button layoutX="78.0" layoutY="306.0" mnemonicParsing="false" onAction="#ViewEmpoyeBtnClick" prefHeight="41.0" prefWidth="152.0" style="-fx-background-color: FFFBE6;" text="View Employe" textAlignment="CENTER" textFill="#347928">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ImageView fitHeight="30.0" fitWidth="40.0" layoutX="65.0" layoutY="626.0" AnchorPane.bottomAnchor="25.0">
+               <image>
+                  <Image url="@../assets/icon/logout.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="10.0" layoutY="10.0">
+               <image>
+                  <Image url="@../assets/icon/back.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="37.0" layoutY="10.0" opacity="0.48">
+               <image>
+                  <Image url="@../assets/icon/icons8-back-401.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="66.0" layoutY="10.0">
+               <image>
+                  <Image url="@../assets/icon/icons8-refresh-25.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

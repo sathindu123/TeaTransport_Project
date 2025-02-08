@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="681.0" prefWidth="1259.0" style="-fx-background-color: #4B0082;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.OrderController">
+    <children>
+        <AnchorPane layoutX="303.0" layoutY="20.0" prefHeight="641.0" prefWidth="933.0" style="-fx-background-color: #4B0150;">
+            <children>
+                <Button layoutX="258.0" layoutY="507.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="220.0" style="-fx-background-color: #5fffb7;" text="Cansle" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Button>
+                <Button layoutX="507.0" layoutY="507.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="220.0" style="-fx-background-color: #5fffb7;" text="Save" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="17.0" />
+                    </font>
+                </Button>
+                <TextField layoutX="404.0" layoutY="96.0" prefHeight="30.0" prefWidth="320.0" />
+                <Text fill="WHITE" layoutX="258.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Byer_ID" wrappingWidth="100.13671875">
+                    <font>
+                        <Font size="19.0" />
+                    </font>
+                </Text>
+                <Text fill="WHITE" layoutX="258.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cetegory" wrappingWidth="116.99999868869781">
+                    <font>
+                        <Font size="19.0" />
+                    </font>
+                </Text>
+                <TextField layoutX="404.0" layoutY="198.0" prefHeight="30.0" prefWidth="320.0" />
+                <Text fill="WHITE" layoutX="258.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product ID" wrappingWidth="131.99999868869781">
+                    <font>
+                        <Font size="19.0" />
+                    </font>
+                </Text>
+                <TextField layoutX="404.0" layoutY="147.0" prefHeight="30.0" prefWidth="320.0" />
+                <Text fill="WHITE" layoutX="258.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" wrappingWidth="116.99999868869781">
+                    <font>
+                        <Font size="19.0" />
+                    </font>
+                </Text>
+                <Text fill="WHITE" layoutX="258.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="quntity" wrappingWidth="116.99999868869781">
+                    <font>
+                        <Font size="19.0" />
+                    </font>
+                </Text>
+                <TextField layoutX="404.0" layoutY="249.0" prefHeight="30.0" prefWidth="320.0" />
+                <TextField layoutX="404.0" layoutY="300.0" prefHeight="30.0" prefWidth="320.0" />
+                <TextField layoutX="404.0" layoutY="402.0" prefHeight="30.0" prefWidth="320.0" />
+                <Text fill="WHITE" layoutX="258.0" layoutY="423.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Totel Price" wrappingWidth="116.99999868869781">
+                    <font>
+                        <Font size="19.0" />
+                    </font>
+                </Text>
+                <Text fill="WHITE" layoutX="258.0" layoutY="375.0" strokeType="OUTSIDE" strokeWidth="0.0" text="One Price" wrappingWidth="116.99999868869781">
+                    <font>
+                        <Font size="19.0" />
+                    </font>
+                </Text>
+                <TextField layoutX="404.0" layoutY="351.0" prefHeight="30.0" prefWidth="320.0" />
+            </children>
+        </AnchorPane>
+        <Button layoutX="18.0" layoutY="3.0" mnemonicParsing="false" onAction="#loginButttonClick" prefHeight="49.0" prefWidth="152.0" style="-fx-background-color: #4B0082;" text="Home Page" textAlignment="CENTER" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="21.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button layoutX="19.0" layoutY="626.0" mnemonicParsing="false" onAction="#LogOutButtonClick" prefHeight="49.0" prefWidth="109.0" style="-fx-background-color: #4B0082;" text="Log out" textAlignment="CENTER" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="21.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <Button disable="true" layoutX="67.0" layoutY="121.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="160.0" style="-fx-background-color: #4B0082;" text="Fertilizer Orders" textAlignment="CENTER" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="17.0" />
+            </font>
+        </Button>
+        <Button layoutX="62.0" layoutY="215.0" mnemonicParsing="false" onAction="#TeaOrderBtnClick" prefHeight="41.0" prefWidth="160.0" style="-fx-background-color: #4B0082;" text="TeaLeaf Orders" textAlignment="CENTER" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="17.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+      <ImageView fitHeight="25.0" fitWidth="30.0" layoutX="4.0" layoutY="13.0">
+         <image>
+            <Image url="@../assets/icon/icons8-homepage-30.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="30.0" layoutX="3.0" layoutY="638.0">
+         <image>
+            <Image url="@../assets/icon/icons8-logout-30%20(4).png" />
+         </image>
+      </ImageView>
+    </children>
+</AnchorPane>
