@@ -44,7 +44,7 @@ public class StockDAOimpl implements StockDAO {
         return "";
     }
 
-    public String btnUpdateClick(StockDto stockDto) throws SQLException, ClassNotFoundException {
+    public String btnUpdateClick(Stock stockDto) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
         String sql = "Update product SET type = ? ,count =? , price = ? WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(sql);

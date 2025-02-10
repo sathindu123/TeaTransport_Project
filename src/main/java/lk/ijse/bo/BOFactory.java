@@ -1,24 +1,24 @@
-package lk.ijse.Dao;
+package lk.ijse.bo;
 
-
-import lk.ijse.Dao.custom.DailyHomePageDAO;
+import lk.ijse.Dao.DAOFactory;
+import lk.ijse.Dao.SuperDAO;
 import lk.ijse.Dao.custom.impl.*;
 
-public class DAOFactory{
-    private static DAOFactory daoFactory;
-    private DAOFactory(){
-    }
-    public static DAOFactory getDaoFactory(){
-        return (daoFactory==null)?daoFactory
-                =new DAOFactory():daoFactory;
-    }
+public class BOFactory {
+    private static BOFactory boFactory;
+    private BOFactory(){
 
-    public enum DAOTypes{
-        CUSTOMER,DAILY,EMPLOYEEmANAGE,OEMPLOYEESALARY,EMPWORK,GETCUSTOMERDETAILS,INVOICECUSTOMER,INVOICEMANAGE,LOGINPAGE,
-        MONTHLYRATE,SALARYPRICEEMP,STOCK,VIEWCUST,VIEWEMP,VIEWEMPWORKDETAILS,VIEWMANAGE,VIEWSTOCK
     }
-    public SuperDAO getDAO(DAOTypes daoTypes){
-        switch (daoTypes){
+    public static BOFactory getBoFactory(){
+        return (boFactory==null)?boFactory=
+                new BOFactory():boFactory;
+
+    }
+    public enum BOTypes{
+        CUSTOMER,ITEM,PLACE_ORDER
+    }
+    public SuperBO getBO(BOTypes boTypes){
+        switch (boTypes){
             case CUSTOMER:
                 return new CustomerManageDAOimpl();
             case DAILY:
@@ -58,5 +58,4 @@ public class DAOFactory{
                 return null;
         }
     }
-
 }

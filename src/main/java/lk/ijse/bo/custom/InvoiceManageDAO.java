@@ -1,21 +1,11 @@
-package lk.ijse.Dao.custom;
+package lk.ijse.bo.custom;
 
-import lk.ijse.Dao.CrudDAO;
-import lk.ijse.db.DBConnection;
 import lk.ijse.dto.*;
-import lk.ijse.entity.InvoiceManage;
 
-import javax.swing.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
-public interface InvoiceManageDAO extends CrudDAO<InvoiceManage> {
+public interface InvoiceManageDAO {
     String updateData(InvoiceManageDto invoiceManageDto, StockDto stockDto) throws SQLException, ClassNotFoundException;
     String insertData(InvoiceManageDto invoiceManageDto, StockDto stockDto) throws SQLException, ClassNotFoundException;
     double getPric(String productId) throws SQLException, ClassNotFoundException;

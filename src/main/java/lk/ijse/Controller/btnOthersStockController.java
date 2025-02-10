@@ -5,6 +5,10 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import lk.ijse.Dao.DAOFactory;
+import lk.ijse.Dao.custom.impl.StockDAOimpl;
+import lk.ijse.bo.custom.StockBO;
+import lk.ijse.bo.custom.impl.StockBoimpl;
 import lk.ijse.dto.StockDto;
 
 import javax.swing.*;
@@ -12,7 +16,8 @@ import java.io.IOException;
 
 public class btnOthersStockController extends StockManagamentController{
 
-    private StockDAOimpl STOCK_MODEL;
+    StockBO stockBO = new StockBoimpl();
+
 
     public TextField txOId;
     public TextField txOCategory;
@@ -29,9 +34,7 @@ public class btnOthersStockController extends StockManagamentController{
         stage.setTitle("Tea Stock Management ");
     }
 
-    public btnOthersStockController(){
-        STOCK_MODEL = new StockDAOimpl();
-    }
+
 
     public void btnUpdateClickOthers(ActionEvent event) {
         String id = txOId.getText();
@@ -55,7 +58,7 @@ public class btnOthersStockController extends StockManagamentController{
         StockDto stockDto = new StockDto(id,category,cont,pric);
 
         try {
-            String resp =STOCK_MODEL.btnUpdateClick(stockDto);
+            String resp =stockBO.btnUpdateClick(stockDto);
             JOptionPane.showMessageDialog(null,"Save status " + resp , "Save status",JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Erroe occurride" + e.getMessage());
@@ -86,7 +89,7 @@ public class btnOthersStockController extends StockManagamentController{
         StockDto stockDto = new StockDto(id,category,cont,pric);
 
         try {
-            String resp =STOCK_MODEL.btnSaveStock(stockDto);
+            String resp = stockBO.save(stockDto);
             JOptionPane.showMessageDialog(null,"Save status " + resp , "Save status",JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Erroe occurride" + e.getMessage());
@@ -105,9 +108,9 @@ public class btnOthersStockController extends StockManagamentController{
     public void productIdOtherONAction(ActionEvent event) {
         String id = txOId.getText();
         try {
-            String nam = STOCK_MODEL.getNames(id);
+            String nam = stockBO.getNames(id);
             txOCategory.setText(""+nam);
-            int con = STOCK_MODEL.getCounts(id);
+            int con = stockBO.getCounts(id);
             txOCount.setText(""+con);
         } catch (Exception e) {
             System.out.println("NUll");

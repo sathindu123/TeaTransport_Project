@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.bo.custom.StockBO;
+import lk.ijse.bo.custom.impl.StockBoimpl;
 import lk.ijse.dto.StockDto;
 
 import javax.swing.*;
@@ -15,7 +17,7 @@ import java.io.IOException;
 public class BtnTeaStockController extends StockManagamentController{
     AnchorPane anchorPane;
 
-    private StockDAOimpl STOCK_MODEL;
+    StockBO stockBO = new StockBoimpl();
 
     public TextField txId;
     public TextField txCategory;
@@ -23,7 +25,7 @@ public class BtnTeaStockController extends StockManagamentController{
     public TextField txPrice;
 
     public BtnTeaStockController(){
-        STOCK_MODEL = new StockDAOimpl();
+
     }
 
     public void PohoraButtonClick(javafx.event.ActionEvent event) throws IOException {
@@ -58,7 +60,7 @@ public class BtnTeaStockController extends StockManagamentController{
         StockDto stockDto = new StockDto(id,category,cont,pric);
 
         try {
-            String resp =STOCK_MODEL.btnSaveStock(stockDto);
+            String resp =stockBO.save(stockDto);
             JOptionPane.showMessageDialog(null,"Save status " + resp , "Save status",JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Erroe occurride" + e.getMessage());
@@ -96,7 +98,7 @@ public class BtnTeaStockController extends StockManagamentController{
         StockDto stockDto = new StockDto(id,category,cont,pric);
 
         try {
-            String resp =STOCK_MODEL.btnUpdateClick(stockDto);
+            String resp =stockBO.btnUpdateClick(stockDto);
             JOptionPane.showMessageDialog(null,"Save status " + resp , "Save status",JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Erroe occurride" + e.getMessage());
@@ -108,9 +110,9 @@ public class BtnTeaStockController extends StockManagamentController{
     public void productIdTeaStockOnAction(ActionEvent event) {
         String id = txId.getText();
         try {
-            String nam = STOCK_MODEL.getNames(id);
+            String nam = stockBO.getNames(id);
             txCategory.setText(""+nam);
-            int con = STOCK_MODEL.getCounts(id);
+            int con = stockBO.getCounts(id);
             txCount.setText(""+con);
         } catch (Exception e) {
             System.out.println("NUll");

@@ -15,6 +15,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import lk.ijse.Dao.custom.impl.DailyHomePageDAOimpl;
+import lk.ijse.bo.custom.DailyHomePageBO;
+import lk.ijse.bo.custom.EmpWorkDetailsBO;
+import lk.ijse.bo.custom.impl.DailyhomepageBoimpl;
+import lk.ijse.bo.custom.impl.EmpWorkDetailBoimpl;
 import lk.ijse.dto.DailyHomePageDto;
 import lk.ijse.dto.EmpWordDetailDto;
 
@@ -25,8 +29,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class DailyController extends DashboardFormController{
-    private EmpWorkDetailDAOimpl EMP_WORK_DETAIL_MODEL;
-    private DailyHomePageDAOimpl DAILY_HOEME_PAGE_MODEL;
+
+    EmpWorkDetailsBO empWorkDetailsBO = new EmpWorkDetailBoimpl();
+    DailyHomePageBO dailyHomePageBO = new DailyhomepageBoimpl();
 
     private int count =0;
     @FXML
@@ -68,8 +73,7 @@ public class DailyController extends DashboardFormController{
     private TableColumn<DailyHomePageDto,String>CDate;
 
     public DailyController(){
-        EMP_WORK_DETAIL_MODEL = new EmpWorkDetailDAOimpl();
-        DAILY_HOEME_PAGE_MODEL = new DailyHomePageDAOimpl();
+
     }
 
 
@@ -121,8 +125,8 @@ public class DailyController extends DashboardFormController{
 
         try{
             ObservableList<DailyHomePageDto> DsList = FXCollections.observableArrayList();
-            List<DailyHomePageDto> DsDto = DAILY_HOEME_PAGE_MODEL.LoadTable();
-            count = DAILY_HOEME_PAGE_MODEL.getCount();
+            List<DailyHomePageDto> DsDto = dailyHomePageBO.LoadTable();
+            count = dailyHomePageBO.getCount();
             lblCount.setText(" "+count+".00");
             DsList.addAll(DsDto);
             tblDalily.setItems(DsList);
@@ -147,7 +151,7 @@ public class DailyController extends DashboardFormController{
         EmpWordDetailDto empdto = new EmpWordDetailDto(id,date);
 
         try {
-            String rsp = EMP_WORK_DETAIL_MODEL.addEmpDetails(empdto);
+            String rsp = empWorkDetailsBO.addEmpDetails(empdto);
             showAlert(Alert.AlertType.INFORMATION, "Save Status", "Data saved successfully: " + rsp);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Erroe occurride" + e.getMessage());
@@ -189,7 +193,7 @@ public class DailyController extends DashboardFormController{
         DailyHomePageDto dto = new DailyHomePageDto(id,date, rat, rat1);
 
         try {
-            String response = DAILY_HOEME_PAGE_MODEL.btnSaveDailyCount(dto);
+            String response = dailyHomePageBO.btnSaveDailyCount(dto);
             loadTableDaily();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "NoT Save Details Please Check And Try Again!!", "Validaton Error", JOptionPane.ERROR_MESSAGE);
@@ -209,7 +213,7 @@ public class DailyController extends DashboardFormController{
     public void CustomerIdOnAction(ActionEvent event) {
         String id = CustomerId.getText();
         try {
-            String nm = DAILY_HOEME_PAGE_MODEL.getNam(id);
+            String nm = dailyHomePageBO.getNam(id);
             if(nm.equals(null) || nm.isEmpty()){
                 CustomerId.setStyle(CustomerId.getStyle()+";-fx-border-color: red;");
             }
@@ -243,7 +247,7 @@ public class DailyController extends DashboardFormController{
         DailyHomePageDto dto = new DailyHomePageDto(id, date);
 
         try {
-            String response = DAILY_HOEME_PAGE_MODEL.btnUpdateDailyCount(dto);
+            String response = dailyHomePageBO.btnUpdateDailyCount(dto);
             showAlert(Alert.AlertType.INFORMATION, "Save Status", "Data saved successfully: " + response);
             loadTableDaily();
         } catch (Exception e) {
