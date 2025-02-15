@@ -181,17 +181,17 @@ public class DashboardFormController extends LoginFormController {
         String passDate1 = dateMonth+formattedDate1;
         System.out.println(passDate1);
         double[] ganna = new double[2];
-        try {
-
-            ganna = monthlyRateBO.getAllCustomerHiga(passDate1,lblGoodLea,lblGoldLeaf);
-
-            TotPurchase.setText(TotPurchase.getText()+" "+ganna[0]);
-            TotPurchase1.setText(TotPurchase1.getText()+" "+ganna[1]);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        } catch (ClassNotFoundException e) {
-            System.out.println(e.getMessage());
-        }
+//        try {
+//
+//            ganna = monthlyRateBO.getAllCustomerHiga(passDate1,lblGoodLea,lblGoldLeaf);
+//
+//            TotPurchase.setText(TotPurchase.getText()+" "+ganna[0]);
+//            TotPurchase1.setText(TotPurchase1.getText()+" "+ganna[1]);
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage());
+//        } catch (ClassNotFoundException e) {
+//            System.out.println(e.getMessage());
+//        }
 
 
     }
