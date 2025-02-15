@@ -16,6 +16,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.bo.custom.*;
+import lk.ijse.bo.custom.impl.*;
 import lk.ijse.dto.*;
 import lk.ijse.Dao.*;
 
@@ -25,10 +27,15 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class ViewManageController extends DashboardFormController {
-    private GetCustomerAllDetailsDAOimpl GET_CUS_ALL_DETAIL;
-    private ViewEmpWorkDetailsDAOimpl EMP_WORK_DETAILS_VIEW;
+
+    SalaryPriceEmployeeBO salaryPriceEmployeeBO = new SalaryPriceEmployeeBoimpl();
+
+    GetCustomerAllDetailsBO getCustomerAllDetailsBO = new GetCustomerAllDetailsBoimpl();
+    ViewEmpWorkDetailsBO viewEmpWorkDetailsBO = new ViewEmpWorkDetailsBoimpl();
+    SalaryPriceEmployeeBO salaryPriceEmployeeBO1 = new SalaryPriceEmployeeBoimpl();
+
     private AnchorPane anchorPane;
-    private SalaryPriceEmployeeDAOimpl SALARY_EMP_MODEl;
+
     @FXML
     private javafx.scene.control.TextField txtSearchCust;
     @FXML
@@ -150,17 +157,14 @@ public class ViewManageController extends DashboardFormController {
     public TextField txtEndDateCust;
 
 
-    private ViewManageDAOimpl VIEW_MANAGE_MODEL;
-    private EmployeeManageDAOimpl EMP_MODEL;
-    private CustomerManageDAOimpl CUST_MANAGE_MODEL;
+
+
+    ViewManageBO viewManageBO = new ViewManageBoimpl();
+    CustomerManageBO customerManageBO = new CustomerManageBoimpl();
+    QuearyBO quearyBO = new QuearyBOimpl();
 
     public ViewManageController() {
-        VIEW_MANAGE_MODEL = new ViewManageDAOimpl();
-        EMP_MODEL = new EmployeeManageDAOimpl();
-        CUST_MANAGE_MODEL = new CustomerManageDAOimpl();
-        EMP_WORK_DETAILS_VIEW = new ViewEmpWorkDetailsDAOimpl();
-        GET_CUS_ALL_DETAIL = new GetCustomerAllDetailsDAOimpl();
-        SALARY_EMP_MODEl = new SalaryPriceEmployeeDAOimpl();
+
     }
 
     @FXML
@@ -219,11 +223,11 @@ public class ViewManageController extends DashboardFormController {
         ObservableList<ViewManageDto> cList = FXCollections.observableArrayList();
 
         try{
-            List<ViewManageDto> cDto = CUST_MANAGE_MODEL.getStockPurchases();
-            List<ViewManageDto> ss = CUST_MANAGE_MODEL.getPohoraStockPurchase();
+            List<ViewManageDto> cDto = quearyBO.getStockPurchases();
+            List<ViewManageDto> ss = quearyBO.getPohoraStockPurchase();
             cList.addAll(cDto);
             cList.addAll(ss);
-            int price = CUST_MANAGE_MODEL.getTot();
+            int price = quearyBO.getTot();
             lbltotStockPurchase.setText(""+price+".00 ");
 
         } catch (Exception e) {
@@ -246,7 +250,7 @@ public class ViewManageController extends DashboardFormController {
         clEmpWorkDetails.setStyle("-fx-font-size: 17px;");
         ObservableList<ViewEmpWorkDetailsDto> empList = FXCollections.observableArrayList();
         try{
-            List<ViewEmpWorkDetailsDto> empDtos=EMP_WORK_DETAILS_VIEW.loadEmp();
+            List<ViewEmpWorkDetailsDto> empDtos= quearyBO.loadEmp();
             empList.addAll(empDtos);
         } catch (Exception e) {
             e.printStackTrace();
@@ -259,7 +263,7 @@ public class ViewManageController extends DashboardFormController {
 
     private void displayTotalAdvance() {
         try{
-            double totAdvance =  VIEW_MANAGE_MODEL.getTotalAdvance();
+            double totAdvance =  viewManageBO.getTotalAdvance();
             txtTotalPriceAdvance.setText(""+totAdvance);
         } catch (Exception e) {
             e.printStackTrace();
@@ -280,7 +284,7 @@ public class ViewManageController extends DashboardFormController {
 
         ObservableList<InvoiceManageDto> advanceList = FXCollections.observableArrayList();
         try{
-            List<InvoiceManageDto> advanceDtos = VIEW_MANAGE_MODEL.getAllAdvance();
+            List<InvoiceManageDto> advanceDtos = quearyBO.getAllAdvance();
             advanceList.addAll(advanceDtos);
         } catch (Exception e) {
             e.printStackTrace();
@@ -297,7 +301,7 @@ public class ViewManageController extends DashboardFormController {
         clCategory.setStyle("-fx-font-size: 18px;");
         ObservableList<StockDto> stockList = FXCollections.observableArrayList();
         try{
-            List<StockDto> stockDtos = VIEW_MANAGE_MODEL.getAllStocks();
+            List<StockDto> stockDtos = viewManageBO.getAllStocks();
             stockList.addAll(stockDtos);
         } catch (Exception e) {
             e.printStackTrace();
@@ -321,9 +325,9 @@ public class ViewManageController extends DashboardFormController {
         colTeaLeafAmount.setStyle("-fx-alignment: CENTER-RIGHT;"+"-fx-font-size: 18px;");
         ObservableList<getCustomerAllDetailsDto> customerList = FXCollections.observableArrayList();
         try {
-            List<getCustomerAllDetailsDto> customerDtos = GET_CUS_ALL_DETAIL.getAllCustomerDetails();
+            List<getCustomerAllDetailsDto> customerDtos = quearyBO.getAllCustomerDetails();
             customerList.addAll(customerDtos);
-            List<getCustomerAllDetailsDto> cc = GET_CUS_ALL_DETAIL.gettot();
+            //List<getCustomerAllDetailsDto> cc = quearyBO.gettot();
         } catch (Exception e) {
             e.printStackTrace();
             showAlert(AlertType.ERROR, "Error", "Error loading customer data", e.getMessage());
@@ -347,7 +351,7 @@ public class ViewManageController extends DashboardFormController {
 
         ObservableList<getCustomerAllDetailsDto> searchResult = FXCollections.observableArrayList();
         try {
-           List<getCustomerAllDetailsDto> emdto = GET_CUS_ALL_DETAIL.ViewManageSearchCustomer(id);
+           List<getCustomerAllDetailsDto> emdto = quearyBO.ViewManageSearchCustomer(id);
            searchResult.addAll(emdto);
         } catch (Exception e) {
             e.printStackTrace();
@@ -360,11 +364,11 @@ public class ViewManageController extends DashboardFormController {
         String id = txtSearchCust1.getText();
         ObservableList<InvoiceManageDto> advanceList = FXCollections.observableArrayList();
         try {
-            List<InvoiceManageDto> advanceDtos = VIEW_MANAGE_MODEL.ViewManageSearchAdvance(id);
+            List<InvoiceManageDto> advanceDtos = quearyBO.ViewManageSearchAdvance(id);
             advanceList.addAll(advanceDtos);
             if (advanceDtos != null) {
                 tblAdvance.setItems(advanceList);
-                double customerAdvanceTot =VIEW_MANAGE_MODEL.getTotalAdvanceCustomer(id);
+                double customerAdvanceTot = viewManageBO.getTotalAdvanceCustomer(id);
                 txtTotalPriceAdvance.setText(""+customerAdvanceTot);
 
             } else {
@@ -405,7 +409,7 @@ public class ViewManageController extends DashboardFormController {
         String id = txtSearchStock.getText();
 
         try {
-            StockDto dto = VIEW_MANAGE_MODEL.ViewManageSearchStock(id);
+            StockDto dto = viewManageBO.ViewManageSearchStock(id);
             if (dto != null) {
                 ObservableList<StockDto> searchResultStock = FXCollections.observableArrayList();
                 searchResultStock.add(dto);
@@ -433,11 +437,11 @@ public class ViewManageController extends DashboardFormController {
         ObservableList<InvoiceManageDto> advanceList = FXCollections.observableArrayList();
 
         try {
-            List<InvoiceManageDto> advanceDtos = VIEW_MANAGE_MODEL.searchDateDetailsAdvance(strDate,endDate);
+            List<InvoiceManageDto> advanceDtos = quearyBO.searchDateDetailsAdvance(strDate,endDate);
             advanceList.addAll(advanceDtos);
             if(advanceList != null){
                 tblAdvance.setItems(advanceList);
-                double customerAdvanceTot =VIEW_MANAGE_MODEL.getTotalAdvanceSelectDate(strDate,endDate);
+                double customerAdvanceTot = viewManageBO.getTotalAdvanceSelectDate(strDate,endDate);
                 txtTotalPriceAdvance.setText(""+customerAdvanceTot);
             }
             else {
@@ -466,7 +470,7 @@ public class ViewManageController extends DashboardFormController {
         ObservableList<ViewEmpWorkDetailsDto> empList = FXCollections.observableArrayList();
 
         try {
-            List<ViewEmpWorkDetailsDto> empDtos = EMP_WORK_DETAILS_VIEW.searchDateDetailsEMP(strDate,endDate);
+            List<ViewEmpWorkDetailsDto> empDtos = quearyBO.searchDateDetailsEMP(strDate,endDate);
             empList.addAll(empDtos);
             if(empList != null){
                 tblEmp.setItems(empList);
@@ -489,12 +493,12 @@ public class ViewManageController extends DashboardFormController {
 
         ObservableList<ViewEmpWorkDetailsDto> empList = FXCollections.observableArrayList();
         try {
-            List<ViewEmpWorkDetailsDto> empDtos = EMP_WORK_DETAILS_VIEW.searchEmployes(id);
+            List<ViewEmpWorkDetailsDto> empDtos = quearyBO.searchEmployes(id);
             empList.addAll(empDtos);
             if (empList != null){
-                int count = EMP_WORK_DETAILS_VIEW.searchEmpCount(id);
+                int count = quearyBO.searchEmpCount(id);
                 lblCount.setText("  "+count+"   ");
-                int prc = SALARY_EMP_MODEl.getSalaryEmp();
+                int prc = salaryPriceEmployeeBO.getSalaryEmp();
                 lblPrice.setText(""+(count*prc)+"   ");
                 tblEmp.setItems(empList);
             }
@@ -538,7 +542,7 @@ public class ViewManageController extends DashboardFormController {
         ObservableList<getCustomerAllDetailsDto> custList = FXCollections.observableArrayList();
 
         try {
-            List<getCustomerAllDetailsDto> custDto = GET_CUS_ALL_DETAIL.selectDateCust(strDate,endDate);
+            List<getCustomerAllDetailsDto> custDto = quearyBO.selectDateCust(strDate,endDate);
             custList.addAll(custDto);
         } catch (Exception e) {
             e.printStackTrace();

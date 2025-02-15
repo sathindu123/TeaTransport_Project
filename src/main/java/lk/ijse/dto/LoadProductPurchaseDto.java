@@ -1,6 +1,6 @@
 package lk.ijse.dto;
 
-public class LoadProductPurchase {
+public class LoadProductPurchaseDto {
     private String custName;
     private String date;
     private String Type;
@@ -9,7 +9,7 @@ public class LoadProductPurchase {
 
     private String productId;
 
-    public LoadProductPurchase(String custName, String date, String productId, int count, double price) {
+    public LoadProductPurchaseDto(String custName, String date, String productId, int count, double price) {
         this.custName = custName;
         this.date = date;
         this.Type = productId;

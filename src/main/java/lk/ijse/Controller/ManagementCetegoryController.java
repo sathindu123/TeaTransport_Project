@@ -14,11 +14,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.ijse.Dao.custom.impl.CustomerManageDAOimpl;
-import lk.ijse.Dao.custom.impl.EmployeeManageDAOimpl;
+import lk.ijse.bo.custom.*;
+import lk.ijse.bo.custom.impl.*;
 import lk.ijse.dto.CustomerManageDto;
 import lk.ijse.dto.EmployeeManageDto;
-import lk.ijse.Dao.*;
 
 import java.awt.*;
 import java.io.IOException;
@@ -28,9 +27,11 @@ import javax.swing.JOptionPane;
 
 public class ManagementCetegoryController extends DashboardFormController  {
 
-    private CustomerManageDAOimpl CUSTOMER_MANAGE_MODEL;
-    private FactoryManageDAOimpl FACTORY_MANAGE_MODEL;
-    private EmployeeManageDAOimpl EMPLOYEE_MANAGE_MODEL;
+    CustomerManageBO customerManageBO = new CustomerManageBoimpl();
+    EmployeeManageBO employeeManageBO = new EmployeeManageBoimpl();
+    ViewCustomerFormBO viewCustomerFormBO = new ViewCustomerFormBoimpl();
+    ViewEmployeeFormBO viewEmployeeFormBO = new ViewEmployeeFormBoimpl();
+    QuearyBO quearyBO = new QuearyBOimpl();
 
     public TextField CustId;
     public TextField CustName;
@@ -55,13 +56,10 @@ public class ManagementCetegoryController extends DashboardFormController  {
     public TextField EmpAddress;
     public TextField EmpTel;
 
-
-
-
     @FXML
     private TableView<CustomerManageDto> tblCustomerViewForm;
 
-    private ViewCustomerFormDAOimpl VIEW_CUSTOMER_FORM_MODEL;
+
 
     @FXML
     private TableColumn<CustomerManageDto, String> clCustomerId;
@@ -72,7 +70,6 @@ public class ManagementCetegoryController extends DashboardFormController  {
     @FXML
     private TableColumn<CustomerManageDto, Integer> clCustomerTel;
 
-    private ViewEmployeeFormDAOimpl VIEW_EMPLOYEE_MODEL;
     @FXML
     private TableView<EmployeeManageDto> tblEmpViewForm;
 
@@ -91,10 +88,7 @@ public class ManagementCetegoryController extends DashboardFormController  {
     private Button deleteC;
 
     public  ManagementCetegoryController(){
-        CUSTOMER_MANAGE_MODEL = new CustomerManageDAOimpl();
-        EMPLOYEE_MANAGE_MODEL = new EmployeeManageDAOimpl();
-        VIEW_CUSTOMER_FORM_MODEL = new ViewCustomerFormDAOimpl();
-        VIEW_EMPLOYEE_MODEL = new ViewEmployeeFormDAOimpl();
+
 
     }
 
@@ -118,7 +112,7 @@ public class ManagementCetegoryController extends DashboardFormController  {
     public void loadTableEMP(){
         ObservableList<EmployeeManageDto> employeeList = FXCollections.observableArrayList();
         try {
-            List<EmployeeManageDto> empDtos = VIEW_EMPLOYEE_MODEL.getAllCustomer();
+            List<EmployeeManageDto> empDtos = viewEmployeeFormBO.getAllCustomer();
             employeeList.addAll(empDtos);
         } catch (Exception e) {
             e.printStackTrace();
@@ -133,7 +127,7 @@ public class ManagementCetegoryController extends DashboardFormController  {
         
         ObservableList<CustomerManageDto> customerList = FXCollections.observableArrayList();
         try {
-            List<CustomerManageDto> customerDtos = VIEW_CUSTOMER_FORM_MODEL.getAllCustomer();
+            List<CustomerManageDto> customerDtos = viewCustomerFormBO.getAllCustomer();
             customerList.addAll(customerDtos);
             tblCustomerViewForm.setItems(customerList);
         } catch (Exception e) {
@@ -214,7 +208,7 @@ public class ManagementCetegoryController extends DashboardFormController  {
             CustomerManageDto customerManageDto = new CustomerManageDto(id, name, address, Integer.parseInt(tel));
 
             try {
-                String resp = CUSTOMER_MANAGE_MODEL.savebtnclick(customerManageDto);
+                String resp = customerManageBO.savebtnclick(customerManageDto);
                 JOptionPane.showMessageDialog(null, "Save Status: " + resp, "Save Status", JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Error!! Customer Not Save: " , "Error", JOptionPane.ERROR_MESSAGE);
@@ -253,7 +247,7 @@ public class ManagementCetegoryController extends DashboardFormController  {
         CustomerManageDto customerManageDto = new CustomerManageDto(id,name,address,Integer.parseInt(tel));
 
         try {
-            String resp = CUSTOMER_MANAGE_MODEL.BtnUpdateClick(customerManageDto);
+            String resp = customerManageBO.BtnUpdateClick(customerManageDto);
             JOptionPane.showMessageDialog(null, "Save Status: " + resp, "Save Status", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Error occurred" + e.getMessage());
@@ -273,7 +267,7 @@ public class ManagementCetegoryController extends DashboardFormController  {
         }
 
         try{
-            String resp = CUSTOMER_MANAGE_MODEL.BtnClickDelete(id);
+            String resp = customerManageBO.BtnClickDelete(id);
             JOptionPane.showMessageDialog(null, "Save Status: " + resp, "Save Status", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception e) {
@@ -307,7 +301,7 @@ public class ManagementCetegoryController extends DashboardFormController  {
         EmployeeManageDto employeeManageDto = new EmployeeManageDto(id,name,address,Integer.parseInt(tel));
 
         try {
-            String resp = EMPLOYEE_MANAGE_MODEL.BtnAddEmployee(employeeManageDto);
+            String resp = employeeManageBO.BtnAddEmployee(employeeManageDto);
             JOptionPane.showMessageDialog(null, "Save Status: " + resp, "Save Status", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Error occurred" + e.getMessage());
@@ -346,7 +340,7 @@ public class ManagementCetegoryController extends DashboardFormController  {
         EmployeeManageDto employeeManageDto = new EmployeeManageDto(id,name,address,Integer.parseInt(tel));
 
         try {
-            String resp = EMPLOYEE_MANAGE_MODEL.BtnClickEmployeeUpdate(employeeManageDto);
+            String resp = employeeManageBO.BtnClickEmployeeUpdate(employeeManageDto);
             JOptionPane.showMessageDialog(null, "Save Status: " + resp, "Save Status", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Error occurred" + e.getMessage());
@@ -365,7 +359,7 @@ public class ManagementCetegoryController extends DashboardFormController  {
         String id = CustId.getText();
         ObservableList<String> sL = FXCollections.observableArrayList();
         try {
-            List<String> dd = CUSTOMER_MANAGE_MODEL.getAllID();
+            List<String> dd = customerManageBO.getAllID();
             if(dd.contains(id)){
                 CustId.setStyle(";-fx-border-color: red;");
             }

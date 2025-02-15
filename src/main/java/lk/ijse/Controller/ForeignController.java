@@ -8,13 +8,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.bo.custom.LoginPAgeBO;
+import lk.ijse.bo.custom.impl.LoginPAgeBoimpl;
 
 import javax.swing.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
 public class ForeignController extends LoginFormController{
-    private LoginPAgeDAOimpl lg;
+    LoginPAgeBO loginPAgeBO = new LoginPAgeBoimpl();
     @FXML
     private TextField CU;
     @FXML
@@ -33,7 +35,7 @@ public class ForeignController extends LoginFormController{
     }
 
     public void initialize(){
-        lg = new LoginPAgeDAOimpl();
+
     }
 
     public void SaveOnAction(ActionEvent event) {
@@ -45,10 +47,10 @@ public class ForeignController extends LoginFormController{
         String npc = NPC.getText();
 
         try {
-            Boolean Sli = lg.cheach(cu,cp,cpc);
+            Boolean Sli = loginPAgeBO.cheach(cu,cp,cpc);
             if(Sli == true){
                 if(np.equals(np)){
-                    String resp =lg.updateCreadtitaonal(cu,np,nu);
+                    String resp =loginPAgeBO.updateCreadtitaonal(cu,np,nu);
                     JOptionPane.showMessageDialog(null, "Save Status: " + resp, "Save Status", JOptionPane.INFORMATION_MESSAGE);
                 }
                 else{

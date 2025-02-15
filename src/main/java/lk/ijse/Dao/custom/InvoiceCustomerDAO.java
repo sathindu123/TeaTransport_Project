@@ -17,8 +17,8 @@ import java.util.Collections;
 import java.util.List;
 
 public interface InvoiceCustomerDAO extends CrudDAO<InvoiceCustomer> {
-    List<InvoiceCustomerDto> getTeLeaf(String id) throws SQLException, ClassNotFoundException;
-    List<InvoiceCustomerDto> customeTealeafDateGet(String id) throws SQLException, ClassNotFoundException;
+    List<InvoiceCustomer> getTeLeaf(String id) throws SQLException, ClassNotFoundException;
+    List<InvoiceCustomer> customeTealeafDateGet(String id) throws SQLException, ClassNotFoundException;
     String getCustomerName(String id) throws SQLException, ClassNotFoundException;
     double getAdvanceCustomer(String id, String month) throws SQLException, ClassNotFoundException;
     double nextAdvanceTotal(String id,String month) throws SQLException, ClassNotFoundException;
@@ -31,6 +31,6 @@ public interface InvoiceCustomerDAO extends CrudDAO<InvoiceCustomer> {
     List<String> loadProductId() throws SQLException, ClassNotFoundException;
 
     ///dailyHomaPage
-    List<InvoiceCustomerDto> getAllTeaLeafCount() throws SQLException, ClassNotFoundException;
+    List<InvoiceCustomer> getAllTeaLeafCount() throws SQLException, ClassNotFoundException;
 
 }

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface ViewEmployeeFormDAO extends CrudDAO<EmployeeManage> {
-    List<EmployeeManageDto> getAllCustomer() throws Exception;
-    EmployeeManageDto BtnOKClickSearchEmployee(String id) throws SQLException, ClassNotFoundException;
+    List<EmployeeManage> getAllCustomer() throws Exception;
+    EmployeeManage BtnOKClickSearchEmployee(String id) throws SQLException, ClassNotFoundException;
 
 }

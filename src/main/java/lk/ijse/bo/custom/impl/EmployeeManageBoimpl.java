@@ -1,46 +1,37 @@
 package lk.ijse.bo.custom.impl;
 
+import lk.ijse.Dao.DAOFactory;
 import lk.ijse.Dao.custom.EmployeeManageDAO;
+import lk.ijse.bo.custom.EmployeeManageBO;
 import lk.ijse.db.DBConnection;
+import lk.ijse.dto.EmployeeManageDto;
 import lk.ijse.entity.EmployeeManage;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class EmployeeManageBoimpl implements EmployeeManageDAO {
+public class EmployeeManageBoimpl implements EmployeeManageBO {
 
-    public String save(EmployeeManage employeeManage) throws SQLException, ClassNotFoundException {
-        Connection connection = DBConnection.getInstance().getConnection();
-        String sql = "Insert into employee Values(?,?,?,?)";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1,employeeManage.getId());
-        statement.setString(2,employeeManage.getName());
-        statement.setString(3,employeeManage.getAddress());
-        statement.setInt(4,employeeManage.getNumber());
+    EmployeeManageDAO employeeManageDAO = (EmployeeManageDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.EMPLOYEEmANAGE);
 
-        int resp = statement.executeUpdate();
-        return resp > 0 ? "Sucsses" : "Fail";
-    }
-
-    public String update(EmployeeManage employeeManage) throws SQLException, ClassNotFoundException {
-        Connection connection  = DBConnection.getInstance().getConnection();
-        String sql = "Update employee SET name = ? , address = ? , telNb = ? WHERE empId = ?";
-
-        PreparedStatement statement = connection.prepareStatement(sql);
-
-        statement.setString(1,employeeManage.getName());
-        statement.setString(2,employeeManage.getAddress());
-        statement.setInt(3,employeeManage.getNumber());
-        statement.setString(4,employeeManage.getId());
-
-        int resp = statement.executeUpdate();
-        return resp > 0 ? "Succsess Update" : "Fail Update";
-    }
 
 
     @Override
-    public String delete(String t) throws SQLException, ClassNotFoundException {
-        return "";
+    public String BtnAddEmployee(EmployeeManageDto employeeManagedto) throws SQLException, ClassNotFoundException {
+        return employeeManageDAO.save(new EmployeeManage(employeeManagedto.getId(),
+                employeeManagedto.getName(),
+                employeeManagedto.getAddress(),
+                employeeManagedto.getNumber())
+        );
+    }
+
+    @Override
+    public String BtnClickEmployeeUpdate(EmployeeManageDto employeeManagedto) throws SQLException, ClassNotFoundException {
+        return employeeManageDAO.update(new EmployeeManage(employeeManagedto.getId(),
+                employeeManagedto.getName(),
+                employeeManagedto.getAddress(),
+                employeeManagedto.getNumber())
+        );
     }
 }

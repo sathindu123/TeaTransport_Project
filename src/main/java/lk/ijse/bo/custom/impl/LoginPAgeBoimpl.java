@@ -1,6 +1,8 @@
 package lk.ijse.bo.custom.impl;
 
+import lk.ijse.Dao.DAOFactory;
 import lk.ijse.Dao.custom.LoginPAgeDAO;
+import lk.ijse.bo.custom.LoginPAgeBO;
 import lk.ijse.db.DBConnection;
 import lk.ijse.entity.Advance;
 
@@ -9,47 +11,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class LoginPAgeBoimpl implements LoginPAgeDAO {
+public class LoginPAgeBoimpl implements LoginPAgeBO {
+    LoginPAgeDAO loginPAgeDAO = (LoginPAgeDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.LOGINPAGE);
     public Boolean cheach(String cu, String cp , String cpc) throws SQLException, ClassNotFoundException {
-        Connection connection = DBConnection.getInstance().getConnection();
-        String sql = "Select userName from admin WHERE userName = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1,cu);
-        ResultSet resultSet = statement.executeQuery();
-        String sss = "s";
-        while (resultSet.next()){
-            sss = resultSet.getString("userName");
-
-        }
-        if(sss.equals(cu)){
-            String sql1 = "Select password from admin WHERE password = ?";
-            PreparedStatement statement1 = connection.prepareStatement(sql1);
-            statement1.setString(1,cp);
-            ResultSet resultSet1 = statement1.executeQuery();
-            String sss1 = "s";
-            while (resultSet1.next()){
-                sss1 = resultSet1.getString("password");
-            }
-            if (sss1.equals(cp) && sss1.equals(cpc) ){
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
-        return false;
+        return loginPAgeDAO.cheach(cu,cp,cpc);
     }
 
     public String updateCreadtitaonal(String cu, String np, String nu) throws SQLException, ClassNotFoundException {
-        Connection connection =DBConnection.getInstance().getConnection();
-        String sql = "UPDATE admin SET userName = ? , password = ? WHERE userName = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1,nu);
-        statement.setString(2,np);
-        statement.setString(3,cu);
-
-        int resp = statement.executeUpdate();
-        return resp > 0 ? "Sucsses" : "Fail";
+        return loginPAgeDAO.updateCreadtitaonal(cu,np,nu);
 
     }
 
@@ -87,41 +56,12 @@ public class LoginPAgeBoimpl implements LoginPAgeDAO {
     }
 
     public String getUderName() throws SQLException, ClassNotFoundException {
-        Connection connection = DBConnection.getInstance().getConnection();
-        String sql = "Select userName from admin";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        ResultSet resultSet = statement.executeQuery();
-        while (resultSet.next()){
-            return   resultSet.getString("userName");
-
-        }
-        return "ADMIN";
+        return loginPAgeDAO.getUderName();
     }
 
     public String getPAssword() throws SQLException, ClassNotFoundException {
-        Connection connection = DBConnection.getInstance().getConnection();
-        String sql = "Select password from admin ";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        ResultSet resultSet = statement.executeQuery();
-        while (resultSet.next()){
-            return   resultSet.getString("password");
-
-        }
-        return "ADMIN";
+        return loginPAgeDAO.getPAssword();
     }
 
-    @Override
-    public String save(Advance advance) throws SQLException, ClassNotFoundException {
-        return "";
-    }
 
-    @Override
-    public String update(Advance advance) throws SQLException, ClassNotFoundException {
-        return "";
-    }
-
-    @Override
-    public String delete(String t) throws SQLException, ClassNotFoundException {
-        return "";
-    }
 }

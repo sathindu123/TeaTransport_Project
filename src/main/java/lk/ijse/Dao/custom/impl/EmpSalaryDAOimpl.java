@@ -14,7 +14,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmpSalaryDAOimpl implements EmpSalaryDAO {
+public class EmpSalaryDAOimpl implements EmpSalaryDAO
+
+{
 
     public String save(EmpSalary dto) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
@@ -40,7 +42,7 @@ public class EmpSalaryDAOimpl implements EmpSalaryDAO {
         return "";
     }
 
-    public List<EmpSalaryDto> loadPayPriceEmp() throws SQLException, ClassNotFoundException {
+    public List<EmpSalary> loadPayPriceEmp() throws SQLException, ClassNotFoundException {
         LocalDateTime now = LocalDateTime.now();
 
         if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
@@ -67,11 +69,11 @@ public class EmpSalaryDAOimpl implements EmpSalaryDAO {
         statement.setString(1,startDate);
         statement.setString(2,endDate);
 
-        List<EmpSalaryDto> empList = new ArrayList<>();
+        List<EmpSalary> empList = new ArrayList<>();
         ResultSet rst = statement.executeQuery();
 
         while (rst.next()){
-            EmpSalaryDto dto = new EmpSalaryDto(rst.getString(1), rst.getDate(2).toLocalDate(),
+            EmpSalary dto = new EmpSalary(rst.getString(1), rst.getDate(2).toLocalDate(),
                     rst.getInt(3));
             empList.add(dto);
         }
@@ -120,7 +122,7 @@ public class EmpSalaryDAOimpl implements EmpSalaryDAO {
         return 0;
     }
 
-    public List<EmpSalaryDto> getEmpTotPayPrice(String id) throws SQLException, ClassNotFoundException {
+    public List<EmpSalary> getEmpTotPayPrice(String id) throws SQLException, ClassNotFoundException {
         LocalDateTime now = LocalDateTime.now();
 
         if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
@@ -147,11 +149,11 @@ public class EmpSalaryDAOimpl implements EmpSalaryDAO {
         statement.setString(2,startDate);
         statement.setString(3,endDate);
 
-        List<EmpSalaryDto> empList = new ArrayList<>();
+        List<EmpSalary> empList = new ArrayList<>();
         ResultSet rst = statement.executeQuery();
 
         while (rst.next()){
-            EmpSalaryDto dto = new EmpSalaryDto(rst.getString(1), rst.getDate(2).toLocalDate(),
+            EmpSalary dto = new EmpSalary(rst.getString(1), rst.getDate(2).toLocalDate(),
                     rst.getInt(3));
             empList.add(dto);
         }

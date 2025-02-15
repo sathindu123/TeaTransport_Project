@@ -1,11 +1,12 @@
 package lk.ijse.bo.custom;
 
+import lk.ijse.bo.SuperBO;
 import lk.ijse.dto.*;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public interface InvoiceManageDAO {
+public interface InvoiceManageBO extends SuperBO {
     String updateData(InvoiceManageDto invoiceManageDto, StockDto stockDto) throws SQLException, ClassNotFoundException;
     String insertData(InvoiceManageDto invoiceManageDto, StockDto stockDto) throws SQLException, ClassNotFoundException;
     double getPric(String productId) throws SQLException, ClassNotFoundException;
@@ -13,10 +14,9 @@ public interface InvoiceManageDAO {
     String btnUpdateAdvance(String id,String date,double price) throws SQLException, ClassNotFoundException;
     String insertDataPohora(InvoiceManageDto invoiceManageDto, StockDto stockDto, int warik, double totalPrice) throws SQLException, ClassNotFoundException;
     String deleteDataPohora(InvoiceManageDto invoiceManageDto, StockDto stockDto, int warik, double totalPrice) throws SQLException, ClassNotFoundException;
-    List<LoadProductPurchase> loadT() throws SQLException, ClassNotFoundException;
-    List<LoadProductPurchase> loadO() throws SQLException, ClassNotFoundException;
-    List<LoadProductPurchase> loadF() throws SQLException, ClassNotFoundException;
-    List<AdvanceDto> loadA() throws SQLException, ClassNotFoundException;
+    List<LoadProductPurchaseDto> loadT() throws SQLException, ClassNotFoundException;
+     List<LoadProductPurchaseDto> loadO() throws SQLException, ClassNotFoundException;
+    List<LoadProductPurchaseDto> loadF() throws SQLException, ClassNotFoundException;
     String getNameAdvance(String mm) throws SQLException, ClassNotFoundException;
     String getProductIDT(String mk) throws SQLException, ClassNotFoundException;
     String DeleteData(InvoiceManageDto invoiceManageDto, StockDto stockDto) throws SQLException, ClassNotFoundException;

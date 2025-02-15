@@ -10,6 +10,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.bo.custom.LoginPAgeBO;
+import lk.ijse.bo.custom.impl.LoginPAgeBoimpl;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -19,21 +21,23 @@ public class LoginFormController {
     @FXML
     private AnchorPane anchorPane;
 
-    private LoginPAgeDAOimpl lg;
+    LoginPAgeBO loginPAgeBO = new LoginPAgeBoimpl();
+
+
     public TextField txtUserName;
     public PasswordField txtPassword;
 
 
     public void initialize(){
-        lg = new LoginPAgeDAOimpl();
+
     }
 
     public void ligin(ActionEvent event) throws IOException{
         String un = txtUserName.getText();
         String up = txtPassword.getText();
         try {
-            String userName = lg.getUderName();
-            String password = lg.getPAssword();
+            String userName = loginPAgeBO.getUderName();
+            String password = loginPAgeBO.getPAssword();
 
            // Boolean ssss = lg.cheack(un,up);
             if(userName.equals(un) && password.equals(up)){

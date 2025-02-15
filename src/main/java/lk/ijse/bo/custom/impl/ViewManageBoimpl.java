@@ -1,8 +1,12 @@
 package lk.ijse.bo.custom.impl;
 
+import lk.ijse.Dao.DAOFactory;
 import lk.ijse.Dao.custom.ViewManageDAO;
+import lk.ijse.bo.custom.ViewManageBO;
 import lk.ijse.db.DBConnection;
+import lk.ijse.dto.EmpSalaryDto;
 import lk.ijse.dto.StockDto;
+import lk.ijse.entity.EmpSalary;
 import lk.ijse.entity.Stock;
 
 import java.sql.Connection;
@@ -12,25 +16,23 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewManageBoimpl implements ViewManageDAO {
+public class ViewManageBoimpl implements ViewManageBO {
 
+    ViewManageDAO viewManageDAO = (ViewManageDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.VIEWMANAGE);
 
     public List<StockDto> getAllStocks() throws SQLException, ClassNotFoundException {
-        Connection connection = DBConnection.getInstance().getConnection();
 
-        String sql = "SELECT * FROM product";
+        List<Stock> ar = viewManageDAO.getAllStocks();
 
-        PreparedStatement statement = connection.prepareStatement(sql);
+        List<StockDto> dtoList = new ArrayList<>();
 
-        List<StockDto> stockDtos = new ArrayList<>();
-
-        ResultSet rst = statement.executeQuery();
-        while(rst.next()){
-            StockDto dto = new StockDto(rst.getString(1),rst.getString(2),
-                    rst.getInt(3),rst.getDouble(4));
-            stockDtos.add(dto);
+        for (Stock rate : ar) {
+            StockDto dto = new StockDto(rate.getId(),rate.getCategory(),rate.getCount(),rate.getPrice());
+            dtoList.add(dto);
         }
-        return stockDtos;
+
+        return dtoList;
+
     }
 
 //    public List<InvoiceManageDto> getAllAdvance() throws SQLException, ClassNotFoundException {
@@ -66,36 +68,11 @@ public class ViewManageBoimpl implements ViewManageDAO {
 //    }
 
     public double getTotalAdvance() throws SQLException, ClassNotFoundException {
-        Connection connection = DBConnection.getInstance().getConnection();
-        String sql = "SELECT SUM(price) FROM advance";
-
-        PreparedStatement statement = connection.prepareStatement(sql);
-
-        ResultSet rst = statement.executeQuery();
-        double totalPrice = 0.0;
-
-        if (rst.next()) {
-            totalPrice = rst.getDouble(1); // Get the total price from the result set
-        }
-
-        return totalPrice; // Return the total price
+        return viewManageDAO.getTotalAdvance();
     }
 
     public double getTotalAdvanceCustomer(String id) throws SQLException, ClassNotFoundException {
-        Connection connection = DBConnection.getInstance().getConnection();
-        String sql = "SELECT SUM(price) FROM advance WHERE custId = ?";
-
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1, id);  // Bind the customer ID to the query
-
-        ResultSet rst = statement.executeQuery();
-        double totalPrice = 0.0;
-
-        if (rst.next()) {
-            totalPrice = rst.getDouble(1); // Get the total price from the result set
-        }
-
-        return totalPrice;
+        return viewManageDAO.getTotalAdvanceCustomer(id);
     }
 
 //    public List<InvoiceManageDto> ViewManageSearchAdvance(String id) throws SQLException, ClassNotFoundException {
@@ -134,24 +111,18 @@ public class ViewManageBoimpl implements ViewManageDAO {
 //    }
 
     public StockDto ViewManageSearchStock(String id) throws SQLException, ClassNotFoundException {
-        Connection connection = DBConnection.getInstance().getConnection();
+        Stock st = viewManageDAO.ViewManageSearchStock(id);
 
-        String sql = "SELECT * FROM product WHERE id = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-
-        statement.setString(1,id);
-
-        ResultSet rst = statement.executeQuery();
-
-        if(rst.next()){
-            StockDto dto = new StockDto(rst.getString(1),
-                    rst.getString(2),rst.getInt(3),rst.getDouble(4));
-
-
-            return  dto;
+        if (st != null) {
+            return new StockDto(
+                    st.getId(),
+                    st.getCategory(),
+                    st.getCount(),
+                    st.getPrice()
+            );
+        } else {
+            return null;
         }
-
-        return null;
     }
 
 //    public List<InvoiceManageDto> searchDateDetailsAdvance(String stDate, String enDate) throws SQLException, ClassNotFoundException {
@@ -189,34 +160,8 @@ public class ViewManageBoimpl implements ViewManageDAO {
 //    }
 
     public double getTotalAdvanceSelectDate(String strDate, String endDate) throws SQLException, ClassNotFoundException {
-        Connection connection = DBConnection.getInstance().getConnection();;
-
-        String sql = "SELECT SUM(price) FROM advance WHERE date BETWEEN ? AND ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1, strDate);
-        statement.setString(2, endDate);
-
-        ResultSet rst = statement.executeQuery();
-        double totalPrice = 0.0;
-
-        if(rst.next()){
-            totalPrice = rst.getDouble(1);
-        }
-        return totalPrice;
+       return viewManageDAO.getTotalAdvanceSelectDate(strDate,endDate);
     }
 
-    @Override
-    public String save(Stock stock) throws SQLException, ClassNotFoundException {
-        return "";
-    }
 
-    @Override
-    public String update(Stock stock) throws SQLException, ClassNotFoundException {
-        return "";
-    }
-
-    @Override
-    public String delete(String t) throws SQLException, ClassNotFoundException {
-        return "";
-    }
 }

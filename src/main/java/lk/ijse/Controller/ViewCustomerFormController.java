@@ -7,6 +7,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import lk.ijse.Dao.custom.ViewCustomerFormDAO;
+import lk.ijse.bo.custom.ViewCustomerFormBO;
+import lk.ijse.bo.custom.impl.ViewCustomerFormBoimpl;
 import lk.ijse.dto.CustomerManageDto;
 
 import java.sql.SQLException;
@@ -20,7 +23,7 @@ public class ViewCustomerFormController {
     @FXML
     private TableView<CustomerManageDto> tblCustomerViewForm;
 
-    private ViewCustomerFormDAOimpl VIEW_CUSTOMER_FORM_MODEL;
+    ViewCustomerFormBO viewCustomerFormBO = new ViewCustomerFormBoimpl();
 
     @FXML
     private TableColumn<CustomerManageDto, String> clCustomerId;
@@ -35,7 +38,7 @@ public class ViewCustomerFormController {
     private ListView<String> lstSuggestions;
 
     public ViewCustomerFormController(){
-        VIEW_CUSTOMER_FORM_MODEL = new ViewCustomerFormDAOimpl();
+
 
     }
 
@@ -71,7 +74,7 @@ public class ViewCustomerFormController {
 
         List<String> suggestions = new ArrayList<>();
         try {
-            suggestions = VIEW_CUSTOMER_FORM_MODEL.searchCus(typedText);
+            suggestions = viewCustomerFormBO.searchCus(typedText);
         } catch (SQLException e) {
             System.out.println("SQL Error: " + e.getMessage());
         } catch (ClassNotFoundException e) {
@@ -92,7 +95,7 @@ public class ViewCustomerFormController {
     public void loadTable(){
         ObservableList<CustomerManageDto> customerList = FXCollections.observableArrayList();
         try {
-            List<CustomerManageDto> customerDtos = VIEW_CUSTOMER_FORM_MODEL.getAllCustomer();
+            List<CustomerManageDto> customerDtos = viewCustomerFormBO.getAllCustomer();
             customerList.addAll(customerDtos);
 
         } catch (Exception e) {
@@ -114,7 +117,7 @@ public class ViewCustomerFormController {
         String id = txtSearch.getText();
 
         try {
-            CustomerManageDto dto = VIEW_CUSTOMER_FORM_MODEL.searchCustomer(id);
+            CustomerManageDto dto = viewCustomerFormBO.searchCustomer(id);
             if (dto != null) {
                 ObservableList<CustomerManageDto> searchResult = FXCollections.observableArrayList();
                 searchResult.add(dto);

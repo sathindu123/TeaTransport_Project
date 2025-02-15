@@ -151,7 +151,7 @@ public class DailyController extends DashboardFormController{
         EmpWordDetailDto empdto = new EmpWordDetailDto(id,date);
 
         try {
-            String rsp = empWorkDetailsBO.addEmpDetails(empdto);
+            String rsp = empWorkDetailsBO.addEmpDetails(empdto);//me code ek hadann oni
             showAlert(Alert.AlertType.INFORMATION, "Save Status", "Data saved successfully: " + rsp);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Erroe occurride" + e.getMessage());

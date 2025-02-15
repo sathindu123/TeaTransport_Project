@@ -17,18 +17,18 @@ import java.util.List;
 public class ViewManageDAOimpl implements ViewManageDAO {
 
 
-    public List<StockDto> getAllStocks() throws SQLException, ClassNotFoundException {
+    public List<Stock> getAllStocks() throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
 
         String sql = "SELECT * FROM product";
 
         PreparedStatement statement = connection.prepareStatement(sql);
 
-        List<StockDto> stockDtos = new ArrayList<>();
+        List<Stock> stockDtos = new ArrayList<>();
 
         ResultSet rst = statement.executeQuery();
         while(rst.next()){
-            StockDto dto = new StockDto(rst.getString(1),rst.getString(2),
+            Stock dto = new Stock(rst.getString(1),rst.getString(2),
                     rst.getInt(3),rst.getDouble(4));
             stockDtos.add(dto);
         }
@@ -135,7 +135,7 @@ public class ViewManageDAOimpl implements ViewManageDAO {
 //        return searchAdvanceDtos;
 //    }
 
-    public StockDto ViewManageSearchStock(String id) throws SQLException, ClassNotFoundException {
+    public Stock ViewManageSearchStock(String id) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
 
         String sql = "SELECT * FROM product WHERE id = ?";
@@ -146,7 +146,7 @@ public class ViewManageDAOimpl implements ViewManageDAO {
         ResultSet rst = statement.executeQuery();
 
         if(rst.next()){
-            StockDto dto = new StockDto(rst.getString(1),
+            Stock dto = new Stock(rst.getString(1),
                     rst.getString(2),rst.getInt(3),rst.getDouble(4));
 
 

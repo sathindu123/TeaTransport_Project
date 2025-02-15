@@ -13,25 +13,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ViewCustomerFormDAOimpl implements ViewCustomerFormDAO {
-    public List<CustomerManageDto> getAllCustomer() throws  Exception{
+    public List<CustomerManage> getAllCustomer() throws  Exception{
         Connection connection = DBConnection.getInstance().getConnection();
 
         String sql = "Select * from customer";
 
         PreparedStatement statement = connection.prepareStatement(sql);
 
-        List<CustomerManageDto> customerDtos = new ArrayList<>();
+        List<CustomerManage> customerDtos = new ArrayList<>();
 
         ResultSet rst = statement.executeQuery();
         while(rst.next()){
-            CustomerManageDto dto = new CustomerManageDto(rst.getString(1),rst.getString(2),
+            CustomerManage dto = new CustomerManage(rst.getString(1),rst.getString(2),
                     rst.getString(3),rst.getInt(4));
             customerDtos.add(dto);
         }
         return customerDtos;
     }
 
-    public CustomerManageDto searchCustomer(String id) throws Exception{
+    public CustomerManage searchCustomer(String id) throws Exception{
         Connection connection = DBConnection.getInstance().getConnection();
         String sql = "SELECT * FROM customer WHERE name = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -39,7 +39,7 @@ public class ViewCustomerFormDAOimpl implements ViewCustomerFormDAO {
 
         ResultSet rst = statement.executeQuery();
         if(rst.next()){
-            CustomerManageDto dto = new CustomerManageDto(rst.getString(1),
+            CustomerManage dto = new CustomerManage(rst.getString(1),
                     rst.getString(2), rst.getString(3),
                     rst.getInt(4));
 

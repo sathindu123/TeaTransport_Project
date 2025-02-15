@@ -3,6 +3,7 @@ package lk.ijse.Dao.custom.impl;
 import lk.ijse.Dao.custom.QueryDAO;
 import lk.ijse.db.DBConnection;
 import lk.ijse.dto.*;
+import lk.ijse.entity.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,6 +16,31 @@ import java.util.List;
 
 public class QueryDAOimpl implements QueryDAO {
     private String[] dateArray = {"JANUARY","FEBRUARY","MARCH","APRILL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOMBER","NOVEMBER","DESEMBER"};
+
+//invoice manage eken awe
+    public List<Advance> loadA() throws SQLException, ClassNotFoundException {
+        Connection connection = DBConnection.getInstance().getConnection();
+        String sql ="SELECT a.custId,c.name, a.date,SUM(a.monthPrice) AS total_price_sum\n" +
+                "FROM advance a JOIN customer c ON a.custId = c.id\n" +
+                "GROUP BY custId, date;";
+        PreparedStatement statement = connection.prepareStatement(sql);
+
+        ResultSet resultSet = statement.executeQuery();
+
+        ArrayList<Advance> rst = new ArrayList<>();
+
+        while (resultSet.next()){
+            Advance dd = new Advance(
+                    resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getDouble(4)
+            );
+            rst.add(dd);
+        }
+        return rst;
+    }
+
 
     public CustomerManageDto custSerachsummery(String id) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
@@ -44,7 +70,7 @@ public class QueryDAOimpl implements QueryDAO {
         return custDtos.isEmpty() ? null : custDtos.get(0);
     }
 
-    public List<ViewManageDto> getStockPurchases() throws SQLException, ClassNotFoundException {
+    public List<ViewManage> getStockPurchases() throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
 
         String sql = "SELECT c.id,c.name,p.date,p.productId,p.quntity,p.totalPrice FROM customer c JOIN \n" +
@@ -52,11 +78,11 @@ public class QueryDAOimpl implements QueryDAO {
                 "                ORDER BY p.date";
 
         PreparedStatement statement = connection.prepareStatement(sql);
-        List<ViewManageDto> custDtos = new ArrayList<>();
+        List<ViewManage> custDtos = new ArrayList<>();
         ResultSet rst = statement.executeQuery();
 
         while (rst.next()){
-            ViewManageDto dto = new ViewManageDto(rst.getString(1),
+            ViewManage dto = new ViewManage(rst.getString(1),
                     rst.getString(2),rst.getString(3),
                     rst.getString(4),rst.getInt(5),rst.getDouble(6));
 
@@ -84,7 +110,7 @@ public class QueryDAOimpl implements QueryDAO {
         return price;
     }
 
-    public List<ViewManageDto> getPohoraStockPurchase() throws SQLException, ClassNotFoundException {
+    public List<ViewManage> getPohoraStockPurchase() throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
 
         String sql = "SELECT c.id,c.name,p.date,p.productId,p.quntity,SUM(p.monthPrice) as totalPrice FROM customer c JOIN \n" +
@@ -92,11 +118,11 @@ public class QueryDAOimpl implements QueryDAO {
                 "                              ORDER BY p.date\n";
 
         PreparedStatement statement = connection.prepareStatement(sql);
-        List<ViewManageDto> custDtos = new ArrayList<>();
+        List<ViewManage> custDtos = new ArrayList<>();
         ResultSet rst = statement.executeQuery();
 
         while (rst.next()){
-            ViewManageDto dto = new ViewManageDto(rst.getString(1),
+            ViewManage dto = new ViewManage(rst.getString(1),
                     rst.getString(2),rst.getString(3),
                     rst.getString(4),rst.getInt(5),rst.getDouble(6));
 
@@ -107,7 +133,7 @@ public class QueryDAOimpl implements QueryDAO {
 
     //////DailyHomePage////
 
-    public List<DailyHomePageDto> LoadTable() throws SQLException, ClassNotFoundException {
+    public List<DailyHomePage> LoadTable() throws SQLException, ClassNotFoundException {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String date = LocalDateTime.now().format(dateTimeFormatter);
 
@@ -115,13 +141,13 @@ public class QueryDAOimpl implements QueryDAO {
         String sql = "SELECT c.custId,d.name,c.date,c.goldLeafAmount,c.goodLeafAmount FROM teaBagInventory c JOIN customer d ON c.custId = d.id WHERE date = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1,date );
-        List<DailyHomePageDto> Dtos = new ArrayList<>();
+        List<DailyHomePage> Dtos = new ArrayList<>();
         ResultSet rst = statement.executeQuery();
 
 
         String name = "";
         while (rst.next()) {
-            DailyHomePageDto dto = new DailyHomePageDto(rst.getString("custId"),rst.getString("name"),rst.getString("date"),
+            DailyHomePage dto = new DailyHomePage(rst.getString("custId"),rst.getString("name"),rst.getString("date"),
                     rst.getInt("goldLeafAmount"),rst.getInt("goodLeafAmount"));
             Dtos.add(dto);
         }
@@ -130,7 +156,7 @@ public class QueryDAOimpl implements QueryDAO {
 
     //////////////////////////getcustomerAllDetails/////////////////
 
-    public List<getCustomerAllDetailsDto> getAllCustomerDetails() throws SQLException, ClassNotFoundException {
+    public List<getCustomerAllDetails> getAllCustomerDetails() throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
         LocalDateTime now = LocalDateTime.now();
 
@@ -221,10 +247,10 @@ public class QueryDAOimpl implements QueryDAO {
 
         ResultSet rst = statement.executeQuery();
 
-        List<getCustomerAllDetailsDto> custDtos = new ArrayList<>();
+        List<getCustomerAllDetails> custDtos = new ArrayList<>();
 
         while (rst.next()) {
-            getCustomerAllDetailsDto dto = new getCustomerAllDetailsDto(
+            getCustomerAllDetails dto = new getCustomerAllDetails(
                     rst.getString("id"),                // Customer ID
                     rst.getString("name"),              // Customer Name
                     rst.getInt("totalLeafAmount"),      // Total Leaf Amount
@@ -241,7 +267,7 @@ public class QueryDAOimpl implements QueryDAO {
 
 
 
-    public List<getCustomerAllDetailsDto> ViewManageSearchCustomer(String id) throws SQLException, ClassNotFoundException {
+    public List<getCustomerAllDetails> ViewManageSearchCustomer(String id) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
 
         String sql = "SELECT \n" +
@@ -278,11 +304,11 @@ public class QueryDAOimpl implements QueryDAO {
         statement.setString(1, id);
         ResultSet rst = statement.executeQuery();
 
-        List<getCustomerAllDetailsDto> custDtos = new ArrayList<>();
+        List<getCustomerAllDetails> custDtos = new ArrayList<>();
 
         while (rst.next()) {
 
-            getCustomerAllDetailsDto dto = new getCustomerAllDetailsDto(
+            getCustomerAllDetails dto = new getCustomerAllDetails(
                     rst.getString("id"),         // Customer ID
                     rst.getString("name"),       // Customer Name
                     rst.getInt("totalLeafAmount"),  // Total Leaf Amount
@@ -297,7 +323,7 @@ public class QueryDAOimpl implements QueryDAO {
         return custDtos;
     }
 
-    public List<getCustomerAllDetailsDto> selectDateCust(String strDate, String endDate) throws SQLException, ClassNotFoundException {
+    public List<getCustomerAllDetails> selectDateCust(String strDate, String endDate) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
 
 
@@ -342,11 +368,11 @@ public class QueryDAOimpl implements QueryDAO {
         statement.setString(6, endDate);
         ResultSet rst = statement.executeQuery();
 
-        List<getCustomerAllDetailsDto> custDtos = new ArrayList<>();
+        List<getCustomerAllDetails> custDtos = new ArrayList<>();
 
         while (rst.next()) {
 
-            getCustomerAllDetailsDto dto = new getCustomerAllDetailsDto(
+            getCustomerAllDetails dto = new getCustomerAllDetails(
                     rst.getString("id"),         // Customer ID
                     rst.getString("name"),       // Customer Name
                     rst.getInt("totalLeafAmount"),  // Total Leaf Amount
@@ -361,49 +387,11 @@ public class QueryDAOimpl implements QueryDAO {
         return custDtos;
     }
 
-    public List<getCustomerAllDetailsDto> gettot() throws SQLException, ClassNotFoundException {
-//        Connection connection = DBConnection.getInstance().getConnection();
-//
-//        String sql = "SELECT \n" +
-//                "    COALESCE(t.totalLeafAmount, 0) AS totalLeafAmount,  \n" +
-//                "    COALESCE(a.totalAdvance, 0) AS totalAdvance, \n" +
-//                "    COALESCE(p.teaPacketTotal, 0) AS teaPacketTotal,  \n" +
-//                "    COALESCE(p.fertilizeTotal, 0) AS fertilizeTotal,  \n" +
-//                "    COALESCE(p.otherTotal, 0) AS otherTotal  \n" +
-//                "FROM \n" +
-//                "    customer c\n" +
-//                "LEFT JOIN \n" +
-//                "    (SELECT \n" +
-//                "        SUM(CASE WHEN LEFT(productId, 1) = 'P' THEN totalPrice ELSE 0 END) AS fertilizeTotal,\n" +
-//                "        SUM(CASE WHEN LEFT(productId, 1) = 'T' THEN totalPrice ELSE 0 END) AS teaPacketTotal,\n" +
-//                "        SUM(CASE WHEN LEFT(productId, 1) = 'M' THEN totalPrice ELSE 0 END) AS otherTotal\n" +
-//                "     FROM productpurchasecustomer\n" +
-//                "     GROUP BY custId) p ON c.id = p.custId\n" +
-//                "LEFT JOIN \n" +
-//                "    (SELECT (SUM(goldLeafAmount) + SUM(goodLeafAmount)) AS totalLeafAmount\n" +
-//                "     FROM teabaginventory\n" +
-//                "     GROUP BY custId) t ON c.id = t.custId\n" +
-//                "LEFT JOIN \n" +
-//                "    (SELECT SUM(price) AS totalAdvance \n" +
-//                "     FROM advance \n" +
-//                "     GROUP BY custId) a ON c.id = a.custId";
-//
-//
-//        PreparedStatement statement = connection.prepareStatement(sql);
-//
-//
-//        ResultSet rst = statement.executeQuery();
-//
-//
-//        List<getCustomerAllDetailsDto> custDtos = new ArrayList<>();
-        return null;
-
-    }
 
 
     //////////////invoiceCustomer/////////////////////////
 
-    public List<InvoiceCustomerDto> getDetailsPurchase(String id) throws SQLException, ClassNotFoundException {
+    public List<InvoiceCustomer> getDetailsPurchase(String id) throws SQLException, ClassNotFoundException {
 
         LocalDateTime now = LocalDateTime.now();
 
@@ -455,10 +443,10 @@ public class QueryDAOimpl implements QueryDAO {
 
 
         ResultSet rst = statement.executeQuery();
-        List<InvoiceCustomerDto> custDtos = new ArrayList<>();
+        List<InvoiceCustomer> custDtos = new ArrayList<>();
 
         while (rst.next()) {
-            InvoiceCustomerDto dto = new InvoiceCustomerDto(
+            InvoiceCustomer dto = new InvoiceCustomer(
                     rst.getDouble("teaPacketTotal"), // Tea Packet Total
                     rst.getDouble("fertilizeTotal"), // Fertilize Total
                     rst.getDouble("otherTotal")     // Other Total
@@ -473,14 +461,15 @@ public class QueryDAOimpl implements QueryDAO {
 
     ///////////////////////////view emp work detail.////////////
 
-    public List<ViewEmpWorkDetailsDto> loadEmp() throws SQLException, ClassNotFoundException {
+    public List<ViewEmpWorkDetails> loadEmp() throws SQLException, ClassNotFoundException {
         LocalDateTime now = LocalDateTime.now();
 
-        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 7) {
-
+        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
             now = now.minusMonths(1);
+            if (now.getDayOfMonth() == 1) {
+                now = now.minusYears(1);
+            }
         }
-
 
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
         String formattedDate = now.format(dateFormatter);
@@ -502,23 +491,25 @@ public class QueryDAOimpl implements QueryDAO {
         statement.setString(1, startDate);
         statement.setString(2, endDate);
 
-        List<ViewEmpWorkDetailsDto> empList = new ArrayList<>();
+        List<ViewEmpWorkDetails> empList = new ArrayList<>();
         ResultSet rst = statement.executeQuery();
 
         while (rst.next()){
-            ViewEmpWorkDetailsDto dto = new ViewEmpWorkDetailsDto(rst.getString(1),rst.getString(2),
+            ViewEmpWorkDetails dto = new ViewEmpWorkDetails(rst.getString(1),rst.getString(2),
                     rst.getString(3),rst.getInt(4),rst.getString(5));
             empList.add(dto);
         }
         return empList;
     }
 
-    public List<ViewEmpWorkDetailsDto>  searchEmployes(String id) throws SQLException, ClassNotFoundException {
+    public List<ViewEmpWorkDetails>  searchEmployes(String id) throws SQLException, ClassNotFoundException {
         LocalDateTime now = LocalDateTime.now();
 
-        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 7) {
-
+        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
             now = now.minusMonths(1);
+            if (now.getDayOfMonth() == 1) {
+                now = now.minusYears(1);
+            }
         }
 
 
@@ -543,11 +534,11 @@ public class QueryDAOimpl implements QueryDAO {
         statement.setString(2, startDate);
         statement.setString(3, endDate);
 
-        List<ViewEmpWorkDetailsDto> empList = new ArrayList<>();
+        List<ViewEmpWorkDetails> empList = new ArrayList<>();
         ResultSet rst = statement.executeQuery();
 
         while (rst.next()){
-            ViewEmpWorkDetailsDto dto = new ViewEmpWorkDetailsDto(rst.getString(1),rst.getString(2),
+            ViewEmpWorkDetails dto = new ViewEmpWorkDetails(rst.getString(1),rst.getString(2),
                     rst.getString(3),rst.getInt(4),rst.getString(5));
             empList.add(dto);
 
@@ -562,9 +553,11 @@ public class QueryDAOimpl implements QueryDAO {
     public int searchEmpCount(String id) throws SQLException, ClassNotFoundException {
         LocalDateTime now = LocalDateTime.now();
 
-        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 7) {
-
+        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
             now = now.minusMonths(1);
+            if (now.getDayOfMonth() == 1) {
+                now = now.minusYears(1);
+            }
         }
 
 
@@ -600,7 +593,7 @@ public class QueryDAOimpl implements QueryDAO {
         return count;
     }
 
-    public List<ViewEmpWorkDetailsDto> searchDateDetailsEMP(String strDate, String endDate) throws SQLException, ClassNotFoundException {
+    public List<ViewEmpWorkDetails> searchDateDetailsEMP(String strDate, String endDate) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
         String sql ="SELECT e.empId, e.name, e.address, e.telnb, em.date " +
                 "FROM employee e " +
@@ -612,11 +605,11 @@ public class QueryDAOimpl implements QueryDAO {
         statement.setString(1, strDate);
         statement.setString(2, endDate);
 
-        List<ViewEmpWorkDetailsDto> empList = new ArrayList<>();
+        List<ViewEmpWorkDetails> empList = new ArrayList<>();
         ResultSet rst = statement.executeQuery();
 
         while (rst.next()){
-            ViewEmpWorkDetailsDto dto = new ViewEmpWorkDetailsDto(rst.getString(1),rst.getString(2),
+            ViewEmpWorkDetails dto = new ViewEmpWorkDetails(rst.getString(1),rst.getString(2),
                     rst.getString(3),rst.getInt(4),rst.getString(5));
             empList.add(dto);
 
@@ -628,13 +621,15 @@ public class QueryDAOimpl implements QueryDAO {
         return null;
     }
     //Invoice eke emp table eka load karan code eka
-    public List<ViewEmpWorkDetailsDto> loadtblEmp() throws SQLException, ClassNotFoundException {
+    public List<ViewEmpWorkDetails> loadtblEmp() throws SQLException, ClassNotFoundException {
 
         LocalDateTime now = LocalDateTime.now();
 
-        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 7) {
-
+        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
             now = now.minusMonths(1);
+            if (now.getDayOfMonth() == 1) {
+                now = now.minusYears(1);
+            }
         }
 
 
@@ -659,10 +654,10 @@ public class QueryDAOimpl implements QueryDAO {
         statement.setString(1,startDate);
         statement.setString(2,endDate);
 
-        List<ViewEmpWorkDetailsDto> empList = new ArrayList<>();
+        List<ViewEmpWorkDetails> empList = new ArrayList<>();
         ResultSet rst = statement.executeQuery();
         while (rst.next()){
-            ViewEmpWorkDetailsDto empDtos = new ViewEmpWorkDetailsDto(rst.getString(1),
+            ViewEmpWorkDetails empDtos = new ViewEmpWorkDetails(rst.getString(1),
                     rst.getString(2),
                     rst.getString(3));
             empList.add(empDtos);
@@ -677,10 +672,13 @@ public class QueryDAOimpl implements QueryDAO {
 
         LocalDateTime now = LocalDateTime.now();
 
-        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 7) {
-
+        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
             now = now.minusMonths(1);
+            if (now.getDayOfMonth() == 1) {
+                now = now.minusYears(1);
+            }
         }
+
 
 
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
@@ -715,14 +713,17 @@ public class QueryDAOimpl implements QueryDAO {
         return count;
     }
 
-    public List<ViewEmpWorkDetailsDto> searchEmpId(String id) throws SQLException, ClassNotFoundException {
+    public List<ViewEmpWorkDetails> searchEmpId(String id) throws SQLException, ClassNotFoundException {
 
         LocalDateTime now = LocalDateTime.now();
 
-        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 7) {
-
+        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
             now = now.minusMonths(1);
+            if (now.getDayOfMonth() == 1) {
+                now = now.minusYears(1);
+            }
         }
+
 
 
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
@@ -747,10 +748,10 @@ public class QueryDAOimpl implements QueryDAO {
         statement.setString(2,startDate);
         statement.setString(3,endDate);
 
-        List<ViewEmpWorkDetailsDto> empList = new ArrayList<>();
+        List<ViewEmpWorkDetails> empList = new ArrayList<>();
         ResultSet rst = statement.executeQuery();
         while (rst.next()){
-            ViewEmpWorkDetailsDto empDtos = new ViewEmpWorkDetailsDto(rst.getString(1),
+            ViewEmpWorkDetails empDtos = new ViewEmpWorkDetails(rst.getString(1),
                     rst.getString(2),
                     rst.getString(3));
             empList.add(empDtos);
@@ -765,10 +766,13 @@ public class QueryDAOimpl implements QueryDAO {
 
         LocalDateTime now = LocalDateTime.now();
 
-        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 7) {
-
+        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
             now = now.minusMonths(1);
+            if (now.getDayOfMonth() == 1) {
+                now = now.minusYears(1);
+            }
         }
+
 
 
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
@@ -807,7 +811,7 @@ public class QueryDAOimpl implements QueryDAO {
 
     /////////////////////////vieew manage dao//////////
 
-    public List<InvoiceManageDto> getAllAdvance() throws SQLException, ClassNotFoundException {
+    public List<InvoiceManage> getAllAdvance() throws SQLException, ClassNotFoundException {
 
 
         Connection connection = DBConnection.getInstance().getConnection();
@@ -818,16 +822,16 @@ public class QueryDAOimpl implements QueryDAO {
 
         PreparedStatement statement = connection.prepareStatement(sql);
 
-        List<InvoiceManageDto> advanceDtos = new ArrayList<>();
+        List<InvoiceManage> advanceDtos = new ArrayList<>();
 
         ResultSet rst = statement.executeQuery();
         while (rst.next()) {
-            CustomerManageDto customerDto = new CustomerManageDto(
+            CustomerManage customerDto = new CustomerManage(
                     rst.getString(1),
                     rst.getString(2)
             );
 
-            InvoiceManageDto dto = new InvoiceManageDto(
+            InvoiceManage dto = new InvoiceManage(
                     rst.getString(1),
                     rst.getString(3),
                     rst.getDouble(4),
@@ -839,7 +843,7 @@ public class QueryDAOimpl implements QueryDAO {
         return advanceDtos;
     }
 
-    public List<InvoiceManageDto> ViewManageSearchAdvance(String id) throws SQLException, ClassNotFoundException {
+    public List<InvoiceManage> ViewManageSearchAdvance(String id) throws SQLException, ClassNotFoundException {
 
         Connection connection = DBConnection.getInstance().getConnection();
 
@@ -853,17 +857,17 @@ public class QueryDAOimpl implements QueryDAO {
 
 
         ResultSet rst = statement.executeQuery();
-        List<InvoiceManageDto> searchAdvanceDtos = new ArrayList<>();
+        List<InvoiceManage> searchAdvanceDtos = new ArrayList<>();
 
 
         while (rst.next()) {
 
-            CustomerManageDto customerDto = new CustomerManageDto(
+            CustomerManage customerDto = new CustomerManage(
                     rst.getString(1),
                     rst.getString(2)
             );
 
-            InvoiceManageDto dto = new InvoiceManageDto(
+            InvoiceManage dto = new InvoiceManage(
                     rst.getString(1),
                     rst.getString(3),
                     rst.getDouble(4),
@@ -874,7 +878,7 @@ public class QueryDAOimpl implements QueryDAO {
         return searchAdvanceDtos;
     }
 
-    public List<InvoiceManageDto> searchDateDetailsAdvance(String stDate, String enDate) throws SQLException, ClassNotFoundException {
+    public List<InvoiceManage> searchDateDetailsAdvance(String stDate, String enDate) throws SQLException, ClassNotFoundException {
         Connection connectionc = DBConnection.getInstance().getConnection();
         String sql = "SELECT a.custId, c.name, a.date, a.price " +
                 "FROM customer c " +
@@ -887,15 +891,15 @@ public class QueryDAOimpl implements QueryDAO {
         statement.setString(2, enDate);
 
         ResultSet rst = statement.executeQuery();
-        List<InvoiceManageDto> advanceDtos = new ArrayList<>();
+        List<InvoiceManage> advanceDtos = new ArrayList<>();
 
         while (rst.next()) {
-            CustomerManageDto customerDto = new CustomerManageDto(
+            CustomerManage customerDto = new CustomerManage(
                     rst.getString(1),
                     rst.getString(2)
             );
 
-            InvoiceManageDto dto = new InvoiceManageDto(
+            InvoiceManage dto = new InvoiceManage(
                     rst.getString(1),
                     rst.getString(3),
                     rst.getDouble(4),

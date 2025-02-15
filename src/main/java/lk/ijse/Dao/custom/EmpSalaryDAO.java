@@ -15,8 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface EmpSalaryDAO extends CrudDAO<EmpSalary> {
-    List<EmpSalaryDto> loadPayPriceEmp() throws SQLException, ClassNotFoundException;
+
+    List<EmpSalary> loadPayPriceEmp() throws SQLException, ClassNotFoundException;
     int totalSalaryEmp(String id) throws SQLException, ClassNotFoundException;
-    List<EmpSalaryDto> getEmpTotPayPrice(String id) throws SQLException, ClassNotFoundException;
+    List<EmpSalary> getEmpTotPayPrice(String id) throws SQLException, ClassNotFoundException;
     int getSalaryAll() throws SQLException, ClassNotFoundException;
 }

@@ -1,28 +1,16 @@
 package lk.ijse.bo.custom.impl;
 
 import lk.ijse.Dao.custom.GetCustomerAllDetailsDAO;
+import lk.ijse.bo.custom.GetCustomerAllDetailsBO;
 import lk.ijse.entity.CustomerManage;
 
 import java.sql.SQLException;
 
 
-public class GetCustomerAllDetailsBoimpl implements GetCustomerAllDetailsDAO {
+public class GetCustomerAllDetailsBoimpl implements GetCustomerAllDetailsBO {
     private String[] dateArray = {"JANUARY","FEBRUARY","MARCH","APRILL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOMBER","NOVEMBER","DESEMBER"};
 
-    @Override
-    public String save(CustomerManage customerManage) throws SQLException, ClassNotFoundException {
-        return "";
-    }
 
-    @Override
-    public String update(CustomerManage customerManage) throws SQLException, ClassNotFoundException {
-        return "";
-    }
-
-    @Override
-    public String delete(String t) throws SQLException, ClassNotFoundException {
-        return "";
-    }
 
 //    public List<getCustomerAllDetailsDto> getAllCustomerDetails() throws SQLException, ClassNotFoundException {
 //        Connection connection = DBConnection.getInstance().getConnection();

@@ -3,6 +3,10 @@ package lk.ijse.Dao.custom.impl;
 import lk.ijse.Dao.custom.InvoiceManageDAO;
 import lk.ijse.db.DBConnection;
 import lk.ijse.dto.*;
+import lk.ijse.entity.InvoiceManage;
+import lk.ijse.entity.LoadProductPurchase;
+import lk.ijse.entity.Payment;
+import lk.ijse.entity.Stock;
 
 import javax.swing.*;
 import java.sql.Connection;
@@ -101,7 +105,7 @@ public class InvoiceManageDAOimpl implements InvoiceManageDAO {
         }
     }
 
-    public String insertData(InvoiceManageDto invoiceManageDto, StockDto stockDto) throws SQLException, ClassNotFoundException {
+    public String insertData(InvoiceManage invoiceManageDto, Stock stockDto) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
 
 
@@ -188,7 +192,7 @@ public class InvoiceManageDAOimpl implements InvoiceManageDAO {
         }
     }
 
-    public String btnSaveAdvance(InvoiceManageDto invoiceManageDto) throws SQLException, ClassNotFoundException {
+    public String btnSaveAdvance(InvoiceManage invoiceManageDto) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
         String sql = "INSERT INTO advance VALUES(?,?,?,?,?)";
 
@@ -224,7 +228,7 @@ public class InvoiceManageDAOimpl implements InvoiceManageDAO {
         return resp > 0 ? "Succsess" : "Fail";
     }
 
-    public String insertDataPohora(InvoiceManageDto invoiceManageDto, StockDto stockDto, int warik, double totalPrice) throws SQLException, ClassNotFoundException {
+    public String insertDataPohora(InvoiceManage invoiceManageDto, Stock stockDto, int warik, double totalPrice) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
 
 
@@ -357,7 +361,7 @@ public class InvoiceManageDAOimpl implements InvoiceManageDAO {
     }
 
 
-    public String deleteDataPohora(InvoiceManageDto invoiceManageDto, StockDto stockDto, int warik, double totalPrice) throws SQLException, ClassNotFoundException {
+    public String deleteDataPohora(InvoiceManage invoiceManageDto, Stock stockDto, int warik, double totalPrice) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
         try {
             connection.setAutoCommit(false);
@@ -547,7 +551,7 @@ public class InvoiceManageDAOimpl implements InvoiceManageDAO {
         return mm;
     }
 
-    public String DeleteData(InvoiceManageDto invoiceManageDto, StockDto stockDto) throws SQLException, ClassNotFoundException {
+    public String DeleteData(InvoiceManage invoiceManageDto, Stock stockDto) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
 
         try {
@@ -644,7 +648,7 @@ public class InvoiceManageDAOimpl implements InvoiceManageDAO {
         return mm;
     }
 
-    public String deleteOtherData(InvoiceManageDto invoiceManageDto, StockDto stockDto) throws SQLException, ClassNotFoundException {
+    public String deleteOtherData(InvoiceManage invoiceManageDto, Stock stockDto) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
 
         try {
@@ -711,7 +715,7 @@ public class InvoiceManageDAOimpl implements InvoiceManageDAO {
         }
     }
 
-    public String inserPaymentValues(String id, String date, PaymentDto pDto, double Higa)
+    public String inserPaymentValues(String id, String date, Payment pDto, double Higa)
             throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
         try {
@@ -862,5 +866,20 @@ public class InvoiceManageDAOimpl implements InvoiceManageDAO {
             }
         }
         return 0;
+    }
+
+    @Override
+    public String save(InvoiceManage invoiceManage) throws SQLException, ClassNotFoundException {
+        return "";
+    }
+
+    @Override
+    public String update(InvoiceManage invoiceManage) throws SQLException, ClassNotFoundException {
+        return "";
+    }
+
+    @Override
+    public String delete(String t) throws SQLException, ClassNotFoundException {
+        return "";
     }
 }

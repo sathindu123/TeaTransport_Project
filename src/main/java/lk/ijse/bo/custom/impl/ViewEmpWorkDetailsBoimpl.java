@@ -1,25 +1,13 @@
 package lk.ijse.bo.custom.impl;
 
 import lk.ijse.Dao.custom.ViewEmpWorkDetailsDAO;
+import lk.ijse.bo.custom.ViewEmpWorkDetailsBO;
 import lk.ijse.entity.ViewEmpWorkDetails;
 
 import java.sql.SQLException;
 
-public class ViewEmpWorkDetailsBoimpl implements ViewEmpWorkDetailsDAO {
-    @Override
-    public String save(ViewEmpWorkDetails viewEmpWorkDetails) throws SQLException, ClassNotFoundException {
-        return "";
-    }
+public class ViewEmpWorkDetailsBoimpl implements ViewEmpWorkDetailsBO {
 
-    @Override
-    public String update(ViewEmpWorkDetails viewEmpWorkDetails) throws SQLException, ClassNotFoundException {
-        return "";
-    }
-
-    @Override
-    public String delete(String t) throws SQLException, ClassNotFoundException {
-        return "";
-    }
 //    public List<ViewEmpWorkDetailsDto> loadEmp() throws SQLException, ClassNotFoundException {
 //        LocalDateTime now = LocalDateTime.now();
 //

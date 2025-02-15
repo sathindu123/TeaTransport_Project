@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.bo.custom.StockBO;
+import lk.ijse.bo.custom.impl.StockBoimpl;
 import lk.ijse.dto.StockDto;
 
 
@@ -15,7 +17,8 @@ import java.io.IOException;
 
 public class StockManagamentController extends DashboardFormController {
     AnchorPane anchorPane;
-    private StockDAOimpl STOCK_MODEL;
+
+    StockBO stockBO = new StockBoimpl();
 
    public TextField txtId;
    public TextField txtCategory;
@@ -23,7 +26,7 @@ public class StockManagamentController extends DashboardFormController {
    public TextField txtPrice;
 
     public StockManagamentController(){
-        STOCK_MODEL=new StockDAOimpl();
+
     }
 
     public void TeaStockBTNClick(javafx.event.ActionEvent event) throws IOException {
@@ -70,7 +73,7 @@ public class StockManagamentController extends DashboardFormController {
 
 
         try {
-            String resp = STOCK_MODEL.btnSaveStock(stockDto);
+            String resp = stockBO.save(stockDto);
             JOptionPane.showMessageDialog(null, "Save Status: " + resp, "Save Status", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Error occurred" + e.getMessage());
@@ -109,7 +112,7 @@ public class StockManagamentController extends DashboardFormController {
         StockDto stockDto = new StockDto(id,category,cont,Double.parseDouble(price));
 
         try {
-            String resp = STOCK_MODEL.btnUpdateStock(stockDto);
+            String resp = stockBO.update(stockDto);
             JOptionPane.showMessageDialog(null, "Save Status: " + resp, "Save Status", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Error occurred" + e.getMessage());
@@ -122,9 +125,9 @@ public class StockManagamentController extends DashboardFormController {
     public void ProductIdOnAction(ActionEvent event) {
         String id = txtId.getText();
         try {
-            String nam = STOCK_MODEL.getNames(id);
+            String nam = stockBO.getNames(id);
             txtCategory.setText(""+nam);
-            int con = STOCK_MODEL.getCounts(id);
+            int con = stockBO.getCounts(id);
             txtCount.setText(""+con);
         } catch (Exception e) {
             System.out.println("NUllll");

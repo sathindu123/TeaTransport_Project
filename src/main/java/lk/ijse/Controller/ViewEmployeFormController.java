@@ -9,6 +9,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lk.ijse.bo.custom.ViewEmployeeFormBO;
+import lk.ijse.bo.custom.impl.ViewEmployeeFormBoimpl;
 import lk.ijse.dto.EmployeeManageDto;
 
 import java.util.List;
@@ -17,7 +19,7 @@ public class ViewEmployeFormController extends ManagementCetegoryController {
     @FXML
     private TextField txtSearchEmp;
 
-    private ViewEmployeeFormDAOimpl VIEW_EMPLOYEE_MODEL;
+    ViewEmployeeFormBO viewEmployeeFormBO = new ViewEmployeeFormBoimpl();
     @FXML
     private TableView<EmployeeManageDto> tblEmpViewForm;
 
@@ -32,7 +34,7 @@ public class ViewEmployeFormController extends ManagementCetegoryController {
 
 
     public ViewEmployeFormController(){
-        VIEW_EMPLOYEE_MODEL = new ViewEmployeeFormDAOimpl();
+
     }
 
     public void initialize(){
@@ -46,7 +48,7 @@ public class ViewEmployeFormController extends ManagementCetegoryController {
     public void loadTable(){
         ObservableList<EmployeeManageDto> employeeList = FXCollections.observableArrayList();
         try {
-            List<EmployeeManageDto> empDtos = VIEW_EMPLOYEE_MODEL.getAllCustomer();
+            List<EmployeeManageDto> empDtos = viewEmployeeFormBO.getAllCustomer();
             employeeList.addAll(empDtos);
         } catch (Exception e) {
             e.printStackTrace();
@@ -65,7 +67,7 @@ public class ViewEmployeFormController extends ManagementCetegoryController {
     public void BtnOKClickSearchEmployee(){
         String id = txtSearchEmp.getText();
         try {
-            EmployeeManageDto dto = VIEW_EMPLOYEE_MODEL.BtnOKClickSearchEmployee(id);
+            EmployeeManageDto dto = viewEmployeeFormBO.BtnOKClickSearchEmployee(id);
             if (dto != null) {
                 ObservableList<EmployeeManageDto> searchResult = FXCollections.observableArrayList();
                 searchResult.add(dto);

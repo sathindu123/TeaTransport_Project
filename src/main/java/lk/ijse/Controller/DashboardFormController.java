@@ -15,7 +15,13 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import lk.ijse.Dao.DAOFactory;
+import lk.ijse.Dao.custom.CustomerManageDAO;
+import lk.ijse.Dao.custom.InvoiceCustomerDAO;
 import lk.ijse.Dao.custom.impl.DailyHomePageDAOimpl;
+import lk.ijse.Dao.custom.impl.InvoiceCustomerDAOimpl;
+import lk.ijse.bo.custom.*;
+import lk.ijse.bo.custom.impl.*;
 import lk.ijse.dto.*;
 
 import java.io.IOException;
@@ -25,11 +31,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class DashboardFormController extends LoginFormController {
-    private EmpWorkDetailDAOimpl EMP_WORK_DETAIL_MODEL;
-    private DailyHomePageDAOimpl DAILY_HOEME_PAGE_MODEL;
-    private MonthlyRateDAOimpl MONTH_RATE;
+
     private String[] dateArray = {"JANUARY","FEBRUARY","MARCH","APRILL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOMBER","NOVEMBER","DESEMBER"};
 
+    EmpWorkDetailsBO empWorkDetailsBO = new EmpWorkDetailBoimpl();
+    DailyHomePageBO dailyHomePageBO = new DailyhomepageBoimpl();
+    MonthlyRateBO monthlyRateBO = new MonthlyRateBoimpl();
+    AdvanceBo advanceBo = new AdvanceBoimpl();
+    InvoiceCustomerBO invoiceCustomerBO = new InvoiceCustomerBoimpl();
 
     @FXML
     private Label TotPurchase1;
@@ -60,9 +69,7 @@ public class DashboardFormController extends LoginFormController {
     private Button LogOutButton;
 
     public DashboardFormController(){
-        EMP_WORK_DETAIL_MODEL = new EmpWorkDetailDAOimpl();
-        DAILY_HOEME_PAGE_MODEL = new DailyHomePageDAOimpl();
-        MONTH_RATE = new MonthlyRateDAOimpl();
+
     }
 
 
@@ -97,11 +104,11 @@ public class DashboardFormController extends LoginFormController {
     }
 
     public void loadDeatils() throws SQLException, ClassNotFoundException {
-        double advance = DAILY_HOEME_PAGE_MODEL.getTotalAdvance();
+        double advance = advanceBo.getTotalAdvance();
         String[] ar = getMonthToday();
-        int teleafcount = DAILY_HOEME_PAGE_MODEL.getTeaLeafCoutn(ar);
-        double pohora = DAILY_HOEME_PAGE_MODEL.getPohoraTotal(ar);
-        double others = DAILY_HOEME_PAGE_MODEL.getOtherTotal();
+        int teleafcount = dailyHomePageBO.getTeaLeafCoutn(ar);
+        double pohora = dailyHomePageBO.getPohoraTotal(ar);
+        double others = dailyHomePageBO.getOtherTotal();
 
 
         LocalDateTime now = LocalDateTime.now();
@@ -136,14 +143,14 @@ public class DashboardFormController extends LoginFormController {
         double lblGoodLea = 0;
         double lblGoldLeaf = 0;
         try {
-            List<MonthlyRateDto> dto = MONTH_RATE.getLeafPrice(passDate);
+            List<MonthlyRateDto> dto = monthlyRateBO.getLeafPrice(passDate);
             nrt.addAll(dto);
 
             if (!dto.isEmpty()) {
                 MonthlyRateDto data = dto.get(0); // Get the first entry
                  lblGoodLea = data.getRate();
                  lblGoldLeaf = data.getRate1();
-                List<InvoiceCustomerDto> dfg = DAILY_HOEME_PAGE_MODEL.getAllTeaLeafCount();
+                List<InvoiceCustomerDto> dfg = invoiceCustomerBO.getAllTeaLeafCount();
                 if(dfg.size() > 0){
                     InvoiceCustomerDto dd = dfg.get(0);
                         int  s = dd.getPrice();
@@ -176,7 +183,7 @@ public class DashboardFormController extends LoginFormController {
         double[] ganna = new double[2];
         try {
 
-            ganna = MONTH_RATE.getAllCustomerHiga(passDate1,lblGoodLea,lblGoldLeaf);
+            ganna = monthlyRateBO.getAllCustomerHiga(passDate1,lblGoodLea,lblGoldLeaf);
 
             TotPurchase.setText(TotPurchase.getText()+" "+ganna[0]);
             TotPurchase1.setText(TotPurchase1.getText()+" "+ganna[1]);

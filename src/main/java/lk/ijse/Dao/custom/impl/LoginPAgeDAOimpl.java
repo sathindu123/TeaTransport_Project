@@ -60,9 +60,9 @@ public class LoginPAgeDAOimpl implements LoginPAgeDAO {
         statement.setString(1,un);
         ResultSet resultSet = statement.executeQuery();
         String sss = "s";
-        System.out.println(sss);
+
         while (resultSet.next()){
-            System.out.println(sss);
+
             sss = resultSet.getString("userName");
 
         }
@@ -73,7 +73,7 @@ public class LoginPAgeDAOimpl implements LoginPAgeDAO {
             ResultSet resultSet1 = statement1.executeQuery();
             String sss1 = "s";
             while (resultSet1.next()){
-                System.out.println(sss1);
+
                 sss1 = resultSet1.getString("password");
             }
             if (sss1.equals(up)){

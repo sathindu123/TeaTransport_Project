@@ -1,6 +1,8 @@
 package lk.ijse.bo.custom.impl;
 
+import lk.ijse.Dao.DAOFactory;
 import lk.ijse.Dao.custom.InvoiceCustomerDAO;
+import lk.ijse.bo.custom.InvoiceCustomerBO;
 import lk.ijse.db.DBConnection;
 import lk.ijse.dto.InvoiceCustomerDto;
 import lk.ijse.entity.InvoiceCustomer;
@@ -15,111 +17,42 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class InvoiceCustomerBoimpl implements InvoiceCustomerDAO {
+public class InvoiceCustomerBoimpl implements InvoiceCustomerBO {
     private String[] dateArray = {"JANUARY","FEBRUARY","MARCH","APRILL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOMBER","NOVEMBER","DESEMBER"};
 
+    InvoiceCustomerDAO invoiceCustomerDAO = (InvoiceCustomerDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.INVOICECUSTOMER);
+
     public List<InvoiceCustomerDto> getTeLeaf(String id) throws SQLException, ClassNotFoundException {
-        LocalDateTime now = LocalDateTime.now();
 
-        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
-            now = now.minusMonths(1);
-            if (now.getDayOfMonth() == 1) {
-                now = now.minusYears(1);
-            }
-        }
-
-
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
-        String formattedDate = now.format(dateFormatter);
-
-        String startDate = formattedDate + "-01";
-        String endDate = now.withDayOfMonth(now.toLocalDate().lengthOfMonth())
-                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-
-
-        Connection connection = DBConnection.getInstance().getConnection();
-
-        String sql = "SELECT SUM(goldLeafAmount) , SUM(goodLeafAmount) " +
-                "FROM teabaginventory WHERE custId = ?" +
-                "AND date BETWEEN ? AND ?";
-
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1,id);
-        statement.setString(2,startDate);
-        statement.setString(3,endDate);
-
-        ResultSet resultSet = statement.executeQuery();
+        List<InvoiceCustomer> ar = invoiceCustomerDAO.getTeLeaf(id);
 
         List<InvoiceCustomerDto> dtoList = new ArrayList<>();
-        while (resultSet.next()) {
-            InvoiceCustomerDto dto = new InvoiceCustomerDto(resultSet.getInt(1),resultSet.getInt(2));
+
+        for (InvoiceCustomer rate : ar) {
+            InvoiceCustomerDto dto = new InvoiceCustomerDto(rate.getPrice(), rate.getPrice1());
             dtoList.add(dto);
         }
-
         return dtoList;
+
+
+
     }
 
     public List<InvoiceCustomerDto> customeTealeafDateGet(String id) throws SQLException, ClassNotFoundException {
-        LocalDateTime now = LocalDateTime.now();
 
-        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
-            now = now.minusMonths(1);
-            if (now.getDayOfMonth() == 1) {
-                now = now.minusYears(1);
-            }
-        }
-
-
-
-
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
-        String formattedDate = now.format(dateFormatter);
-
-        String startDate = formattedDate + "-01";
-        String endDate = now.withDayOfMonth(now.toLocalDate().lengthOfMonth())
-                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-
-
-        Connection connection = DBConnection.getInstance().getConnection();
-
-
-        String sql = "SELECT date, SUM(goldLeafAmount + goodLeafAmount) AS totalPrice " +
-                "FROM teabaginventory WHERE custId = ? " +
-                "AND date BETWEEN ? AND ? GROUP BY date";
-
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1, id);
-        statement.setString(2,startDate);
-        statement.setString(3,endDate);
-
-        ResultSet resultSet = statement.executeQuery();
+        List<InvoiceCustomer> ar = invoiceCustomerDAO.customeTealeafDateGet(id);
 
         List<InvoiceCustomerDto> dtoList = new ArrayList<>();
-        while (resultSet.next()) {
-            String date = resultSet.getString("date");
-            int totalPrice = resultSet.getInt("totalPrice");
 
-            // Create a DTO object to hold the result
-            InvoiceCustomerDto dto = new InvoiceCustomerDto(date, totalPrice);
+        for (InvoiceCustomer rate : ar) {
+            InvoiceCustomerDto dto = new InvoiceCustomerDto(rate.getDate(), rate.getPrice());
             dtoList.add(dto);
         }
-
         return dtoList;
     }
 
     public String getCustomerName(String id) throws SQLException, ClassNotFoundException {
-        Connection connection = DBConnection.getInstance().getConnection();
-        String sql = "SELECT name FROM customer WHERE id = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-
-        statement.setString(1,id);
-
-        ResultSet rst = statement.executeQuery();
-        String name = "";
-        if (rst.next()){
-            name = rst.getString(1);
-        }
-        return name;
+        return invoiceCustomerDAO.getCustomerName(id);
     }
 //    public List<InvoiceCustomerDto> getDetailsPurchase(String id) throws SQLException, ClassNotFoundException {
 //
@@ -211,190 +144,54 @@ public class InvoiceCustomerBoimpl implements InvoiceCustomerDAO {
 
 
     public double getAdvanceCustomer(String id, String month) throws SQLException, ClassNotFoundException {
-        Connection connection = DBConnection.getInstance().getConnection();
-        String sql = "SELECT SUM(monthPrice) AS monthPrice FROM advance WHERE custId = ? AND month = ? group by custId";
-        PreparedStatement statement = connection.prepareStatement(sql);
-
-        statement.setString(1,id);
-        statement.setString(2,month);
-
-        ResultSet rst = statement.executeQuery();
-        double ad = 0;
-
-        if(rst.next()){
-            ad = rst.getDouble("monthPrice");
-        }
-       return ad;
+       return invoiceCustomerDAO.getAdvanceCustomer(id,month);
     }
 
     public double nextAdvanceTotal(String id,String month) throws SQLException, ClassNotFoundException {
-        Connection connection = DBConnection.getInstance().getConnection();
-        String sql = "SELECT SUM(monthPrice) AS monthPrice FROM advance WHERE custId = ? AND month != ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-
-        statement.setString(1,id);
-        statement.setString(2,month);
-
-        ResultSet rst = statement.executeQuery();
-        double ad = 0;
-
-        if(rst.next()){
-            ad = rst.getDouble("monthPrice");
-        }
-        return ad;
+        return invoiceCustomerDAO.nextAdvanceTotal(id,month);
     }
 
 
     public double getPohoraCountCustomer(String id, String month) throws SQLException, ClassNotFoundException {
-        Connection connection = DBConnection.getInstance().getConnection();
-        String sql = "SELECT SUM(monthPrice) AS monthPrice FROM pohorapurchasecustomer WHERE custId = ? AND month = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-
-        statement.setString(1,id);
-        statement.setString(2,month);
-
-        ResultSet rst = statement.executeQuery();
-        double ad = 0;
-
-        if(rst.next()){
-            ad = rst.getDouble("monthPrice");
-        }
-        return ad;
+       return invoiceCustomerDAO.getPohoraCountCustomer(id,month);
     }
 
     public double nextPohoraTotal(String id, String month) throws SQLException, ClassNotFoundException {
-        Connection connection = DBConnection.getInstance().getConnection();
-        String sql = "SELECT SUM(monthPrice) AS monthPrice FROM pohorapurchasecustomer WHERE custId = ? AND month != ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-
-        statement.setString(1,id);
-        statement.setString(2,month);
-
-        ResultSet rst = statement.executeQuery();
-        double ad = 0;
-
-        if(rst.next()){
-            ad = rst.getDouble("monthPrice");
-        }
-        return ad;
+        return invoiceCustomerDAO.nextPohoraTotal(id,month);
     }
 
     public double getGiyamasaHiga(String id, String month) throws SQLException, ClassNotFoundException {
-        Connection connection = DBConnection.getInstance().getConnection();
-        String sql = "SELECT price FROM customerhigaprice WHERE custId = ? and month = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-
-        statement.setString(1,id);
-        statement.setString(2,month);
-
-        ResultSet rst = statement.executeQuery();
-        double ad = 0;
-
-        if(rst.next()){
-            ad = rst.getDouble("price");
-        }
-        return ad;
+        return invoiceCustomerDAO.getGiyamasaHiga(id,month);
     }
 
 
     public List<String> getAllProductId() throws SQLException, ClassNotFoundException {
-        Connection connection = DBConnection.getInstance().getConnection();
-
-        String sql = "SELECT id FROM product";
-
-        PreparedStatement statement = connection.prepareStatement(sql);
-        List<String> custDtos = new ArrayList<>();
-        ResultSet rst = statement.executeQuery();
-
-        while (rst.next()){
-            String id = rst.getString("id");
-            custDtos.add(id);
-        }
-        return custDtos;
+        return invoiceCustomerDAO.getAllProductId();
     }
 
     public List<String> getAllId() throws SQLException, ClassNotFoundException {
-        Connection connection = DBConnection.getInstance().getConnection();
-
-        String sql = "SELECT id FROM customer";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        List<String> custDtos = new ArrayList<>();
-        ResultSet rst = statement.executeQuery();
-
-        while (rst.next()){
-            String id = rst.getString("id");
-            custDtos.add(id);
-        }
-        return custDtos;
+        return invoiceCustomerDAO.getAllId();
     }
 
 
     public String cheackCustomerId(String id,String date) throws SQLException, ClassNotFoundException {
-        Connection connection = DBConnection.getInstance().getConnection();
-        String sql = "SELECT custId from payments WHERE custId = ? AND date = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1,id);
-        statement.setString(2,date);
-        ResultSet resultSet = statement.executeQuery();
-        String ssl = "";
-        while (resultSet.next()){
-            ssl = resultSet.getString("custId");
-        }
-        return ssl;
+        return invoiceCustomerDAO.cheackCustomerId(id,date);
     }
 
     public List<String> loadProductId() throws SQLException, ClassNotFoundException {
-        Connection connection = DBConnection.getInstance().getConnection();
-        String sql = "SELECT id from product";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        List<String> mk = new ArrayList<>();
-        ResultSet resultSet = statement.executeQuery();
-
-        while (resultSet.next()){
-            mk = Collections.singletonList(resultSet.getString(1));
-        }
-        return mk;
+        return invoiceCustomerDAO.loadProductId();
     }
-
-
-
 
     ////////////////////////////dailyHomagePage///////////////////////
 
 
     public List<InvoiceCustomerDto> getAllTeaLeafCount() throws SQLException, ClassNotFoundException {
-        LocalDateTime now = LocalDateTime.now();
 
-        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
-            now = now.minusMonths(1);
-            if (now.getDayOfMonth() == 1) {
-                now = now.minusYears(1);
-            }
-        }
-
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
-        String formattedDate = now.format(dateFormatter);
-
-        String startDate = formattedDate + "-01";
-        String endDate = now.withDayOfMonth(now.toLocalDate().lengthOfMonth())
-                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-
-
-        Connection connection = DBConnection.getInstance().getConnection();
-
-        String sql = "SELECT SUM(goldLeafAmount) , SUM(goodLeafAmount) " +
-                "FROM teabaginventory WHERE " +
-                "date BETWEEN ? AND ?";
-
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1,startDate);
-        statement.setString(2,endDate);
-
-        ResultSet resultSet = statement.executeQuery();
-
+        List<InvoiceCustomer> ar = invoiceCustomerDAO.getAllTeaLeafCount();
         List<InvoiceCustomerDto> dtoList = new ArrayList<>();
-        while (resultSet.next()) {
-            InvoiceCustomerDto dto = new InvoiceCustomerDto(resultSet.getInt(1),resultSet.getInt(2));
+
+        for (InvoiceCustomer rate : ar) {
+            InvoiceCustomerDto dto = new InvoiceCustomerDto(rate.getPrice(), rate.getPrice1());
             dtoList.add(dto);
         }
 
@@ -403,18 +200,4 @@ public class InvoiceCustomerBoimpl implements InvoiceCustomerDAO {
     }
 
 
-    @Override
-    public String save(InvoiceCustomer invoiceCustomer) throws SQLException, ClassNotFoundException {
-        return "";
-    }
-
-    @Override
-    public String update(InvoiceCustomer invoiceCustomer) throws SQLException, ClassNotFoundException {
-        return "";
-    }
-
-    @Override
-    public String delete(String t) throws SQLException, ClassNotFoundException {
-        return "";
-    }
 }

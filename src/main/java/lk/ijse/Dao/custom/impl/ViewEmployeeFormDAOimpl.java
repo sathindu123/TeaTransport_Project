@@ -14,18 +14,18 @@ import java.util.List;
 
 public class ViewEmployeeFormDAOimpl implements ViewEmployeeFormDAO {
 
-    public List<EmployeeManageDto> getAllCustomer() throws  Exception{
+    public List<EmployeeManage> getAllCustomer() throws  Exception{
         Connection connection = DBConnection.getInstance().getConnection();
 
         String sql = "Select * from employee";
 
         PreparedStatement statement = connection.prepareStatement(sql);
 
-        List<EmployeeManageDto> empDtos = new ArrayList<>();
+        List<EmployeeManage> empDtos = new ArrayList<>();
 
         ResultSet rst = statement.executeQuery();
         while(rst.next()){
-            EmployeeManageDto dto = new EmployeeManageDto(rst.getString(1),rst.getString(2),
+            EmployeeManage dto = new EmployeeManage(rst.getString(1),rst.getString(2),
                     rst.getString(3),rst.getInt(4));
             empDtos.add(dto);
         }
@@ -34,7 +34,7 @@ public class ViewEmployeeFormDAOimpl implements ViewEmployeeFormDAO {
 
 
 
-    public EmployeeManageDto BtnOKClickSearchEmployee(String id) throws SQLException, ClassNotFoundException {
+    public EmployeeManage BtnOKClickSearchEmployee(String id) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
         String sql = "SELECT * FROM employee WHERE empId = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -42,7 +42,7 @@ public class ViewEmployeeFormDAOimpl implements ViewEmployeeFormDAO {
 
         ResultSet rst = statement.executeQuery();
         if(rst.next()){
-            EmployeeManageDto dto = new EmployeeManageDto(rst.getString(1),
+            EmployeeManage dto = new EmployeeManage(rst.getString(1),
                     rst.getString(2), rst.getString(3),
                     rst.getInt(4));
 

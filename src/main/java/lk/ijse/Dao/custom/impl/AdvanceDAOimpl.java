@@ -2,6 +2,7 @@ package lk.ijse.Dao.custom.impl;
 
 import lk.ijse.Dao.custom.AdvanceDAO;
 import lk.ijse.db.DBConnection;
+import lk.ijse.entity.Advance;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,5 +22,20 @@ public class AdvanceDAOimpl implements AdvanceDAO {
             price = rst.getDouble("monthPrice");
         }
         return price;
+    }
+
+    @Override
+    public String save(Advance advance) throws SQLException, ClassNotFoundException {
+        return "";
+    }
+
+    @Override
+    public String update(Advance advance) throws SQLException, ClassNotFoundException {
+        return "";
+    }
+
+    @Override
+    public String delete(String t) throws SQLException, ClassNotFoundException {
+        return "";
     }
 }

@@ -14,16 +14,16 @@ import java.util.List;
 
 public class ViewStockDAOimpl implements ViewStockDAO {
 
-    public List<StockDto> getAllProducts() throws SQLException, ClassNotFoundException {
+    public List<Stock> getAllProducts() throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
         String sql = "SELECT * FROM product";
 
         PreparedStatement statement = connection.prepareStatement(sql);
-        List<StockDto> productDtos = new ArrayList<>();
+        List<Stock> productDtos = new ArrayList<>();
 
         ResultSet rst = statement.executeQuery();
         while (rst.next()) {
-            StockDto dto = new StockDto(rst.getString("id"),
+            Stock dto = new Stock(rst.getString("id"),
                     rst.getString("type"),
                     rst.getInt("count"),
                     rst.getDouble("price"));
@@ -33,7 +33,7 @@ public class ViewStockDAOimpl implements ViewStockDAO {
     }
 
 
-    public StockDto searchProduct(String id) throws SQLException, ClassNotFoundException {
+    public Stock searchProduct(String id) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
         String sql = "SELECT * FROM product WHERE type = ?";
 
@@ -42,7 +42,7 @@ public class ViewStockDAOimpl implements ViewStockDAO {
 
         ResultSet rst = statement.executeQuery();
         if (rst.next()) {
-            return new StockDto(rst.getString("id"),
+            return new Stock(rst.getString("id"),
                     rst.getString("type"),
                     rst.getInt("count"),
                     rst.getDouble("price"));

@@ -19,7 +19,7 @@ import java.util.List;
 public class InvoiceCustomerDAOimpl implements InvoiceCustomerDAO {
     private String[] dateArray = {"JANUARY","FEBRUARY","MARCH","APRILL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOMBER","NOVEMBER","DESEMBER"};
 
-    public List<InvoiceCustomerDto> getTeLeaf(String id) throws SQLException, ClassNotFoundException {
+    public List<InvoiceCustomer> getTeLeaf(String id) throws SQLException, ClassNotFoundException {
         LocalDateTime now = LocalDateTime.now();
 
         if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
@@ -51,16 +51,16 @@ public class InvoiceCustomerDAOimpl implements InvoiceCustomerDAO {
 
         ResultSet resultSet = statement.executeQuery();
 
-        List<InvoiceCustomerDto> dtoList = new ArrayList<>();
+        List<InvoiceCustomer> dtoList = new ArrayList<>();
         while (resultSet.next()) {
-            InvoiceCustomerDto dto = new InvoiceCustomerDto(resultSet.getInt(1),resultSet.getInt(2));
+            InvoiceCustomer dto = new InvoiceCustomer(resultSet.getInt(1),resultSet.getInt(2));
             dtoList.add(dto);
         }
 
         return dtoList;
     }
 
-    public List<InvoiceCustomerDto> customeTealeafDateGet(String id) throws SQLException, ClassNotFoundException {
+    public List<InvoiceCustomer> customeTealeafDateGet(String id) throws SQLException, ClassNotFoundException {
         LocalDateTime now = LocalDateTime.now();
 
         if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
@@ -95,13 +95,13 @@ public class InvoiceCustomerDAOimpl implements InvoiceCustomerDAO {
 
         ResultSet resultSet = statement.executeQuery();
 
-        List<InvoiceCustomerDto> dtoList = new ArrayList<>();
+        List<InvoiceCustomer> dtoList = new ArrayList<>();
         while (resultSet.next()) {
             String date = resultSet.getString("date");
             int totalPrice = resultSet.getInt("totalPrice");
 
             // Create a DTO object to hold the result
-            InvoiceCustomerDto dto = new InvoiceCustomerDto(date, totalPrice);
+            InvoiceCustomer dto = new InvoiceCustomer(date, totalPrice);
             dtoList.add(dto);
         }
 
@@ -363,7 +363,7 @@ public class InvoiceCustomerDAOimpl implements InvoiceCustomerDAO {
     ////////////////////////////dailyHomagePage///////////////////////
 
 
-    public List<InvoiceCustomerDto> getAllTeaLeafCount() throws SQLException, ClassNotFoundException {
+    public List<InvoiceCustomer> getAllTeaLeafCount() throws SQLException, ClassNotFoundException {
         LocalDateTime now = LocalDateTime.now();
 
         if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
@@ -393,9 +393,9 @@ public class InvoiceCustomerDAOimpl implements InvoiceCustomerDAO {
 
         ResultSet resultSet = statement.executeQuery();
 
-        List<InvoiceCustomerDto> dtoList = new ArrayList<>();
+        List<InvoiceCustomer> dtoList = new ArrayList<>();
         while (resultSet.next()) {
-            InvoiceCustomerDto dto = new InvoiceCustomerDto(resultSet.getInt(1),resultSet.getInt(2));
+            InvoiceCustomer dto = new InvoiceCustomer(resultSet.getInt(1),resultSet.getInt(2));
             dtoList.add(dto);
         }
 

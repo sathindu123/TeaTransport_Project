@@ -49,7 +49,7 @@ public class MonthlyRateDAOimpl implements MonthlyRateDAO {
         return "";
     }
 
-    public List<MonthlyRateDto> loadDetails() throws SQLException, ClassNotFoundException {
+    public List<MonthlyRate> loadDetails() throws SQLException, ClassNotFoundException {
 
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("YYYY");
         String date = LocalDate.now().format(dateTimeFormatter);
@@ -64,10 +64,10 @@ public class MonthlyRateDAOimpl implements MonthlyRateDAO {
 //        statement.setString(1,strDate);
 //        statement.setString(2,endDate);
 
-        List<MonthlyRateDto> list = new ArrayList<>();
+        List<MonthlyRate> list = new ArrayList<>();
         ResultSet rst = statement.executeQuery();
         while (rst.next()){
-            MonthlyRateDto dto = new MonthlyRateDto(rst.getString(1),rst.getDouble(2)
+            MonthlyRate dto = new MonthlyRate(rst.getString(1),rst.getDouble(2)
             ,rst.getDouble(3));
 
             list.add(dto);
@@ -76,7 +76,7 @@ public class MonthlyRateDAOimpl implements MonthlyRateDAO {
     }
 
 
-    public List<MonthlyRateDto> getLeafPrice(String date) throws SQLException, ClassNotFoundException {
+    public List<MonthlyRate> getLeafPrice(String date) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
         String sql = "SELECT goldrate,goodrate FROM monthlyRate WHERE month = ? ";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -85,12 +85,12 @@ public class MonthlyRateDAOimpl implements MonthlyRateDAO {
         statement.setString(1,date);
 
 
-        List<MonthlyRateDto> list = new ArrayList<>();
+        List<MonthlyRate> list = new ArrayList<>();
 
         ResultSet rst = statement.executeQuery();
 
         while (rst.next()){
-            MonthlyRateDto dto = new MonthlyRateDto(rst.getDouble("goldrate"),rst.getDouble("goodrate"));
+            MonthlyRate dto = new MonthlyRate(rst.getDouble("goldrate"),rst.getDouble("goodrate"));
             list.add(dto);
         }
         return list;

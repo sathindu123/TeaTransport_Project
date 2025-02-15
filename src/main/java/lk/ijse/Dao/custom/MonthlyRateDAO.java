@@ -16,8 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface MonthlyRateDAO extends CrudDAO<MonthlyRate> {
-    List<MonthlyRateDto> loadDetails() throws SQLException, ClassNotFoundException;
-    List<MonthlyRateDto> getLeafPrice(String date) throws SQLException, ClassNotFoundException;
+    List<MonthlyRate> loadDetails() throws SQLException, ClassNotFoundException;
+    List<MonthlyRate> getLeafPrice(String date) throws SQLException, ClassNotFoundException;
     double[] getAllCustomerHiga(String dateMonth, double lblGoodLea, double lblGoldLeaf) throws SQLException, ClassNotFoundException;
     List<Integer> getallMonthlyLeafCount(String date) throws SQLException, ClassNotFoundException;
     Double getPurchase(String date) throws SQLException, ClassNotFoundException;

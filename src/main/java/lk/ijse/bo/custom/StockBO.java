@@ -16,4 +16,6 @@ public interface StockBO extends SuperBO {
     String getNames(String id) throws SQLException, ClassNotFoundException;
     int getCounts(String id) throws SQLException, ClassNotFoundException;
     String update(StockDto stockDto) throws SQLException, ClassNotFoundException;
+
+
 }

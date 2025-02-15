@@ -15,9 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface ViewManageDAO extends CrudDAO<Stock> {
-    List<StockDto> getAllStocks() throws SQLException, ClassNotFoundException;
+    List<Stock> getAllStocks() throws SQLException, ClassNotFoundException;
     double getTotalAdvance() throws SQLException, ClassNotFoundException;
     double getTotalAdvanceCustomer(String id) throws SQLException, ClassNotFoundException;
-    StockDto ViewManageSearchStock(String id) throws SQLException, ClassNotFoundException;
+    Stock ViewManageSearchStock(String id) throws SQLException, ClassNotFoundException;
     double getTotalAdvanceSelectDate(String strDate, String endDate) throws SQLException, ClassNotFoundException;
 }

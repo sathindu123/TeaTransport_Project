@@ -15,9 +15,9 @@ public interface DailyHomePageBO extends SuperBO {
     double getOtherTotal() throws SQLException, ClassNotFoundException;
     List<DailyHomePageDto> LoadTable()throws SQLException, ClassNotFoundException;
 
-    String btnSaveDailyCount(DailyHomePageDto dto);
+    String btnSaveDailyCount(DailyHomePageDto dto) throws SQLException, ClassNotFoundException;
 
-    String getNam(String id);
+    String getNam(String id) throws SQLException, ClassNotFoundException;
 
-    String btnUpdateDailyCount(DailyHomePageDto dto);
+    String btnUpdateDailyCount(DailyHomePageDto dto) throws SQLException, ClassNotFoundException;
 }

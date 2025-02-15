@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lk.ijse.bo.custom.MonthlyRateBO;
+import lk.ijse.bo.custom.impl.MonthlyRateBoimpl;
 import lk.ijse.dto.MonthlyRateDto;
 
 import javax.swing.*;
@@ -20,7 +22,9 @@ public class NetPriceKgController {
     public TextField txtRate1;
     public ComboBox comBoxId;
     public TextField txtYear;
-    private MonthlyRateDAOimpl MONTH_RATE_MODEL;
+
+    MonthlyRateBO monthlyRateBO = new MonthlyRateBoimpl();
+
     @FXML
     private TableView<MonthlyRateDto> tblNetPrice;
     @FXML
@@ -47,7 +51,7 @@ public class NetPriceKgController {
     private void loadTableprice() {
         ObservableList<MonthlyRateDto> rateList =FXCollections.observableArrayList();
         try {
-            List<MonthlyRateDto> rateDto = MONTH_RATE_MODEL.loadDetails();
+            List<MonthlyRateDto> rateDto = monthlyRateBO.loadDetails();
             rateList.addAll(rateDto);
         }catch (Exception e){
             JOptionPane.showMessageDialog(null,"Error occurred" + e.getMessage());
@@ -66,7 +70,7 @@ public class NetPriceKgController {
     }
 
     public NetPriceKgController(){
-        MONTH_RATE_MODEL = new MonthlyRateDAOimpl();
+
     }
 
 
@@ -95,7 +99,7 @@ public class NetPriceKgController {
         }
         MonthlyRateDto dto = new MonthlyRateDto(date,pric,pric1);
         try {
-            String resp = MONTH_RATE_MODEL.btnSaveRate(dto);
+            String resp = monthlyRateBO.btnSaveRate(dto);
             JOptionPane.showMessageDialog(null, "Save Status: " + resp, "Save Status", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Error occurred" + e.getMessage());
@@ -138,7 +142,7 @@ public class NetPriceKgController {
         }
         MonthlyRateDto dto = new MonthlyRateDto(date,pric,pric1);
         try {
-            String resp = MONTH_RATE_MODEL.btnUpdateRate(dto);
+            String resp = monthlyRateBO.btnUpdateRate(dto);
             JOptionPane.showMessageDialog(null, "Save Status: " + resp, "Save Status", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Error occurred" + e.getMessage());

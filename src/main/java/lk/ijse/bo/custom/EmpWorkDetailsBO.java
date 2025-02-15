@@ -5,7 +5,9 @@ import lk.ijse.bo.SuperBO;
 import lk.ijse.dto.EmpWordDetailDto;
 import lk.ijse.entity.EmpWordDetail;
 
+import java.sql.SQLException;
+
 public interface EmpWorkDetailsBO extends SuperBO {
 
-    String addEmpDetails(EmpWordDetailDto empdto);
+    String addEmpDetails(EmpWordDetailDto empdto) throws SQLException, ClassNotFoundException;
 }

@@ -1,13 +1,14 @@
 package lk.ijse.bo.custom;
 
 import lk.ijse.Dao.CrudDAO;
+import lk.ijse.bo.SuperBO;
 import lk.ijse.dto.InvoiceCustomerDto;
 import lk.ijse.entity.InvoiceCustomer;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public interface InvoiceCustomerDAO extends CrudDAO<InvoiceCustomer> {
+public interface InvoiceCustomerBO extends SuperBO {
     List<InvoiceCustomerDto> getTeLeaf(String id) throws SQLException, ClassNotFoundException;
     List<InvoiceCustomerDto> customeTealeafDateGet(String id) throws SQLException, ClassNotFoundException;
     String getCustomerName(String id) throws SQLException, ClassNotFoundException;

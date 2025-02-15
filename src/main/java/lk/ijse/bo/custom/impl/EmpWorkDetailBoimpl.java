@@ -1,5 +1,6 @@
 package lk.ijse.bo.custom.impl;
 
+import lk.ijse.Dao.DAOFactory;
 import lk.ijse.Dao.custom.EmpWorkDetailsDAO;
 import lk.ijse.bo.custom.EmpWorkDetailsBO;
 import lk.ijse.db.DBConnection;
@@ -9,8 +10,11 @@ import lk.ijse.entity.EmpWordDetail;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class EmpWorkDetailBoimpl implements EmpWorkDetailsBO {
+
+    EmpWorkDetailsDAO empWorkDetailsDAO = (EmpWorkDetailsDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.EMPWORK);
 
     public String save(EmpWordDetail empdto) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
@@ -29,7 +33,7 @@ public class EmpWorkDetailBoimpl implements EmpWorkDetailsBO {
 
 
     @Override
-    public String addEmpDetails(EmpWordDetailDto empdto) {
-        return "";
+    public String addEmpDetails(EmpWordDetailDto empdto) throws SQLException, ClassNotFoundException {
+        return empWorkDetailsDAO.save(new EmpWordDetail(empdto.getId(),empdto.getDate()));
     }
 }

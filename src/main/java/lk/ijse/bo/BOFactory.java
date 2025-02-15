@@ -15,9 +15,10 @@ public class BOFactory {
 
     }
     public enum BOTypes{
-        CUSTOMER,ITEM,PLACE_ORDER
+        CUSTOMER,DAILY,EMPLOYEEmANAGE,EMPLOYEESALARY,EMPWORK,GETCUSTOMERDETAILS,INVOICECUSTOMER,INVOICEMANAGE,LOGINPAGE,
+        MONTHLYRATE,SALARYPRICEEMP,STOCK,VIEWCUST,VIEWEMP,VIEWEMPWORKDETAILS,VIEWMANAGE,VIEWSTOCK,QUERY,ADVANCE
     }
-    public SuperBO getBO(BOTypes boTypes){
+    public SuperDAO getBO(BOFactory.BOTypes boTypes){
         switch (boTypes){
             case CUSTOMER:
                 return new CustomerManageDAOimpl();
@@ -25,7 +26,7 @@ public class BOFactory {
                 return new DailyHomePageDAOimpl();
             case EMPLOYEEmANAGE:
                 return new EmployeeManageDAOimpl();
-            case OEMPLOYEESALARY:
+            case EMPLOYEESALARY:
                 return new EmpSalaryDAOimpl();
             case EMPWORK:
                 return new EmpWorkDetailDAOimpl();
@@ -53,7 +54,10 @@ public class BOFactory {
                 return new ViewManageDAOimpl();
             case VIEWSTOCK:
                 return new ViewStockDAOimpl();
-
+            case QUERY:
+                return new QueryDAOimpl();
+            case ADVANCE:
+                return new AdvanceDAOimpl();
             default:
                 return null;
         }

@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import lk.ijse.bo.custom.ViewStockBO;
+import lk.ijse.bo.custom.impl.ViewStockBoimpl;
 import lk.ijse.dto.StockDto;
 
 import java.sql.SQLException;
@@ -14,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ViewStockController {
-    private ViewStockDAOimpl VIEW_STOCK_MODEL;
+    ViewStockBO viewStockBO = new ViewStockBoimpl();
 
     public TextField txtSearchProduct;
 
@@ -36,7 +38,7 @@ public class ViewStockController {
 
 
     public ViewStockController(){
-        VIEW_STOCK_MODEL = new ViewStockDAOimpl();
+
     }
 
     public void initialize(){
@@ -72,7 +74,7 @@ public class ViewStockController {
 
         List<String> suggestions = new ArrayList<>();
         try {
-            suggestions = VIEW_STOCK_MODEL.searchStock(typedText);
+            suggestions = viewStockBO.searchStock(typedText);
         } catch (SQLException e) {
             System.out.println("SQL Error: " + e.getMessage());
         } catch (ClassNotFoundException e) {
@@ -93,7 +95,7 @@ public class ViewStockController {
         ObservableList<StockDto> productList = FXCollections.observableArrayList();
         try {
             // Fetch product data from the model
-            List<StockDto> productDtos = VIEW_STOCK_MODEL.getAllProducts();  // Updated method name
+            List<StockDto> productDtos = viewStockBO.getAllProducts();  // Updated method name
             // Add fetched data to the ObservableList
             productList.addAll(productDtos);
         } catch (Exception e) {
@@ -116,7 +118,7 @@ public class ViewStockController {
         String id = txtSearchProduct.getText();
 
         try {
-            StockDto dto = VIEW_STOCK_MODEL.searchProduct(id);  // Updated method name
+            StockDto dto = viewStockBO.searchProduct(id);  // Updated method name
             if (dto != null) {
                 ObservableList<StockDto> searchResult = FXCollections.observableArrayList();
                 searchResult.add(dto);

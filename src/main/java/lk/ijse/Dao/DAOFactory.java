@@ -14,8 +14,8 @@ public class DAOFactory{
     }
 
     public enum DAOTypes{
-        CUSTOMER,DAILY,EMPLOYEEmANAGE,OEMPLOYEESALARY,EMPWORK,GETCUSTOMERDETAILS,INVOICECUSTOMER,INVOICEMANAGE,LOGINPAGE,
-        MONTHLYRATE,SALARYPRICEEMP,STOCK,VIEWCUST,VIEWEMP,VIEWEMPWORKDETAILS,VIEWMANAGE,VIEWSTOCK
+        CUSTOMER,DAILY,EMPLOYEEmANAGE,EMPLOYEESALARY,EMPWORK,GETCUSTOMERDETAILS,INVOICECUSTOMER,INVOICEMANAGE,LOGINPAGE,
+        MONTHLYRATE,SALARYPRICEEMP,STOCK,VIEWCUST,VIEWEMP,VIEWEMPWORKDETAILS,VIEWMANAGE,VIEWSTOCK,QUERY,ADVANCE
     }
     public SuperDAO getDAO(DAOTypes daoTypes){
         switch (daoTypes){
@@ -25,7 +25,7 @@ public class DAOFactory{
                 return new DailyHomePageDAOimpl();
             case EMPLOYEEmANAGE:
                 return new EmployeeManageDAOimpl();
-            case OEMPLOYEESALARY:
+            case EMPLOYEESALARY:
                 return new EmpSalaryDAOimpl();
             case EMPWORK:
                 return new EmpWorkDetailDAOimpl();
@@ -53,7 +53,10 @@ public class DAOFactory{
                 return new ViewManageDAOimpl();
             case VIEWSTOCK:
                 return new ViewStockDAOimpl();
-
+            case QUERY:
+                return new QueryDAOimpl();
+            case ADVANCE:
+                return new AdvanceDAOimpl();
             default:
                 return null;
         }

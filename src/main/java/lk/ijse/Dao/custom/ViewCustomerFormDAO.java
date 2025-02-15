@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface ViewCustomerFormDAO extends CrudDAO<CustomerManage> {
-    List<CustomerManageDto> getAllCustomer() throws  Exception;
-    CustomerManageDto searchCustomer(String id) throws Exception;
+    List<CustomerManage> getAllCustomer() throws  Exception;
+    CustomerManage searchCustomer(String id) throws Exception;
     List<String> searchCus(String typedText) throws SQLException, ClassNotFoundException;
 }

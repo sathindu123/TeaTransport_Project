@@ -12,10 +12,10 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.ijse.Dao.custom.impl.CustomerManageDAOimpl;
+import lk.ijse.bo.custom.*;
+import lk.ijse.bo.custom.impl.*;
 import lk.ijse.db.DBConnection;
 import lk.ijse.dto.*;
-import lk.ijse.Dao.*;
 import javafx.scene.input.KeyEvent;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.design.JasperDesign;
@@ -37,6 +37,17 @@ import java.util.List;
 //import static jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyle.parameters;
 
 public class InvoiceManageController extends ManagementCetegoryController {
+
+    InvoiceManageBO invoiceManageBO = new InvoiceManageBoimpl();
+    SalaryPriceEmployeeBO salaryPriceEmployeeBO = new SalaryPriceEmployeeBoimpl();
+    CustomerManageBO customerManageBO = new CustomerManageBoimpl();
+    EmployeeManageBO employeeManageBO = new EmployeeManageBoimpl();
+    MonthlyRateBO monthlyRateBO = new MonthlyRateBoimpl();
+    ViewEmpWorkDetailsBO viewEmpWorkDetailsBO = new ViewEmpWorkDetailsBoimpl();
+    EmpSalaryBO empSalaryBO = new EmpSalaryBoimpl();
+    ViewStockBO viewStockBO = new ViewStockBoimpl();
+    QuearyBO quearyBO = new QuearyBOimpl();
+
     @FXML
     private ComboBox comPID;
     private AnchorPane anchorPane;
@@ -44,13 +55,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
 
     private String[] dateArray = {"JANUARY","FEBRUARY","MARCH","APRILL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOMBER","NOVEMBER","DESEMBER"};
 
-    private InvoiceCustomerDAOimpl INVOICE_CUSTOMER_MODEL;
-    private SalaryPriceEmployeeDAOimpl SALARY_EMP_MODEl;
-    private CustomerManageDAOimpl CUST_MNG_MODEL;
-    private EmpSalaryDAOimpl EMP_SALARY;
-    private InvoiceManageDAOimpl INVOICE_MANAGE_MODEL;
-    private ViewEmpWorkDetailsDAOimpl VIEW_EMP_MODEL;
-    private MonthlyRateDAOimpl MONTH_RATE;
+
     private int count = 0;
     private int payCountEmp;
     private int TotPrice = 0;
@@ -190,43 +195,43 @@ public class InvoiceManageController extends ManagementCetegoryController {
     private Label lblNextAdvanceHiga;
 
     @FXML
-    private TableView<LoadProductPurchase> tblT;
+    private TableView<LoadProductPurchaseDto> tblT;
     @FXML
-    private TableColumn<LoadProductPurchase,String >TName;
+    private TableColumn<LoadProductPurchaseDto,String >TName;
     @FXML
-    private TableColumn<LoadProductPurchase,String>TDate;
+    private TableColumn<LoadProductPurchaseDto,String>TDate;
     @FXML
-    private TableColumn<LoadProductPurchase,String >TProduct;
+    private TableColumn<LoadProductPurchaseDto,String >TProduct;
     @FXML
-    private TableColumn<LoadProductPurchase,Integer>TCount;
+    private TableColumn<LoadProductPurchaseDto,Integer>TCount;
     @FXML
-    private TableColumn<LoadProductPurchase,Double>TPrice;
+    private TableColumn<LoadProductPurchaseDto,Double>TPrice;
 
     @FXML
-    private TableView<LoadProductPurchase> tblO;
+    private TableView<LoadProductPurchaseDto> tblO;
     @FXML
-    private TableColumn<LoadProductPurchase,String >OName;
+    private TableColumn<LoadProductPurchaseDto,String >OName;
     @FXML
-    private TableColumn<LoadProductPurchase,String>ODate;
+    private TableColumn<LoadProductPurchaseDto,String>ODate;
     @FXML
-    private TableColumn<LoadProductPurchase,String >OProduct;
+    private TableColumn<LoadProductPurchaseDto,String >OProduct;
     @FXML
-    private TableColumn<LoadProductPurchase,Integer>OCount;
+    private TableColumn<LoadProductPurchaseDto,Integer>OCount;
     @FXML
-    private TableColumn<LoadProductPurchase,Double>OPrice;
+    private TableColumn<LoadProductPurchaseDto,Double>OPrice;
 
     @FXML
-    private TableView<LoadProductPurchase> tblF;
+    private TableView<LoadProductPurchaseDto> tblF;
     @FXML
-    private TableColumn<LoadProductPurchase,String >FName;
+    private TableColumn<LoadProductPurchaseDto,String >FName;
     @FXML
-    private TableColumn<LoadProductPurchase,String>FDate;
+    private TableColumn<LoadProductPurchaseDto,String>FDate;
     @FXML
-    private TableColumn<LoadProductPurchase,String >FProduct;
+    private TableColumn<LoadProductPurchaseDto,String >FProduct;
     @FXML
-    private TableColumn<LoadProductPurchase,Integer>FCount;
+    private TableColumn<LoadProductPurchaseDto,Integer>FCount;
     @FXML
-    private TableColumn<LoadProductPurchase,Double>FPrice;
+    private TableColumn<LoadProductPurchaseDto,Double>FPrice;
 
     @FXML
     private TableView<AdvanceDto> tblA;
@@ -275,18 +280,11 @@ public class InvoiceManageController extends ManagementCetegoryController {
     @FXML
     private ListView<String > ListViewF;
 
-    private ViewStockDAOimpl VIEW_STOCK_MODEL;
+
 
 
     public InvoiceManageController(){
-        INVOICE_MANAGE_MODEL = new InvoiceManageDAOimpl();
-        VIEW_EMP_MODEL = new ViewEmpWorkDetailsDAOimpl();
-        EMP_SALARY = new EmpSalaryDAOimpl();
-        SALARY_EMP_MODEl = new SalaryPriceEmployeeDAOimpl();
-        INVOICE_CUSTOMER_MODEL = new InvoiceCustomerDAOimpl();
-        MONTH_RATE = new MonthlyRateDAOimpl();
-        CUST_MNG_MODEL = new CustomerManageDAOimpl();
-        VIEW_STOCK_MODEL = new ViewStockDAOimpl();
+
     }
 
 
@@ -384,19 +382,19 @@ public class InvoiceManageController extends ManagementCetegoryController {
         ListViewF.setVisible(false);
         txFProductID.setOnKeyReleased(this::handleKeyReleasedStock);
 
-        // Handle clicking on an item in the ListView
+
         ListViewF.setOnMouseClicked(event -> {
             String selectedSuggestion =ListViewF.getSelectionModel().getSelectedItem();
             if (selectedSuggestion != null) {
                 txFProductID.setText(selectedSuggestion); // Update the search bar with the selected suggestion
-                ListViewF.getItems().clear(); // Clear the suggestions
-                ListViewF.setVisible(false); // Hide the suggestions after selection
+                ListViewF.getItems().clear();
+                ListViewF.setVisible(false);
             }
         });
 
         txFProductID.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.DOWN && ListViewF.isVisible()) {
-                // Focus on the ListView when the down arrow key is pressed
+
                 ListViewF.requestFocus();
                 ListViewF.getSelectionModel().selectFirst(); // Select the first item in the ListView
             }
@@ -404,12 +402,12 @@ public class InvoiceManageController extends ManagementCetegoryController {
 
         ListViewF.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                // Select the currently highlighted item in the ListView
+
                 String selectedSuggestion = ListViewF.getSelectionModel().getSelectedItem();
                 if (selectedSuggestion != null) {
                     txFProductID.setText(selectedSuggestion); // Update the text field with the selected suggestion
-                    ListViewF.getItems().clear(); // Clear the suggestions
-                    ListViewF.setVisible(false); // Hide the ListView
+                    ListViewF.getItems().clear();
+                    ListViewF.setVisible(false);
                 }
             } else if (event.getCode() == KeyCode.ESCAPE) {
                 // Hide the ListView when the ESC key is pressed
@@ -432,16 +430,15 @@ public class InvoiceManageController extends ManagementCetegoryController {
 
         List<String> suggestions = new ArrayList<>();
         try {
-            suggestions = VIEW_STOCK_MODEL.searchStock(typedText);
+            suggestions = viewStockBO.searchStock(typedText);
         } catch (SQLException e) {
-            System.out.println("SQL Error: " + e.getMessage());
+
         } catch (ClassNotFoundException e) {
-            System.out.println("Class Not Found: " + e.getMessage());
+
         }
 
-        // Update the suggestion list if matches are found
         if (!suggestions.isEmpty()) {
-            ListViewF.getItems().setAll(suggestions); // Populate the ListView with suggestions
+            ListViewF.getItems().setAll(suggestions);
             ListViewF.setVisible(true);
         } else {
             ListViewF.getItems().clear();
@@ -452,7 +449,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
     private void nextPaymentID()  {
 
         try {
-            String dsp = INVOICE_MANAGE_MODEL.getPID();
+            String dsp = invoiceManageBO.getPID();
             lblPaymentsNb.setText(dsp);
 
         } catch (SQLException e) {
@@ -468,7 +465,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
         deleteA.setDisable(true);
         ObservableList<AdvanceDto> Sli = FXCollections.observableArrayList();
         try {
-            List<AdvanceDto> dto = INVOICE_MANAGE_MODEL.loadA();
+            List<AdvanceDto> dto = quearyBO.loadA();
             Sli.addAll(dto);
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -482,11 +479,11 @@ public class InvoiceManageController extends ManagementCetegoryController {
 
 
         deleteF.setDisable(true);
-        ObservableList<LoadProductPurchase> Sli = FXCollections.observableArrayList();
+        ObservableList<LoadProductPurchaseDto> Sli = FXCollections.observableArrayList();
         ObservableList<String > Slis = FXCollections.observableArrayList();
         try {
-            List<String> mko = INVOICE_CUSTOMER_MODEL.loadProductId();
-            List<LoadProductPurchase> dto = INVOICE_MANAGE_MODEL.loadF();
+            List<String> mko = invoiceCustomerBO.loadProductId();
+            List<LoadProductPurchaseDto> dto = invoiceManageBO.loadF();
             Sli.addAll(dto);
             Slis.addAll(mko);
        //     comPID.setItems(Slis);
@@ -501,9 +498,9 @@ public class InvoiceManageController extends ManagementCetegoryController {
     private void loadTableO() {
         updateO.setDisable(true);
         deleteO.setDisable(true);
-        ObservableList<LoadProductPurchase> Sli = FXCollections.observableArrayList();
+        ObservableList<LoadProductPurchaseDto> Sli = FXCollections.observableArrayList();
         try {
-            List<LoadProductPurchase> dto = INVOICE_MANAGE_MODEL.loadO();
+            List<LoadProductPurchaseDto> dto = invoiceManageBO.loadO();
             Sli.addAll(dto);
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -514,9 +511,9 @@ public class InvoiceManageController extends ManagementCetegoryController {
     }
 
     private void loadTableT() {
-        ObservableList<LoadProductPurchase> Sli = FXCollections.observableArrayList();
+        ObservableList<LoadProductPurchaseDto> Sli = FXCollections.observableArrayList();
         try {
-            List<LoadProductPurchase> dto = INVOICE_MANAGE_MODEL.loadT();
+            List<LoadProductPurchaseDto> dto = invoiceManageBO.loadT();
             Sli.addAll(dto);
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -559,7 +556,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
 
         String passDate = formattedDate1 + dateMonth;
         try {
-            List<MonthlyRateDto> dto = MONTH_RATE.getLeafPrice(passDate);
+            List<MonthlyRateDto> dto = monthlyRateBO.getLeafPrice(passDate);
             nrt.addAll(dto);
 
             if (!dto.isEmpty()) {
@@ -587,7 +584,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
 
     private void oneDayEmpSalaryTxtfield() {
         try {
-            payCountEmp = SALARY_EMP_MODEl.getSalaryEmp();
+            payCountEmp = salaryPriceEmployeeBO.getSalaryEmp();
             txtEmpSalaryPriceOneDay.setText(""+payCountEmp);
         } catch (Exception e) {
             System.out.println(e);
@@ -599,9 +596,9 @@ public class InvoiceManageController extends ManagementCetegoryController {
         ObservableList<EmpSalaryDto> empList = FXCollections.observableArrayList();
 
         try {
-            List<EmpSalaryDto> empDto = EMP_SALARY.loadPayPriceEmp();
+            List<EmpSalaryDto> empDto = empSalaryBO.loadPayPriceEmp();
             empList.addAll(empDto);
-            int py = EMP_SALARY.getSalaryAll();
+            int py = empSalaryBO.getSalaryAll();
             totPriceEmp.setText(""+py+" ");
 
         } catch (Exception e) {
@@ -616,13 +613,13 @@ public class InvoiceManageController extends ManagementCetegoryController {
     private void loadTableEmp() {
         ObservableList<ViewEmpWorkDetailsDto> empList = FXCollections.observableArrayList();
         try {
-            List<ViewEmpWorkDetailsDto> empDtos = VIEW_EMP_MODEL.loadtblEmp();
+            List<ViewEmpWorkDetailsDto> empDtos = quearyBO.loadtblEmp();
             empList.addAll(empDtos);
-            count = VIEW_EMP_MODEL.getCountEmp();
+            count = quearyBO.getCountEmp();
             lblCount.setText(""+count+"  ");
             lblAmount.setText(""+(count*payCountEmp)+"  ");
 
-            int py = EMP_SALARY.getSalaryAll();
+            int py = empSalaryBO.getSalaryAll();
             txtPayCount.setText(""+((count*payCountEmp)-py));
 
         }catch (Exception e){
@@ -661,7 +658,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
             count = Integer.parseInt(countstr);
 
             // Retrieve the price based on the product ID
-            pricePerProduct = INVOICE_MANAGE_MODEL.getPricPhora(productIdstr);
+            pricePerProduct = invoiceManageBO.getPricPhora(productIdstr);
 
             // Calculate the total price
             totalPrice = count * pricePerProduct;
@@ -708,7 +705,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
         StockDto stockDto = new StockDto(productId, "Product Category", count, totalPrice);
         try {
             // Save the data to the database
-            String resp = INVOICE_MANAGE_MODEL.insertData(invoiceManageDto,stockDto);
+            String resp = invoiceManageBO.insertData(invoiceManageDto,stockDto);
             JOptionPane.showMessageDialog(null, "Save Status: " + resp, "Save Status", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error occurred: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
@@ -755,7 +752,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
         StockDto stockDto = new StockDto(productId, "Product Category", count, totalPrice);
         try {
             // Save the data to the database
-            String resp = INVOICE_MANAGE_MODEL.updateData(invoiceManageDto,stockDto);
+            String resp = invoiceManageBO.updateData(invoiceManageDto,stockDto);
             JOptionPane.showMessageDialog(null, "Save Status: " + resp, "Save Status", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error occurred: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
@@ -788,7 +785,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
             count = Integer.parseInt(countStr);
 
             // Retrieve the price based on the product ID
-            pricePerProduct = INVOICE_MANAGE_MODEL.getPricPhora(productId);
+            pricePerProduct = invoiceManageBO.getPricPhora(productId);
 
             // Calculate the total price
             totalPrice = count * pricePerProduct;
@@ -815,7 +812,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
         String warika = txFCount1.getText();// Already calculated price
 
         try {
-            productId = VIEW_STOCK_MODEL.getNameId(productId);
+            productId = viewStockBO.getNameId(productId);
         } catch (SQLException e) {
 
         } catch (ClassNotFoundException e) {
@@ -849,7 +846,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
         StockDto stockDto = new StockDto(productId, "Product Category", count, totalPrice);
         try {
 
-            String resp = INVOICE_MANAGE_MODEL.insertDataPohora(invoiceManageDto,stockDto,warik,totalPrice);
+            String resp = invoiceManageBO.insertDataPohora(invoiceManageDto,stockDto,warik,totalPrice);
             JOptionPane.showMessageDialog(null, resp, "Operation Status", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error occurred: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
@@ -887,7 +884,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
         StockDto stockDto = new StockDto(productId, "Product Category", count, totalPrice);
         try {
 
-            String resp = INVOICE_MANAGE_MODEL.deleteDataPohora(invoiceManageDto,stockDto,warik,totalPrice);
+            String resp = invoiceManageBO.deleteDataPohora(invoiceManageDto,stockDto,warik,totalPrice);
             JOptionPane.showMessageDialog(null, resp, "Operation Status", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error occurred: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
@@ -961,7 +958,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
 
                     String resp = "";
                     try {
-                         resp = INVOICE_MANAGE_MODEL.btnSaveAdvance(invoiceManageDto);
+                         resp = invoiceManageBO.btnSaveAdvance(invoiceManageDto);
 
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null,"Error consuded" + e.getMessage());
@@ -990,7 +987,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
                     InvoiceManageDto invoiceManageDto = new InvoiceManageDto(id, date,month,Double.parseDouble(amount),monthPrice);
                     String resp = "";
                     try {
-                         resp = INVOICE_MANAGE_MODEL.btnSaveAdvance(invoiceManageDto);
+                         resp = invoiceManageBO.btnSaveAdvance(invoiceManageDto);
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null,"Error consuded" + e.getMessage());
 
@@ -1030,7 +1027,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
         }
 
         try {
-            String resp = INVOICE_MANAGE_MODEL.btnUpdateAdvance(id,date,pric);
+            String resp = invoiceManageBO.btnUpdateAdvance(id,date,pric);
             JOptionPane.showMessageDialog(null,"Save Status " +resp,"save Status",JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Error consuded" + e.getMessage());
@@ -1067,7 +1064,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
             count = Integer.parseInt(countStr);
 
             // Retrieve the price based on the product ID
-            pricePerProduct = INVOICE_MANAGE_MODEL.getPricPhora(productId);
+            pricePerProduct = invoiceManageBO.getPricPhora(productId);
 
             // Calculate the total price
             totalPrice = count * pricePerProduct;
@@ -1112,7 +1109,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
         StockDto stockDto = new StockDto(productId, "Product Category", count, totalPrice);
         try {
             // Save the data to the database
-            String resp = INVOICE_MANAGE_MODEL.insertData(invoiceManageDto,stockDto);
+            String resp = invoiceManageBO.insertData(invoiceManageDto,stockDto);
             JOptionPane.showMessageDialog(null, "Save Status: " + resp, "Save Status", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error occurred: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
@@ -1166,7 +1163,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
         InvoiceManageDto invoiceManageDto = new InvoiceManageDto(id, date, productId, count, totalPrice);
         StockDto stockDto = new StockDto(productId, "Product Category", count, totalPrice);
         try {
-            String resp = INVOICE_MANAGE_MODEL.updateData(invoiceManageDto,stockDto);
+            String resp = invoiceManageBO.updateData(invoiceManageDto,stockDto);
             JOptionPane.showMessageDialog(null, "Save Status: " + resp, "Save Status", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error occurred: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
@@ -1211,7 +1208,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
         }
         EmpSalaryDto dto = new EmpSalaryDto(id,date,pricecont);
         try{
-            String resp = EMP_SALARY.insertSalarayEmp(dto);
+            String resp = empSalaryBO.insertSalarayEmp(dto);
 
             JOptionPane.showMessageDialog(null, "Save Status: " + resp, "Save Status", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
@@ -1230,18 +1227,18 @@ public class InvoiceManageController extends ManagementCetegoryController {
         ObservableList<ViewEmpWorkDetailsDto> empList = FXCollections.observableArrayList();
         ObservableList<EmpSalaryDto> emList = FXCollections.observableArrayList();
         try {
-            List<ViewEmpWorkDetailsDto> empDto = VIEW_EMP_MODEL.searchEmpId(id);
+            List<ViewEmpWorkDetailsDto> empDto = quearyBO.searchEmpId(id);
             empList.addAll(empDto);
 
             // employee kenektd gewala thena total price eka
-            TotPrice = EMP_SALARY.totalSalaryEmp(id);
+            TotPrice = empSalaryBO.totalSalaryEmp(id);
             totPriceEmp.setText(""+TotPrice);
 
 
-            List<EmpSalaryDto> dto = EMP_SALARY.getEmpTotPayPrice(id);
+            List<EmpSalaryDto> dto = empSalaryBO.getEmpTotPayPrice(id);
             emList.addAll(dto);
 
-            count = VIEW_EMP_MODEL.searchEmpTblCount(id);
+            count = quearyBO.searchEmpTblCount(id);
 
 
 
@@ -1281,7 +1278,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
 
         salaryPriceEmployeeDto dto = new salaryPriceEmployeeDto(pricecont);
         try{
-            String resp = SALARY_EMP_MODEl.insertSlary(dto);
+            String resp = salaryPriceEmployeeBO.insertSlary(dto);
             JOptionPane.showMessageDialog(null, "Save Status: " + resp, "Save Status", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error occurred: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
@@ -1351,7 +1348,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
 
         ObservableList<String> skm = FXCollections.observableArrayList();
         try {
-            List<String> ssm = INVOICE_CUSTOMER_MODEL.getAllId();
+            List<String> ssm = invoiceCustomerBO.getAllId();
             skm.addAll(ssm);
             if(!skm.contains(id)){
                 txtCustIdCustomer.setStyle(";-fx-border-color: red;");
@@ -1371,10 +1368,10 @@ public class InvoiceManageController extends ManagementCetegoryController {
 
         ObservableList<InvoiceCustomerDto> list = FXCollections.observableArrayList();
         try {
-            String name = INVOICE_CUSTOMER_MODEL.getCustomerName(id);
+            String name = invoiceCustomerBO.getCustomerName(id);
             if(name != null) {
                 lblCustNameCustomer.setText("" + name);
-                List<InvoiceCustomerDto> dtoList = INVOICE_CUSTOMER_MODEL.customeTealeafDateGet(id);
+                List<InvoiceCustomerDto> dtoList = invoiceCustomerBO.customeTealeafDateGet(id);
                 Label[] labels = {
                         i1, i2, i3, i4, i5, i6, i7, i8, i9, i10, i11, i12, i13, i14, i15,
                         i16, i17, i18, i19, i20, i21, i22, i23, i24, i25, i26, i27, i28, i29, i30, i31
@@ -1415,8 +1412,8 @@ public class InvoiceManageController extends ManagementCetegoryController {
             String dte = date+date1;
 
 
-            List<InvoiceCustomerDto> cDto = INVOICE_CUSTOMER_MODEL.getDetailsPurchase(id);
-            List<InvoiceCustomerDto> cc = INVOICE_CUSTOMER_MODEL.getTeLeaf(id);
+            List<InvoiceCustomerDto> cDto = quearyBO.getDetailsPurchase(id);
+            List<InvoiceCustomerDto> cc = invoiceCustomerBO.getTeLeaf(id);
             if(cc.size() > 0){
                 InvoiceCustomerDto dd = cc.get(0);
                 lbltotGod.setText(String.valueOf(dd.getPrice1()));
@@ -1451,10 +1448,10 @@ public class InvoiceManageController extends ManagementCetegoryController {
                 double giyamadaHiga;
                 double pohora;
                 try {
-                    advnces  = INVOICE_CUSTOMER_MODEL.getAdvanceCustomer(id,month);
-                    nextAd = INVOICE_CUSTOMER_MODEL.nextAdvanceTotal(id,month);
-                    nextPohora = INVOICE_CUSTOMER_MODEL.nextPohoraTotal(id,month);
-                    pohora = INVOICE_CUSTOMER_MODEL.getPohoraCountCustomer(id,month);
+                    advnces  = invoiceCustomerBO.getAdvanceCustomer(id,month);
+                    nextAd = invoiceCustomerBO.nextAdvanceTotal(id,month);
+                    nextPohora = invoiceCustomerBO.nextPohoraTotal(id,month);
+                    pohora = invoiceCustomerBO.getPohoraCountCustomer(id,month);
                     String higaMonth = "";
                     String input = month;
 
@@ -1478,7 +1475,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
                     higaMonth=higaMonth+results;
 
 
-                    giyamadaHiga = INVOICE_CUSTOMER_MODEL.getGiyamasaHiga(id,higaMonth);
+                    giyamadaHiga = invoiceCustomerBO.getGiyamasaHiga(id,higaMonth);
                     System.out.println("ss"+higaMonth);
                     txtHiga.setText(""+giyamadaHiga);
                     txtF.setText(""+pohora);
@@ -1649,7 +1646,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
         String x = "15";
 
         try{
-            String sko = INVOICE_CUSTOMER_MODEL.cheackCustomerId(id,date);
+            String sko = invoiceCustomerBO.cheackCustomerId(id,date);
             if(!(sko == "")){
                 txtCustIdCustomer.setStyle(";-fx-border-color: Blue;");
                 LabelCheack.setText("all ready print this customer riports");
@@ -1713,7 +1710,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
 
         CustomerHigaPrice customerHigaPrice = new CustomerHigaPrice(id,date,NextHiga);
         try {
-            String rsp = INVOICE_MANAGE_MODEL.inserPaymentValues(id,date,pDto,NextHiga);
+            String rsp = invoiceManageBO.inserPaymentValues(id,date,pDto,NextHiga);
             JOptionPane.showMessageDialog(null,"ALERT"+rsp+JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException e) {
             System.out.println(e);
@@ -1730,7 +1727,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
         String id = txFID.getText();
         ObservableList<String> sL = FXCollections.observableArrayList();
         try {
-            List<String> dd = CUST_MNG_MODEL.getAllID();
+            List<String> dd = customerManageBO.getAllID();
             if(dd.contains(id)){
                 txFID.setStyle(";-fx-border-color: null;");
                 txFProductID.requestFocus();
@@ -1788,7 +1785,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
         String id = txtCID.getText();
         ObservableList<String> sL = FXCollections.observableArrayList();
         try {
-            List<String> dd = CUST_MNG_MODEL.getAllID();
+            List<String> dd = customerManageBO.getAllID();
             if(dd.contains(id)){
                 txtCID.setStyle(";-fx-border-color: null;");
                 txtCProductId.requestFocus();
@@ -1809,7 +1806,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
         String prId = txtCProductId.getText();
         ObservableList<String> sL = FXCollections.observableArrayList();
         try {
-            List<String> dd = INVOICE_CUSTOMER_MODEL.getAllProductId();
+            List<String> dd = invoiceCustomerBO.getAllProductId();
             if (dd.contains(prId) && ((prId.charAt(0) == 'T')||(prId.charAt(0) == 't'))) {
                 txtCProductId.setStyle(";-fx-border-color: null;");
                 txtCCount.requestFocus();
@@ -1829,7 +1826,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
         String id = txtCID1.getText();
         ObservableList<String> sL = FXCollections.observableArrayList();
         try {
-            List<String> dd = CUST_MNG_MODEL.getAllID();
+            List<String> dd = customerManageBO.getAllID();
             if(dd.contains(id)){
                 txtCID1.setStyle(";-fx-border-color: null;");
                 txtCProductId1.requestFocus();
@@ -1850,7 +1847,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
         String prId = txtCProductId1.getText();
         ObservableList<String> sL = FXCollections.observableArrayList();
         try {
-            List<String> dd = INVOICE_CUSTOMER_MODEL.getAllProductId();
+            List<String> dd = invoiceCustomerBO.getAllProductId();
             if (dd.contains(prId) && ((prId.charAt(0) == 'm') || prId.charAt(0) == 'M')) {
                 txtCProductId1.setStyle(";-fx-border-color: null;");
                 txtCCount1.requestFocus();
@@ -1886,8 +1883,8 @@ public class InvoiceManageController extends ManagementCetegoryController {
         String mk = tblT.getSelectionModel().getSelectedItem().getType();
 
         try {
-            mm = INVOICE_MANAGE_MODEL.getNameAdvance(mm);
-            mk = INVOICE_MANAGE_MODEL.getProductIDT(mk);
+            mm = invoiceManageBO.getNameAdvance(mm);
+            mk = invoiceManageBO.getProductIDT(mk);
             txtCID.setText(mm);
             txtCProductId.setText(mk);
         } catch (SQLException e) {
@@ -1932,7 +1929,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
         StockDto stockDto = new StockDto(productId, "Product Category", count, totalPrice);
         try {
             // Save the data to the database
-            String resp = INVOICE_MANAGE_MODEL.DeleteData(invoiceManageDto,stockDto);
+            String resp = invoiceManageBO.DeleteData(invoiceManageDto,stockDto);
             JOptionPane.showMessageDialog(null, "Save Status: " + resp, "Save Status", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error occurred: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
@@ -1968,8 +1965,8 @@ public class InvoiceManageController extends ManagementCetegoryController {
         String mk = (tblF.getSelectionModel().getSelectedItem().getType());
         String mm = (tblF.getSelectionModel().getSelectedItem().getCustName());
         try {
-            mm = INVOICE_MANAGE_MODEL.getIdF(mm);
-            mk = INVOICE_MANAGE_MODEL.getProductIDF(mk);
+            mm = invoiceManageBO.getIdF(mm);
+            mk = invoiceManageBO.getProductIDF(mk);
             txFID.setText(mm);
             txFProductID.setText(mk);
         } catch (SQLException e) {
@@ -2003,8 +2000,8 @@ public class InvoiceManageController extends ManagementCetegoryController {
         String name = (tblO.getSelectionModel().getSelectedItem().getCustName());
         String mk = (tblO.getSelectionModel().getSelectedItem().getType());
         try {
-            name = INVOICE_MANAGE_MODEL.getIdF(name);
-            mk = INVOICE_MANAGE_MODEL.getProductIDF(mk);
+            name = invoiceManageBO.getIdF(name);
+            mk = invoiceManageBO.getProductIDF(mk);
             txtCID1.setText(name);
             txtCProductId1.setText(mk);
         } catch (SQLException e) {
@@ -2055,7 +2052,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
         InvoiceManageDto invoiceManageDto = new InvoiceManageDto(id, date, productId, count, totalPrice);
         StockDto stockDto = new StockDto(productId, "Product Category", count, totalPrice);
         try {
-            String resp = INVOICE_MANAGE_MODEL.deleteOtherData(invoiceManageDto,stockDto);
+            String resp = invoiceManageBO.deleteOtherData(invoiceManageDto,stockDto);
             JOptionPane.showMessageDialog(null, "Save Status: " + resp, "Save Status", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error occurred: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
@@ -2085,7 +2082,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
             try {
                 i++;
                 String startDate = loadDae(i);
-                String xs = INVOICE_MANAGE_MODEL.getT(x,startDate);
+                String xs = invoiceManageBO.getT(x,startDate);
                 if (xs == null || xs.equals("0")) {
                     parameters.put("DAY_1", " ");
                 } else {
@@ -2101,7 +2098,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
             try {
                 i++;
                 String startDate = loadDae(i);
-                String xs = INVOICE_MANAGE_MODEL.getT(x,startDate);
+                String xs = invoiceManageBO.getT(x,startDate);
                 if (xs == null || xs.equals("0")) {
                     parameters.put("DAY2", " ");
                 } else {
@@ -2116,7 +2113,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
             try {
                 i++;
                 String startDate = loadDae(i);
-                String xs = INVOICE_MANAGE_MODEL.getT(x,startDate);
+                String xs = invoiceManageBO.getT(x,startDate);
                 if (xs == null || xs.equals("0")) {
                     parameters.put("DAY3", " ");
                 } else {
@@ -2131,7 +2128,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
             try {
                 i++;
                 String startDate = loadDae(i);
-                String xs = INVOICE_MANAGE_MODEL.getT(x,startDate);
+                String xs = invoiceManageBO.getT(x,startDate);
                 if (xs == null || xs.equals("0")) {
                     parameters.put("DAY4", " ");
                 } else {
@@ -2146,7 +2143,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
             try {
                 i++;
                 String startDate = loadDae(i);
-                String xs = INVOICE_MANAGE_MODEL.getT(x,startDate);
+                String xs = invoiceManageBO.getT(x,startDate);
                 if (xs == null || xs.equals("0")) {
                     parameters.put("DAY5", " ");
                 } else {
@@ -2161,7 +2158,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
             try {
                 i++;
                 String startDate = loadDae(i);
-                String xs = INVOICE_MANAGE_MODEL.getT(x,startDate);
+                String xs = invoiceManageBO.getT(x,startDate);
                 if (xs == null || xs.equals("0")) {
                     parameters.put("DAY6", " ");
                 } else {
@@ -2176,7 +2173,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
             try {
                 i++;
                 String startDate = loadDae(i);
-                String xs = INVOICE_MANAGE_MODEL.getT(x,startDate);
+                String xs = invoiceManageBO.getT(x,startDate);
                 if (xs == null || xs.equals("0")) {
                     parameters.put("DAY7", " ");
                 } else {
@@ -2191,7 +2188,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
             try {
                 i++;
                 String startDate = loadDae(i);
-                String xs = INVOICE_MANAGE_MODEL.getT(x,startDate);
+                String xs = invoiceManageBO.getT(x,startDate);
                 if (xs == null || xs.equals("0")) {
                     parameters.put("DAY8", " ");
                 } else {
@@ -2206,7 +2203,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
             try {
                 i++;
                 String startDate = loadDae(i);
-                String xs = INVOICE_MANAGE_MODEL.getT(x,startDate);
+                String xs = invoiceManageBO.getT(x,startDate);
                 if (xs == null || xs.equals("0")) {
                     parameters.put("DAY9", " ");
                 } else {
@@ -2221,7 +2218,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
             try {
                 i++;
                 String startDate = loadDae(i);
-                String xs = INVOICE_MANAGE_MODEL.getT(x,startDate);
+                String xs = invoiceManageBO.getT(x,startDate);
                 if (xs == null || xs.equals("0")) {
                     parameters.put("DAY10", " ");
                 } else {
@@ -2236,7 +2233,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
             try {
                 i++;
                 String startDate = loadDae(i);
-                String xs = INVOICE_MANAGE_MODEL.getT(x,startDate);
+                String xs = invoiceManageBO.getT(x,startDate);
                 if (xs == null || xs.equals("0")) {
                     parameters.put("DAY11", " ");
                 } else {
@@ -2251,7 +2248,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
             try {
                 i++;
                 String startDate = loadDae(i);
-                String xs = INVOICE_MANAGE_MODEL.getT(x,startDate);
+                String xs = invoiceManageBO.getT(x,startDate);
                 if (xs == null || xs.equals("0")) {
                     parameters.put("DAY12", " ");
                 } else {
@@ -2266,7 +2263,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
             try {
                 i++;
                 String startDate = loadDae(i);
-                String xs = INVOICE_MANAGE_MODEL.getT(x,startDate);
+                String xs = invoiceManageBO.getT(x,startDate);
                 if (xs == null || xs.equals("0")) {
                     parameters.put("DAY13", " ");
                 } else {
@@ -2281,7 +2278,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
             try {
                 i++;
                 String startDate = loadDae(i);
-                String xs = INVOICE_MANAGE_MODEL.getT(x,startDate);
+                String xs = invoiceManageBO.getT(x,startDate);
                 if (xs == null || xs.equals("0")) {
                     parameters.put("DAY14", " ");
                 } else {
@@ -2296,7 +2293,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
             try {
                 i++;
                 String startDate = loadDae(i);
-                String xs = INVOICE_MANAGE_MODEL.getT(x,startDate);
+                String xs = invoiceManageBO.getT(x,startDate);
                 if (xs == null || xs.equals("0")) {
                     parameters.put("DAY15", " ");
                 } else {
@@ -2311,7 +2308,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
             try {
                 i++;
                 String startDate = loadDae(i);
-                String xs = INVOICE_MANAGE_MODEL.getT(x,startDate);
+                String xs = invoiceManageBO.getT(x,startDate);
                 if (xs == null || xs.equals("0")) {
                     parameters.put("DAY16", " ");
                 } else {
@@ -2326,7 +2323,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
             try {
                 i++;
                 String startDate = loadDae(i);
-                String xs = INVOICE_MANAGE_MODEL.getT(x,startDate);
+                String xs = invoiceManageBO.getT(x,startDate);
                 if (xs == null || xs.equals("0")) {
                     parameters.put("DAY17", " ");
                 } else {
@@ -2341,7 +2338,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
             try {
                 i++;
                 String startDate = loadDae(i);
-                String xs = INVOICE_MANAGE_MODEL.getT(x,startDate);
+                String xs = invoiceManageBO.getT(x,startDate);
                 if (xs == null || xs.equals("0")) {
                     parameters.put("DAY18", " ");
                 } else {
@@ -2356,7 +2353,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
             try {
                 i++;
                 String startDate = loadDae(i);
-                String xs = INVOICE_MANAGE_MODEL.getT(x,startDate);
+                String xs = invoiceManageBO.getT(x,startDate);
                 if (xs == null || xs.equals("0")) {
                     parameters.put("DAY19", " ");
                 } else {
@@ -2371,7 +2368,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
             try {
                 i++;
                 String startDate = loadDae(i);
-                String xs = INVOICE_MANAGE_MODEL.getT(x,startDate);
+                String xs = invoiceManageBO.getT(x,startDate);
                 if (xs == null || xs.equals("0")) {
                     parameters.put("DAY20", " ");
                 } else {
@@ -2386,7 +2383,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
             try {
                 i++;
                 String startDate = loadDae(i);
-                String xs = INVOICE_MANAGE_MODEL.getT(x,startDate);
+                String xs = invoiceManageBO.getT(x,startDate);
                 if (xs == null || xs.equals("0")) {
                     parameters.put("DAY21", " ");
                 } else {
@@ -2401,7 +2398,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
             try {
                 i++;
                 String startDate = loadDae(i);
-                String xs = INVOICE_MANAGE_MODEL.getT(x,startDate);
+                String xs = invoiceManageBO.getT(x,startDate);
                 if (xs == null || xs.equals("0")) {
                     parameters.put("DAY22", " ");
                 } else {
@@ -2416,7 +2413,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
             try {
                 i++;
                 String startDate = loadDae(i);
-                String xs = INVOICE_MANAGE_MODEL.getT(x,startDate);
+                String xs = invoiceManageBO.getT(x,startDate);
                 if (xs == null || xs.equals("0")) {
                     parameters.put("DAY23", " ");
                 } else {
@@ -2430,7 +2427,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
             }          try {
                 i++;
                 String startDate = loadDae(i);
-                String xs = INVOICE_MANAGE_MODEL.getT(x,startDate);
+                String xs = invoiceManageBO.getT(x,startDate);
                 if (xs == null || xs.equals("0")) {
                     parameters.put("DAY24", " ");
                 } else {
@@ -2445,7 +2442,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
             try {
                 i++;
                 String startDate = loadDae(i);
-                String xs = INVOICE_MANAGE_MODEL.getT(x,startDate);
+                String xs = invoiceManageBO.getT(x,startDate);
                 if (xs == null || xs.equals("0")) {
                     parameters.put("DAY25", " ");
                 } else {
@@ -2459,7 +2456,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
             }          try {
                 i++;
                 String startDate = loadDae(i);
-                String xs = INVOICE_MANAGE_MODEL.getT(x,startDate);
+                String xs = invoiceManageBO.getT(x,startDate);
                 if (xs == null || xs.equals("0")) {
                     parameters.put("DAY26", " ");
                 } else {
@@ -2474,7 +2471,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
             try {
                 i++;
                 String startDate = loadDae(i);
-                String xs = INVOICE_MANAGE_MODEL.getT(x,startDate);
+                String xs = invoiceManageBO.getT(x,startDate);
                 if (xs == null || xs.equals("0")) {
                     parameters.put("DAY27", " ");
                 } else {
@@ -2489,7 +2486,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
             try {
                 i++;
                 String startDate = loadDae(i);
-                String xs = INVOICE_MANAGE_MODEL.getT(x,startDate);
+                String xs = invoiceManageBO.getT(x,startDate);
                 if (xs == null || xs.equals("0")) {
                     parameters.put("DAY28", " ");
                 } else {
@@ -2504,7 +2501,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
             try {
                 i++;
                 String startDate = loadDae(i);
-                String xs = INVOICE_MANAGE_MODEL.getT(x,startDate);
+                String xs = invoiceManageBO.getT(x,startDate);
                 if (xs == null || xs.equals("0")) {
                     parameters.put("DAY29", " ");
                 } else {
@@ -2519,7 +2516,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
             try {
                 i++;
                 String startDate = loadDae(i);
-                String xs = INVOICE_MANAGE_MODEL.getT(x,startDate);
+                String xs = invoiceManageBO.getT(x,startDate);
                 if (xs == null || xs.equals("0")) {
                     parameters.put("DAY30", " ");
                 } else {
@@ -2533,7 +2530,7 @@ public class InvoiceManageController extends ManagementCetegoryController {
             }          try {
                 i++;
                 String startDate = loadDae(i);
-                String xs = INVOICE_MANAGE_MODEL.getT(x,startDate);
+                String xs = invoiceManageBO.getT(x,startDate);
                 if (xs == null || xs.equals("0")) {
                     parameters.put("DAY31", " ");
                 } else {

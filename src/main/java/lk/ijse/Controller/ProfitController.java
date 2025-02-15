@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import lk.ijse.bo.custom.MonthlyRateBO;
+import lk.ijse.bo.custom.impl.MonthlyRateBoimpl;
 import lk.ijse.dto.MonthlyRateDto;
 
 import java.awt.event.ActionEvent;
@@ -94,10 +96,10 @@ public class ProfitController {
     private Label lblNetPrice;
 
 
-    private MonthlyRateDAOimpl MONTHLY_Rate;
+    MonthlyRateBO monthlyRateBO = new MonthlyRateBoimpl();
 
     public void initialize(){
-        MONTHLY_Rate = new MonthlyRateDAOimpl();
+
         ObservableList<String> moth = FXCollections.observableArrayList();
         ObservableList<String> year = FXCollections.observableArrayList();
         String[] ar = {"2024","2025","2026","2027","2028","2029","2030","2031","2032","2033","2034","2035","2036","2037","2038","2039","2040","2041","2042","2043","2044","2045","2046","2047","2048","2049","2050"};
@@ -132,7 +134,7 @@ public class ProfitController {
         double hodaRate = Double.parseDouble(lblH.getText());
         double ranRate = Double.parseDouble(lblR.getText());
         try {
-            List<Integer> ss = MONTHLY_Rate.getallMonthlyLeafCount(date);
+            List<Integer> ss = monthlyRateBO.getallMonthlyLeafCount(date);
             int Ran = ss.get(0);
             int Hod = ss.get(1);
             l3.setText(""+Ran);
@@ -141,21 +143,21 @@ public class ProfitController {
             l4.setText(""+(Ran*ranRate));
             double tt = (Hod*hodaRate+Ran*ranRate);
             Total1.setText(""+tt);
-            double get = MONTHLY_Rate.getPurchase(date);
+            double get = monthlyRateBO.getPurchase(date);
             l7.setText(""+get);
-            Double ad = MONTHLY_Rate.getAdvance(month);
+            Double ad = monthlyRateBO.getAdvance(month);
             l5.setText(""+ad);
-            Double FF = MONTHLY_Rate.getPohora(month);
+            Double FF = monthlyRateBO.getPohora(month);
             l6.setText(""+FF);
             tt = get+ad+FF;
             lblTotal1.setText(""+tt);
             double[] ar = new double[2];
-            ar = MONTHLY_Rate. getAllCustomerHiga(month,hodaRate,ranRate);
+            ar = monthlyRateBO. getAllCustomerHiga(month,hodaRate,ranRate);
             l8.setText(""+ar[0]);
             tt = ar[1];
             tt = tt*1;
             l9.setText(""+tt);
-            ad = MONTHLY_Rate.get100tganan(month);
+            ad = monthlyRateBO.get100tganan(month);
             l10.setText(""+ad);
             ad = ad*hodaRate;
             l11.setText(""+ad);
@@ -173,7 +175,7 @@ public class ProfitController {
         String MM = cmMonth.getValue();
         String date1 = yy+MM;
         try {
-            List<MonthlyRateDto> ss =  MONTHLY_Rate.getLeafPrice(date1);
+            List<MonthlyRateDto> ss =  monthlyRateBO.getLeafPrice(date1);
 
             if (ss.isEmpty() || ss ==null){
 
