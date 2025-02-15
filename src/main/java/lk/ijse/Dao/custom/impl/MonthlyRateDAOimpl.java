@@ -54,15 +54,10 @@ public class MonthlyRateDAOimpl implements MonthlyRateDAO {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("YYYY");
         String date = LocalDate.now().format(dateTimeFormatter);
 
-        String strDate = date+("-01-01");
-        String endDate = date+("-12-31");
-
         Connection connection = DBConnection.getInstance().getConnection();
         String sql = "SELECT * FROM monthlyRate ";
         PreparedStatement statement = connection.prepareStatement(sql);
 
-//        statement.setString(1,strDate);
-//        statement.setString(2,endDate);
 
         List<MonthlyRate> list = new ArrayList<>();
         ResultSet rst = statement.executeQuery();
@@ -81,9 +76,7 @@ public class MonthlyRateDAOimpl implements MonthlyRateDAO {
         String sql = "SELECT goldrate,goodrate FROM monthlyRate WHERE month = ? ";
         PreparedStatement statement = connection.prepareStatement(sql);
 
-
         statement.setString(1,date);
-
 
         List<MonthlyRate> list = new ArrayList<>();
 
@@ -230,14 +223,10 @@ public class MonthlyRateDAOimpl implements MonthlyRateDAO {
             return temp;
     }
 
-    public List<Integer> getallMonthlyLeafCount(String date) throws SQLException, ClassNotFoundException {
+    public List<Integer> getallMonthlyLeafCount(String date, String st, String en) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
         String sql = "SELECT SUM(goldLeafAmount) AS goldLeafAmount,SUM(goodLeafAmount) AS goodLeafAmount FROM teabaginventory WHERE date BETWEEN ? AND ? ";
         PreparedStatement statement = connection.prepareStatement(sql);
-
-        String st = date+"-01";
-        String en = date+"-31";
-
 
         statement.setString(1,st);
         statement.setString(2,en);
@@ -253,30 +242,16 @@ public class MonthlyRateDAOimpl implements MonthlyRateDAO {
         return list;
     }
 
-    public Double getPurchase(String date) throws SQLException, ClassNotFoundException {
-
-        String startDate = date + "-01";
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-
-        LocalDate startDateParsed = LocalDate.parse(startDate, dateFormatter);
-        LocalDate endDateParsed = startDateParsed.plusMonths(1).withDayOfMonth(10);
-
-        String endDate = endDateParsed.toString();
-
-
+    public Double getPurchase(String date, String startDate, String endDate) throws SQLException, ClassNotFoundException {
 
         Connection connection = DBConnection.getInstance().getConnection();
 
         String sql = "select SUM(totalPrice) from productpurchasecustomer where date BETWEEN ? AND ?";
 
-
         PreparedStatement statement = connection.prepareStatement(sql);
-
 
         statement.setString(1, startDate);
         statement.setString(2, endDate);
-
 
         ResultSet rst = statement.executeQuery();
         Double ssss = 0.0;
@@ -284,7 +259,6 @@ public class MonthlyRateDAOimpl implements MonthlyRateDAO {
         if (rst.next()){
             ssss = rst.getDouble(1);
         }
-
 
         return ssss;
     }

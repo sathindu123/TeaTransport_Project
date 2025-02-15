@@ -37,8 +37,28 @@ public class EmpSalaryBoimpl implements EmpSalaryBO {
 
 
     public List<EmpSalaryDto> loadPayPriceEmp() throws SQLException, ClassNotFoundException {
+        LocalDateTime now = LocalDateTime.now();
 
-        List<EmpSalary> ar = empSalaryDAO.loadPayPriceEmp();
+        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
+            now = now.minusMonths(1);
+            if (now.getDayOfMonth() == 1) {
+                now = now.minusYears(1);
+            }
+        }
+
+
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
+        String formattedDate = now.format(dateFormatter);
+
+        String startDate = formattedDate + "-01";
+
+
+        String endDate = now.withDayOfMonth(now.toLocalDate().lengthOfMonth())
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+
+
+        List<EmpSalary> ar = empSalaryDAO.loadPayPriceEmp(startDate,endDate);
 
         List<EmpSalaryDto> dtoList = new ArrayList<>();
 
@@ -53,11 +73,47 @@ public class EmpSalaryBoimpl implements EmpSalaryBO {
 
 
     public int totalSalaryEmp(String id) throws SQLException, ClassNotFoundException {
-       return empSalaryDAO.totalSalaryEmp(id);
+        LocalDateTime now = LocalDateTime.now();
+
+        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
+            now = now.minusMonths(1);
+            if (now.getDayOfMonth() == 1) {
+                now = now.minusYears(1);
+            }
+        }
+
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
+        String formattedDate = now.format(dateFormatter);
+
+        String startDate = formattedDate + "-01";
+
+
+        String endDate = now.withDayOfMonth(now.toLocalDate().lengthOfMonth())
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+        return empSalaryDAO.totalSalaryEmp(id,startDate,endDate);
     }
 
     public List<EmpSalaryDto> getEmpTotPayPrice(String id) throws SQLException, ClassNotFoundException {
-        List<EmpSalary> ar = empSalaryDAO.getEmpTotPayPrice(id);
+        LocalDateTime now = LocalDateTime.now();
+
+        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
+            now = now.minusMonths(1);
+            if (now.getDayOfMonth() == 1) {
+                now = now.minusYears(1);
+            }
+        }
+
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
+        String formattedDate = now.format(dateFormatter);
+
+        String startDate = formattedDate + "-01";
+
+
+        String endDate = now.withDayOfMonth(now.toLocalDate().lengthOfMonth())
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+        List<EmpSalary> ar = empSalaryDAO.getEmpTotPayPrice(id,startDate,endDate);
 
         List<EmpSalaryDto> dtoList = new ArrayList<>();
 
@@ -70,7 +126,26 @@ public class EmpSalaryBoimpl implements EmpSalaryBO {
     }
 
     public int getSalaryAll() throws SQLException, ClassNotFoundException {
-        return empSalaryDAO.getSalaryAll();
+        LocalDateTime now = LocalDateTime.now();
+
+        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
+            now = now.minusMonths(1);
+            if (now.getDayOfMonth() == 1) {
+                now = now.minusYears(1);
+            }
+        }
+
+
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
+        String formattedDate = now.format(dateFormatter);
+
+        String startDate = formattedDate + "-01";
+
+
+        String endDate = now.withDayOfMonth(now.toLocalDate().lengthOfMonth())
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+        return empSalaryDAO.getSalaryAll(startDate,endDate);
     }
 
     @Override

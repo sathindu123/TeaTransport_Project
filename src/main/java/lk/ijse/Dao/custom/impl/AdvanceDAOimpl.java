@@ -15,7 +15,6 @@ public class AdvanceDAOimpl implements AdvanceDAO {
         String sql = "select SUM(monthPrice)as monthPrice from advance";
         PreparedStatement statement = connection.prepareStatement(sql);
 
-
         ResultSet rst = statement.executeQuery();
         double price = 0;
         if(rst.next()){

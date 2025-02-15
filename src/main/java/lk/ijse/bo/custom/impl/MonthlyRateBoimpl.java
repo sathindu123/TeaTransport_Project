@@ -56,7 +56,7 @@ public class MonthlyRateBoimpl implements MonthlyRateBO {
         List<MonthlyRateDto> dtoList = new ArrayList<>();
 
         for (MonthlyRate rate : ar) {
-            MonthlyRateDto dto = new MonthlyRateDto(rate.getRate(), rate.getRate1());
+            MonthlyRateDto dto = new MonthlyRateDto(rate.getMonth(),rate.getRate(), rate.getRate1());
             dtoList.add(dto);
         }
 
@@ -83,11 +83,23 @@ public class MonthlyRateBoimpl implements MonthlyRateBO {
     }
 
     public List<Integer> getallMonthlyLeafCount(String date) throws SQLException, ClassNotFoundException {
-       return monthlyRateDAO.getallMonthlyLeafCount(date);
+        String st = date+"-01";
+        String en = date+"-31";
+        return monthlyRateDAO.getallMonthlyLeafCount(date,st,en);
     }
 
     public Double getPurchase(String date) throws SQLException, ClassNotFoundException {
-        return monthlyRateDAO.getPurchase(date);
+        String startDate = date + "-01";
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+
+        LocalDate startDateParsed = LocalDate.parse(startDate, dateFormatter);
+        LocalDate endDateParsed = startDateParsed.plusMonths(1).withDayOfMonth(10);
+
+        String endDate = endDateParsed.toString();
+
+
+        return monthlyRateDAO.getPurchase(date,startDate,endDate);
     }
 
     public Double getAdvance(String month) throws SQLException, ClassNotFoundException {

@@ -23,7 +23,7 @@ public class InvoiceManageDAOimpl implements InvoiceManageDAO {
 
     public String updateData(InvoiceManageDto invoiceManageDto, StockDto stockDto) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
-//dffjh
+
         try {
             connection.setAutoCommit(false);
 

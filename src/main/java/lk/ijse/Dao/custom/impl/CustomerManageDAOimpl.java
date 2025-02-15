@@ -176,9 +176,9 @@ public class CustomerManageDAOimpl implements CustomerManageDAO {
         ResultSet rst = statement.executeQuery();
 
         if (rst.next()) {
-            return rst.getInt(1) > 0; // Returns true if customer exists
+            return rst.getInt(1) > 0;
         }
-        return false; // Returns false if customer does not exist
+        return false;
     }
 
     public String getNam(String id) throws SQLException, ClassNotFoundException {

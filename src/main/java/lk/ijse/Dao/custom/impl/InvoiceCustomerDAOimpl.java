@@ -2,16 +2,12 @@ package lk.ijse.Dao.custom.impl;
 
 import lk.ijse.Dao.custom.InvoiceCustomerDAO;
 import lk.ijse.db.DBConnection;
-import lk.ijse.dto.InvoiceCustomerDto;
-import lk.ijse.dto.MonthlyRateDto;
 import lk.ijse.entity.InvoiceCustomer;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -19,24 +15,7 @@ import java.util.List;
 public class InvoiceCustomerDAOimpl implements InvoiceCustomerDAO {
     private String[] dateArray = {"JANUARY","FEBRUARY","MARCH","APRILL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOMBER","NOVEMBER","DESEMBER"};
 
-    public List<InvoiceCustomer> getTeLeaf(String id) throws SQLException, ClassNotFoundException {
-        LocalDateTime now = LocalDateTime.now();
-
-        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
-            now = now.minusMonths(1);
-            if (now.getDayOfMonth() == 1) {
-                now = now.minusYears(1);
-            }
-        }
-
-
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
-        String formattedDate = now.format(dateFormatter);
-
-        String startDate = formattedDate + "-01";
-        String endDate = now.withDayOfMonth(now.toLocalDate().lengthOfMonth())
-                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-
+    public List<InvoiceCustomer> getTeLeaf(String id, String startDate, String endDate) throws SQLException, ClassNotFoundException {
 
         Connection connection = DBConnection.getInstance().getConnection();
 
@@ -60,26 +39,7 @@ public class InvoiceCustomerDAOimpl implements InvoiceCustomerDAO {
         return dtoList;
     }
 
-    public List<InvoiceCustomer> customeTealeafDateGet(String id) throws SQLException, ClassNotFoundException {
-        LocalDateTime now = LocalDateTime.now();
-
-        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
-            now = now.minusMonths(1);
-            if (now.getDayOfMonth() == 1) {
-                now = now.minusYears(1);
-            }
-        }
-
-
-
-
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
-        String formattedDate = now.format(dateFormatter);
-
-        String startDate = formattedDate + "-01";
-        String endDate = now.withDayOfMonth(now.toLocalDate().lengthOfMonth())
-                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-
+    public List<InvoiceCustomer> customeTealeafDateGet(String id, String startDate, String endDate) throws SQLException, ClassNotFoundException {
 
         Connection connection = DBConnection.getInstance().getConnection();
 
@@ -363,23 +323,7 @@ public class InvoiceCustomerDAOimpl implements InvoiceCustomerDAO {
     ////////////////////////////dailyHomagePage///////////////////////
 
 
-    public List<InvoiceCustomer> getAllTeaLeafCount() throws SQLException, ClassNotFoundException {
-        LocalDateTime now = LocalDateTime.now();
-
-        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
-            now = now.minusMonths(1);
-            if (now.getDayOfMonth() == 1) {
-                now = now.minusYears(1);
-            }
-        }
-
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
-        String formattedDate = now.format(dateFormatter);
-
-        String startDate = formattedDate + "-01";
-        String endDate = now.withDayOfMonth(now.toLocalDate().lengthOfMonth())
-                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-
+    public List<InvoiceCustomer> getAllTeaLeafCount(String startDate, String endDate) throws SQLException, ClassNotFoundException {
 
         Connection connection = DBConnection.getInstance().getConnection();
 

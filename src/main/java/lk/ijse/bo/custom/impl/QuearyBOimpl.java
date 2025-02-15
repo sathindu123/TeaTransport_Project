@@ -41,7 +41,26 @@ public class QuearyBOimpl implements QuearyBO {
 
     public List<ViewEmpWorkDetailsDto> loadtblEmp() throws SQLException, ClassNotFoundException {
 
-        List<ViewEmpWorkDetails> ar = queryDAO.loadtblEmp();
+        LocalDateTime now = LocalDateTime.now();
+
+        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
+            now = now.minusMonths(1);
+            if (now.getDayOfMonth() == 1) {
+                now = now.minusYears(1);
+            }
+        }
+
+
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
+        String formattedDate = now.format(dateFormatter);
+
+        String startDate = formattedDate + "-01";
+
+
+        String endDate = now.withDayOfMonth(now.toLocalDate().lengthOfMonth())
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+        List<ViewEmpWorkDetails> ar = queryDAO.loadtblEmp(startDate,endDate);
 
         List<ViewEmpWorkDetailsDto> dtoList = new ArrayList<>();
 
@@ -55,14 +74,54 @@ public class QuearyBOimpl implements QuearyBO {
     }
 
     public int getCountEmp() throws SQLException, ClassNotFoundException {
+        LocalDateTime now = LocalDateTime.now();
 
-        return queryDAO.getCountEmp();
+        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
+            now = now.minusMonths(1);
+            if (now.getDayOfMonth() == 1) {
+                now = now.minusYears(1);
+            }
+        }
+
+
+
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
+        String formattedDate = now.format(dateFormatter);
+
+
+        String startDate = formattedDate + "-01";
+
+        String endDate = now.withDayOfMonth(now.toLocalDate().lengthOfMonth())
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+        return queryDAO.getCountEmp(startDate,endDate);
 
     }
 
     public List<ViewEmpWorkDetailsDto> searchEmpId(String id) throws SQLException, ClassNotFoundException {
 
-        List<ViewEmpWorkDetails> ar = queryDAO.searchEmpId(id);
+        LocalDateTime now = LocalDateTime.now();
+
+        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
+            now = now.minusMonths(1);
+            if (now.getDayOfMonth() == 1) {
+                now = now.minusYears(1);
+            }
+        }
+
+
+
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
+        String formattedDate = now.format(dateFormatter);
+
+
+        String startDate = formattedDate + "-01";
+
+        String endDate = now.withDayOfMonth(now.toLocalDate().lengthOfMonth())
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+
+        List<ViewEmpWorkDetails> ar = queryDAO.searchEmpId(id,startDate,endDate);
 
         List<ViewEmpWorkDetailsDto> dtoList = new ArrayList<>();
         for (ViewEmpWorkDetails rate : ar) {
@@ -76,12 +135,52 @@ public class QuearyBOimpl implements QuearyBO {
 
 
     public int searchEmpTblCount(String id) throws SQLException, ClassNotFoundException {
-        return queryDAO.searchEmpTblCount(id);
+
+        LocalDateTime now = LocalDateTime.now();
+
+        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
+            now = now.minusMonths(1);
+            if (now.getDayOfMonth() == 1) {
+                now = now.minusYears(1);
+            }
+        }
+
+
+
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
+        String formattedDate = now.format(dateFormatter);
+
+
+        String startDate = formattedDate + "-01";
+
+        String endDate = now.withDayOfMonth(now.toLocalDate().lengthOfMonth())
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+        return queryDAO.searchEmpTblCount(id,startDate,endDate);
     }
 
     public List<InvoiceCustomerDto> getDetailsPurchase(String id) throws SQLException, ClassNotFoundException {
 
-        List<InvoiceCustomer> ar = queryDAO.getDetailsPurchase(id);
+        LocalDateTime now = LocalDateTime.now();
+
+
+        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
+            now = now.minusMonths(1);
+            if (now.getDayOfMonth() == 1) {
+                now = now.minusYears(1);
+            }
+        }
+
+
+
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
+        String startDate = now.format(dateFormatter) + "-01";
+
+
+        now = now.plusMonths(1);
+        String endDate = now.format(dateFormatter) + "-10";
+
+        List<InvoiceCustomer> ar = queryDAO.getDetailsPurchase(id,startDate,endDate);
 
         List<InvoiceCustomerDto> dtoList = new ArrayList<>();
 
@@ -127,7 +226,27 @@ public class QuearyBOimpl implements QuearyBO {
 
     public List<ViewEmpWorkDetailsDto> loadEmp() throws SQLException, ClassNotFoundException {
 
-        List<ViewEmpWorkDetails> ar = queryDAO.loadEmp();
+        LocalDateTime now = LocalDateTime.now();
+
+        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
+            now = now.minusMonths(1);
+            if (now.getDayOfMonth() == 1) {
+                now = now.minusYears(1);
+            }
+        }
+
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
+        String formattedDate = now.format(dateFormatter);
+
+        String startDate = formattedDate + "-01";
+
+
+        String endDate = now.withDayOfMonth(now.toLocalDate().lengthOfMonth())
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+
+
+        List<ViewEmpWorkDetails> ar = queryDAO.loadEmp(startDate,endDate);
 
         List<ViewEmpWorkDetailsDto> dtoList = new ArrayList<>();
 
@@ -203,7 +322,48 @@ public class QuearyBOimpl implements QuearyBO {
 
     public List<getCustomerAllDetailsDto> getAllCustomerDetails() throws SQLException, ClassNotFoundException {
 
-        List<getCustomerAllDetails> ar = queryDAO.getAllCustomerDetails();
+        LocalDateTime now = LocalDateTime.now();
+
+        // Adjust the date range to include the previous month's details if within the first 10 days of the current month
+        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
+            now = now.minusMonths(1);
+            if (now.getDayOfMonth() == 1) {
+                now = now.minusYears(1);
+            }
+        }
+        String ss = "";
+        DateTimeFormatter dateFormatter1 = DateTimeFormatter.ofPattern("MM");
+        String formattedDate1 = now.format(dateFormatter1);
+        int monthNumber = Integer.parseInt(formattedDate1);
+        for (int i = 0; i < dateArray.length; i++) {
+            if (monthNumber == i + 1) {
+                System.out.println("pako");
+                if (i + 1 == 12) {
+                    ss = dateArray[11];
+                } else {
+                    ss = dateArray[i + 1];
+                }
+                break;
+            }
+        }
+        DateTimeFormatter dateFormatter2 = DateTimeFormatter.ofPattern("yyyy");
+        String formattedDate2 = now.format(dateFormatter2);
+        ss = ss+formattedDate2;
+
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
+        String formattedDate = now.format(dateFormatter);
+
+        String startDate = formattedDate + "-01"; // Start of the month
+        String endDate = now.withDayOfMonth(now.toLocalDate().lengthOfMonth())
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd")); // End of the month
+
+        now = now.plusMonths(1);
+        DateTimeFormatter dateFormatter4 = DateTimeFormatter.ofPattern("yyyy-MM");
+        String formattedDate4 = now.format(dateFormatter4);
+        String endoDate = formattedDate4+"-10";
+
+
+        List<getCustomerAllDetails> ar = queryDAO.getAllCustomerDetails(startDate,endoDate,endDate,ss);
 
         List<getCustomerAllDetailsDto> dtoList = new ArrayList<>();
 
@@ -362,7 +522,26 @@ public class QuearyBOimpl implements QuearyBO {
 
     public List<ViewEmpWorkDetailsDto> searchEmployes(String id) throws SQLException, ClassNotFoundException {
 
-        List<ViewEmpWorkDetails> ar = queryDAO.searchEmployes(id);
+        LocalDateTime now = LocalDateTime.now();
+
+        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
+            now = now.minusMonths(1);
+            if (now.getDayOfMonth() == 1) {
+                now = now.minusYears(1);
+            }
+        }
+
+
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
+        String formattedDate = now.format(dateFormatter);
+
+        String startDate = formattedDate + "-01";
+
+
+        String endDate = now.withDayOfMonth(now.toLocalDate().lengthOfMonth())
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+        List<ViewEmpWorkDetails> ar = queryDAO.searchEmployes(id,startDate,endDate);
 
         List<ViewEmpWorkDetailsDto> dtoList = new ArrayList<>();
         for (ViewEmpWorkDetails rate : ar) {
@@ -375,7 +554,26 @@ public class QuearyBOimpl implements QuearyBO {
     }
 
     public int searchEmpCount(String id) throws SQLException, ClassNotFoundException {
-        return queryDAO.searchEmpCount(id);
+        LocalDateTime now = LocalDateTime.now();
+
+        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
+            now = now.minusMonths(1);
+            if (now.getDayOfMonth() == 1) {
+                now = now.minusYears(1);
+            }
+        }
+
+
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
+        String formattedDate = now.format(dateFormatter);
+
+        String startDate = formattedDate + "-01";
+
+
+        String endDate = now.withDayOfMonth(now.toLocalDate().lengthOfMonth())
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+        return queryDAO.searchEmpCount(id,startDate,endDate);
     }
 
 }

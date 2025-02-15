@@ -9,8 +9,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +43,6 @@ public class QueryDAOimpl implements QueryDAO {
     public CustomerManageDto custSerachsummery(String id) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
 
-        // Added WHERE clause to filter by customer id
         String sql = "SELECT a.custId, c.name, a.date, a.price " +
                 "FROM customer c " +
                 "JOIN advance a ON c.id = a.custId " +
@@ -133,17 +130,13 @@ public class QueryDAOimpl implements QueryDAO {
 
     //////DailyHomePage////
 
-    public List<DailyHomePage> LoadTable() throws SQLException, ClassNotFoundException {
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String date = LocalDateTime.now().format(dateTimeFormatter);
-
+    public List<DailyHomePage> LoadTable(String date) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
         String sql = "SELECT c.custId,d.name,c.date,c.goldLeafAmount,c.goodLeafAmount FROM teaBagInventory c JOIN customer d ON c.custId = d.id WHERE date = ?";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1,date );
         List<DailyHomePage> Dtos = new ArrayList<>();
         ResultSet rst = statement.executeQuery();
-
 
         String name = "";
         while (rst.next()) {
@@ -156,48 +149,8 @@ public class QueryDAOimpl implements QueryDAO {
 
     //////////////////////////getcustomerAllDetails/////////////////
 
-    public List<getCustomerAllDetails> getAllCustomerDetails() throws SQLException, ClassNotFoundException {
+    public List<getCustomerAllDetails> getAllCustomerDetails(String startDate, String endoDate, String endDate, String ss) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
-        LocalDateTime now = LocalDateTime.now();
-
-        // Adjust the date range to include the previous month's details if within the first 10 days of the current month
-        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
-            now = now.minusMonths(1);
-            if (now.getDayOfMonth() == 1) {
-                now = now.minusYears(1);
-            }
-        }
-        String ss = "";
-        DateTimeFormatter dateFormatter1 = DateTimeFormatter.ofPattern("MM");
-        String formattedDate1 = now.format(dateFormatter1);
-        int monthNumber = Integer.parseInt(formattedDate1);
-        for (int i = 0; i < dateArray.length; i++) {
-            if (monthNumber == i + 1) {
-                System.out.println("pako");
-                if (i + 1 == 12) {
-                    ss = dateArray[11];
-                } else {
-                    ss = dateArray[i + 1];
-                }
-                break;
-            }
-        }
-        DateTimeFormatter dateFormatter2 = DateTimeFormatter.ofPattern("yyyy");
-        String formattedDate2 = now.format(dateFormatter2);
-        ss = ss+formattedDate2;
-
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
-        String formattedDate = now.format(dateFormatter);
-
-        String startDate = formattedDate + "-01"; // Start of the month
-        String endDate = now.withDayOfMonth(now.toLocalDate().lengthOfMonth())
-                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd")); // End of the month
-
-        now = now.plusMonths(1);
-        DateTimeFormatter dateFormatter4 = DateTimeFormatter.ofPattern("yyyy-MM");
-        String formattedDate4 = now.format(dateFormatter4);
-        String endoDate = formattedDate4+"-10";
-
 
         String sql = "SELECT " +
                 "    c.id, " +
@@ -391,27 +344,7 @@ public class QueryDAOimpl implements QueryDAO {
 
     //////////////invoiceCustomer/////////////////////////
 
-    public List<InvoiceCustomer> getDetailsPurchase(String id) throws SQLException, ClassNotFoundException {
-
-        LocalDateTime now = LocalDateTime.now();
-
-
-        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
-            now = now.minusMonths(1);
-            if (now.getDayOfMonth() == 1) {
-                now = now.minusYears(1);
-            }
-        }
-
-
-
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
-        String startDate = now.format(dateFormatter) + "-01";
-
-
-        now = now.plusMonths(1);
-        String endDate = now.format(dateFormatter) + "-10";
-
+    public List<InvoiceCustomer> getDetailsPurchase(String id, String startDate, String endDate) throws SQLException, ClassNotFoundException {
 
         Connection connection = DBConnection.getInstance().getConnection();
 
@@ -461,24 +394,7 @@ public class QueryDAOimpl implements QueryDAO {
 
     ///////////////////////////view emp work detail.////////////
 
-    public List<ViewEmpWorkDetails> loadEmp() throws SQLException, ClassNotFoundException {
-        LocalDateTime now = LocalDateTime.now();
-
-        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
-            now = now.minusMonths(1);
-            if (now.getDayOfMonth() == 1) {
-                now = now.minusYears(1);
-            }
-        }
-
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
-        String formattedDate = now.format(dateFormatter);
-
-        String startDate = formattedDate + "-01";
-
-
-        String endDate = now.withDayOfMonth(now.toLocalDate().lengthOfMonth())
-                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    public List<ViewEmpWorkDetails> loadEmp(String startDate, String endDate) throws SQLException, ClassNotFoundException {
 
 
         Connection connection = DBConnection.getInstance().getConnection();
@@ -502,25 +418,7 @@ public class QueryDAOimpl implements QueryDAO {
         return empList;
     }
 
-    public List<ViewEmpWorkDetails>  searchEmployes(String id) throws SQLException, ClassNotFoundException {
-        LocalDateTime now = LocalDateTime.now();
-
-        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
-            now = now.minusMonths(1);
-            if (now.getDayOfMonth() == 1) {
-                now = now.minusYears(1);
-            }
-        }
-
-
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
-        String formattedDate = now.format(dateFormatter);
-
-        String startDate = formattedDate + "-01";
-
-
-        String endDate = now.withDayOfMonth(now.toLocalDate().lengthOfMonth())
-                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    public List<ViewEmpWorkDetails>  searchEmployes(String id, String startDate, String endDate) throws SQLException, ClassNotFoundException {
 
         Connection connection = DBConnection.getInstance().getConnection();
         String sql ="SELECT e.empId, e.name, e.address, e.telnb, em.date " +
@@ -550,26 +448,7 @@ public class QueryDAOimpl implements QueryDAO {
         return null;
     }
 
-    public int searchEmpCount(String id) throws SQLException, ClassNotFoundException {
-        LocalDateTime now = LocalDateTime.now();
-
-        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
-            now = now.minusMonths(1);
-            if (now.getDayOfMonth() == 1) {
-                now = now.minusYears(1);
-            }
-        }
-
-
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
-        String formattedDate = now.format(dateFormatter);
-
-        String startDate = formattedDate + "-01";
-
-
-        String endDate = now.withDayOfMonth(now.toLocalDate().lengthOfMonth())
-                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-
+    public int searchEmpCount(String id, String startDate, String endDate) throws SQLException, ClassNotFoundException {
 
         Connection connection = DBConnection.getInstance().getConnection();
         String sql = "SELECT COUNT(em.date) " +
@@ -621,27 +500,7 @@ public class QueryDAOimpl implements QueryDAO {
         return null;
     }
     //Invoice eke emp table eka load karan code eka
-    public List<ViewEmpWorkDetails> loadtblEmp() throws SQLException, ClassNotFoundException {
-
-        LocalDateTime now = LocalDateTime.now();
-
-        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
-            now = now.minusMonths(1);
-            if (now.getDayOfMonth() == 1) {
-                now = now.minusYears(1);
-            }
-        }
-
-
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
-        String formattedDate = now.format(dateFormatter);
-
-        String startDate = formattedDate + "-01";
-
-
-        String endDate = now.withDayOfMonth(now.toLocalDate().lengthOfMonth())
-                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-
+    public List<ViewEmpWorkDetails> loadtblEmp(String startDate, String endDate) throws SQLException, ClassNotFoundException {
 
         Connection connection = DBConnection.getInstance().getConnection();
         String sql = "SELECT e.empId,e.name,em.date " +
@@ -668,28 +527,7 @@ public class QueryDAOimpl implements QueryDAO {
         return null;
     }
 
-    public int getCountEmp() throws SQLException, ClassNotFoundException {
-
-        LocalDateTime now = LocalDateTime.now();
-
-        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
-            now = now.minusMonths(1);
-            if (now.getDayOfMonth() == 1) {
-                now = now.minusYears(1);
-            }
-        }
-
-
-
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
-        String formattedDate = now.format(dateFormatter);
-
-
-        String startDate = formattedDate + "-01";
-
-        String endDate = now.withDayOfMonth(now.toLocalDate().lengthOfMonth())
-                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-
+    public int getCountEmp(String startDate, String endDate) throws SQLException, ClassNotFoundException {
 
         Connection connection = DBConnection.getInstance().getConnection();
         String sql = "SELECT COUNT(em.date) " +
@@ -713,28 +551,7 @@ public class QueryDAOimpl implements QueryDAO {
         return count;
     }
 
-    public List<ViewEmpWorkDetails> searchEmpId(String id) throws SQLException, ClassNotFoundException {
-
-        LocalDateTime now = LocalDateTime.now();
-
-        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
-            now = now.minusMonths(1);
-            if (now.getDayOfMonth() == 1) {
-                now = now.minusYears(1);
-            }
-        }
-
-
-
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
-        String formattedDate = now.format(dateFormatter);
-
-
-        String startDate = formattedDate + "-01";
-
-        String endDate = now.withDayOfMonth(now.toLocalDate().lengthOfMonth())
-                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-
+    public List<ViewEmpWorkDetails> searchEmpId(String id, String startDate, String endDate) throws SQLException, ClassNotFoundException {
 
         Connection connection = DBConnection.getInstance().getConnection();
         String sql = "SELECT e.empId,e.name,em.date " +
@@ -762,28 +579,7 @@ public class QueryDAOimpl implements QueryDAO {
         return null;
     }
 
-    public int searchEmpTblCount(String id) throws SQLException, ClassNotFoundException {
-
-        LocalDateTime now = LocalDateTime.now();
-
-        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
-            now = now.minusMonths(1);
-            if (now.getDayOfMonth() == 1) {
-                now = now.minusYears(1);
-            }
-        }
-
-
-
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
-        String formattedDate = now.format(dateFormatter);
-
-
-        String startDate = formattedDate + "-01";
-
-        String endDate = now.withDayOfMonth(now.toLocalDate().lengthOfMonth())
-                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-
+    public int searchEmpTblCount(String id, String startDate, String endDate) throws SQLException, ClassNotFoundException {
 
         Connection connection = DBConnection.getInstance().getConnection();
         String sql = "SELECT COUNT(em.date) " +
@@ -812,7 +608,6 @@ public class QueryDAOimpl implements QueryDAO {
     /////////////////////////vieew manage dao//////////
 
     public List<InvoiceManage> getAllAdvance() throws SQLException, ClassNotFoundException {
-
 
         Connection connection = DBConnection.getInstance().getConnection();
         String sql = "SELECT a.custId, c.name, a.date, a.price " +
@@ -915,8 +710,4 @@ public class QueryDAOimpl implements QueryDAO {
 
 
 
-
-
-
-
-    }
+}

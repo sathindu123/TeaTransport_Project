@@ -9,6 +9,8 @@ import lk.ijse.dto.DailyHomePageDto;
 import lk.ijse.entity.DailyHomePage;
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +41,11 @@ public class DailyhomepageBoimpl implements DailyHomePageBO {
 
     @Override
     public List<DailyHomePageDto> LoadTable() throws SQLException, ClassNotFoundException {
-        ArrayList<DailyHomePage> dailyHomePages = (ArrayList<DailyHomePage>) queryDAO.LoadTable();
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String date = LocalDateTime.now().format(dateTimeFormatter);
+
+
+        ArrayList<DailyHomePage> dailyHomePages = (ArrayList<DailyHomePage>) queryDAO.LoadTable(date);
         ArrayList<DailyHomePageDto> dailyHomePageDtos = new ArrayList<>();
         for (DailyHomePage dailyHomePage:dailyHomePages){
             dailyHomePageDtos.add(new DailyHomePageDto(dailyHomePage.getId(),dailyHomePage.getName(),dailyHomePage.getDate()

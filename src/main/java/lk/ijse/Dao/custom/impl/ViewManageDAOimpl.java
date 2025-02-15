@@ -77,10 +77,10 @@ public class ViewManageDAOimpl implements ViewManageDAO {
         double totalPrice = 0.0;
 
         if (rst.next()) {
-            totalPrice = rst.getDouble(1); // Get the total price from the result set
+            totalPrice = rst.getDouble(1);
         }
 
-        return totalPrice; // Return the total price
+        return totalPrice;
     }
 
     public double getTotalAdvanceCustomer(String id) throws SQLException, ClassNotFoundException {

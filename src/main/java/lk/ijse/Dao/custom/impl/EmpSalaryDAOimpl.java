@@ -2,15 +2,12 @@ package lk.ijse.Dao.custom.impl;
 
 import lk.ijse.Dao.custom.EmpSalaryDAO;
 import lk.ijse.db.DBConnection;
-import lk.ijse.dto.EmpSalaryDto;
 import lk.ijse.entity.EmpSalary;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,26 +39,7 @@ public class EmpSalaryDAOimpl implements EmpSalaryDAO
         return "";
     }
 
-    public List<EmpSalary> loadPayPriceEmp() throws SQLException, ClassNotFoundException {
-        LocalDateTime now = LocalDateTime.now();
-
-        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
-            now = now.minusMonths(1);
-            if (now.getDayOfMonth() == 1) {
-                now = now.minusYears(1);
-            }
-        }
-
-
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
-        String formattedDate = now.format(dateFormatter);
-
-        String startDate = formattedDate + "-01";
-
-
-        String endDate = now.withDayOfMonth(now.toLocalDate().lengthOfMonth())
-                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-
+    public List<EmpSalary> loadPayPriceEmp(String startDate, String endDate) throws SQLException, ClassNotFoundException {
         Connection connection = DBConnection.getInstance().getConnection();
         String sql = "SELECT * FROM employesalary WHERE date BETWEEN ? AND ?";
         PreparedStatement statement = connection.prepareStatement(sql);
@@ -78,31 +56,12 @@ public class EmpSalaryDAOimpl implements EmpSalaryDAO
             empList.add(dto);
         }
 
-
         return empList;
 
     }
 
 
-    public int totalSalaryEmp(String id) throws SQLException, ClassNotFoundException {
-        LocalDateTime now = LocalDateTime.now();
-
-        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
-            now = now.minusMonths(1);
-            if (now.getDayOfMonth() == 1) {
-                now = now.minusYears(1);
-            }
-        }
-
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
-        String formattedDate = now.format(dateFormatter);
-
-        String startDate = formattedDate + "-01";
-
-
-        String endDate = now.withDayOfMonth(now.toLocalDate().lengthOfMonth())
-                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-
+    public int totalSalaryEmp(String id, String startDate, String endDate) throws SQLException, ClassNotFoundException {
 
         Connection connection = DBConnection.getInstance().getConnection();
         String sql =  "SELECT SUM(price) FROM employesalary WHERE empId = ? AND date BETWEEN ? AND ?";
@@ -122,24 +81,7 @@ public class EmpSalaryDAOimpl implements EmpSalaryDAO
         return 0;
     }
 
-    public List<EmpSalary> getEmpTotPayPrice(String id) throws SQLException, ClassNotFoundException {
-        LocalDateTime now = LocalDateTime.now();
-
-        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
-            now = now.minusMonths(1);
-            if (now.getDayOfMonth() == 1) {
-                now = now.minusYears(1);
-            }
-        }
-
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
-        String formattedDate = now.format(dateFormatter);
-
-        String startDate = formattedDate + "-01";
-
-
-        String endDate = now.withDayOfMonth(now.toLocalDate().lengthOfMonth())
-                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    public List<EmpSalary> getEmpTotPayPrice(String id, String startDate, String endDate) throws SQLException, ClassNotFoundException {
 
         Connection connection = DBConnection.getInstance().getConnection();
         String sql = "SELECT * FROM employesalary WHERE empId = ? AND date BETWEEN ? AND ?";
@@ -162,26 +104,7 @@ public class EmpSalaryDAOimpl implements EmpSalaryDAO
         return empList;
     }
 
-    public int getSalaryAll() throws SQLException, ClassNotFoundException {
-        LocalDateTime now = LocalDateTime.now();
-
-        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
-            now = now.minusMonths(1);
-            if (now.getDayOfMonth() == 1) {
-                now = now.minusYears(1);
-            }
-        }
-
-
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
-        String formattedDate = now.format(dateFormatter);
-
-        String startDate = formattedDate + "-01";
-
-
-        String endDate = now.withDayOfMonth(now.toLocalDate().lengthOfMonth())
-                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-
+    public int getSalaryAll(String startDate, String endDate) throws SQLException, ClassNotFoundException {
 
         Connection connection = DBConnection.getInstance().getConnection();
         String sql = "SELECT SUM(price) FROM employesalary WHERE date BETWEEN ? AND ?";

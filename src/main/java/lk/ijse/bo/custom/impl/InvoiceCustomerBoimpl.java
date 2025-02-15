@@ -24,7 +24,25 @@ public class InvoiceCustomerBoimpl implements InvoiceCustomerBO {
 
     public List<InvoiceCustomerDto> getTeLeaf(String id) throws SQLException, ClassNotFoundException {
 
-        List<InvoiceCustomer> ar = invoiceCustomerDAO.getTeLeaf(id);
+        LocalDateTime now = LocalDateTime.now();
+
+        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
+            now = now.minusMonths(1);
+            if (now.getDayOfMonth() == 1) {
+                now = now.minusYears(1);
+            }
+        }
+
+
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
+        String formattedDate = now.format(dateFormatter);
+
+        String startDate = formattedDate + "-01";
+        String endDate = now.withDayOfMonth(now.toLocalDate().lengthOfMonth())
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+
+        List<InvoiceCustomer> ar = invoiceCustomerDAO.getTeLeaf(id,startDate,endDate);
 
         List<InvoiceCustomerDto> dtoList = new ArrayList<>();
 
@@ -40,7 +58,24 @@ public class InvoiceCustomerBoimpl implements InvoiceCustomerBO {
 
     public List<InvoiceCustomerDto> customeTealeafDateGet(String id) throws SQLException, ClassNotFoundException {
 
-        List<InvoiceCustomer> ar = invoiceCustomerDAO.customeTealeafDateGet(id);
+        LocalDateTime now = LocalDateTime.now();
+
+        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
+            now = now.minusMonths(1);
+            if (now.getDayOfMonth() == 1) {
+                now = now.minusYears(1);
+            }
+        }
+
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
+        String formattedDate = now.format(dateFormatter);
+
+        String startDate = formattedDate + "-01";
+        String endDate = now.withDayOfMonth(now.toLocalDate().lengthOfMonth())
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+
+        List<InvoiceCustomer> ar = invoiceCustomerDAO.customeTealeafDateGet(id,startDate,endDate);
 
         List<InvoiceCustomerDto> dtoList = new ArrayList<>();
 
@@ -187,7 +222,24 @@ public class InvoiceCustomerBoimpl implements InvoiceCustomerBO {
 
     public List<InvoiceCustomerDto> getAllTeaLeafCount() throws SQLException, ClassNotFoundException {
 
-        List<InvoiceCustomer> ar = invoiceCustomerDAO.getAllTeaLeafCount();
+        LocalDateTime now = LocalDateTime.now();
+
+        if (now.getDayOfMonth() >= 1 && now.getDayOfMonth() <= 10) {
+            now = now.minusMonths(1);
+            if (now.getDayOfMonth() == 1) {
+                now = now.minusYears(1);
+            }
+        }
+
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
+        String formattedDate = now.format(dateFormatter);
+
+        String startDate = formattedDate + "-01";
+        String endDate = now.withDayOfMonth(now.toLocalDate().lengthOfMonth())
+                .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+
+        List<InvoiceCustomer> ar = invoiceCustomerDAO.getAllTeaLeafCount(startDate,endDate);
         List<InvoiceCustomerDto> dtoList = new ArrayList<>();
 
         for (InvoiceCustomer rate : ar) {
